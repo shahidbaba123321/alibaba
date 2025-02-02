@@ -1,5 +1,5 @@
 // Open Enquiry Modal
-document.querySelectorAll('.book-now').forEach(button => {
+document.querySelectorAll('.learn-more').forEach(button => {
   button.addEventListener('click', () => {
     document.getElementById('enquiry-modal').style.display = 'block';
   });
