@@ -1,3 +1,13 @@
+/* Root Variables */
+:root {
+  --primary-color: #f90;
+  --secondary-color: #333;
+  --light-bg: #f9f9f9;
+  --dark-bg: #333;
+  --font-family: 'Arial', sans-serif;
+  --transition-speed: 0.3s;
+}
+
 /* General Styles */
 * {
   margin: 0;
@@ -6,9 +16,10 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: var(--font-family);
   line-height: 1.6;
-  color: #333;
+  color: var(--secondary-color);
+  background: var(--light-bg);
 }
 
 .container {
@@ -17,22 +28,23 @@ body {
   padding: 0 1rem;
 }
 
-header {
-  background: #fff;
+/* Header */
+.header {
+  background: var(--light-bg);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-header .logo {
+.header .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  color: var(--secondary-color);
 }
 
-header .logo span {
-  color: #f90;
+.header .logo span {
+  color: var(--primary-color);
 }
 
 .nav-links {
@@ -43,23 +55,18 @@ header .logo span {
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
-  transition: color 0.3s ease;
+  color: var(--secondary-color);
+  transition: color var(--transition-speed);
 }
 
 .nav-links a:hover {
-  color: #f90;
+  color: var(--primary-color);
 }
 
+/* Hero Section */
 .hero {
   position: relative;
   overflow: hidden;
-}
-
-.hero-video {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
 }
 
 .hero-content {
@@ -83,17 +90,29 @@ header .logo span {
 }
 
 #hero-cta {
-  background: #f90;
+  background: var(--primary-color);
   color: #fff;
   border: none;
   padding: 0.8rem 2rem;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background var(--transition-speed);
 }
 
 #hero-cta:hover {
   background: #e88;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  filter: brightness(0.7);
+  transition: transform var(--transition-speed);
+}
+
+.hero-img:hover {
+  transform: scale(1.1);
 }
 
 /* Featured Destinations */
@@ -112,7 +131,7 @@ header .logo span {
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-speed);
 }
 
 .destination-card:hover {
@@ -126,12 +145,12 @@ header .logo span {
 }
 
 .learn-more {
-  background: #f90;
+  background: var(--primary-color);
   color: #fff;
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background var(--transition-speed);
 }
 
 .learn-more:hover {
@@ -151,7 +170,7 @@ header .logo span {
 }
 
 .service-card {
-  background: #f9f9f9;
+  background: var(--light-bg);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -170,7 +189,7 @@ header .logo span {
 }
 
 .testimonial-card {
-  background: #f9f9f9;
+  background: var(--light-bg);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -197,12 +216,12 @@ header .logo span {
 }
 
 #contact-form button {
-  background: #f90;
+  background: var(--primary-color);
   color: #fff;
   border: none;
   padding: 0.8rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background var(--transition-speed);
 }
 
 #contact-form button:hover {
@@ -210,8 +229,8 @@ header .logo span {
 }
 
 /* Footer */
-footer {
-  background: #333;
+.footer {
+  background: var(--dark-bg);
   color: #fff;
   padding: 2rem 0;
   text-align: center;
