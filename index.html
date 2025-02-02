@@ -14,9 +14,9 @@
       <nav class="nav">
         <ul class="nav-links">
           <li><a href="#hero">Home</a></li>
+          <li><a href="#tours">Tours</a></li>
           <li><a href="#destinations">Destinations</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#blog">Blog</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -25,63 +25,91 @@
 
   <!-- Hero Section -->
   <section id="hero" class="hero">
+    <div class="slider">
+      <div class="slide active" style="background-image: url('https://via.placeholder.com/1920x1080');"></div>
+      <div class="slide" style="background-image: url('https://via.placeholder.com/1920x1080');"></div>
+      <div class="slide" style="background-image: url('https://via.placeholder.com/1920x1080');"></div>
+    </div>
     <div class="hero-content">
       <h1>Your Journey Starts Here</h1>
       <p>Explore breathtaking destinations and create unforgettable memories.</p>
-      <button id="hero-cta">Plan Your Adventure</button>
-    </div>
-    <div class="hero-image">
-      <img src="images/hero-bg.jpg" alt="Hero Image" class="hero-img">
+      <form class="search-form">
+        <input type="text" placeholder="Destination" required>
+        <input type="date" placeholder="Travel Date" required>
+        <input type="number" placeholder="Travelers" min="1" required>
+        <button type="submit">Find Tours</button>
+      </form>
     </div>
   </section>
 
-  <!-- Featured Destinations -->
-  <section id="destinations" class="featured-destinations">
+  <!-- Featured Tours -->
+  <section id="tours" class="featured-tours">
     <div class="container">
-      <h2>Featured Destinations</h2>
-      <div class="destinations-grid">
-        <div class="destination-card">
-          <img src="images/blog1.jpg" alt="Maldives">
-          <div class="card-content">
-            <h3>Maldives</h3>
-            <p>Escape to pristine beaches and turquoise waters.</p>
-            <button class="learn-more">Learn More</button>
-          </div>
+      <h2>Featured Tours</h2>
+      <div class="tours-grid">
+        <div class="tour-card">
+          <img src="https://via.placeholder.com/400x300" alt="Tour 1">
+          <h3>Maldives Getaway</h3>
+          <p>Escape to pristine beaches and turquoise waters.</p>
+          <p class="price">$1,200</p>
+          <button class="view-details">View Details</button>
         </div>
-        <div class="destination-card">
-          <img src="images/blog2.png" alt="Swiss Alps">
-          <div class="card-content">
-            <h3>Swiss Alps</h3>
-            <p>Experience the thrill of mountain adventures.</p>
-            <button class="learn-more">Learn More</button>
-          </div>
+        <div class="tour-card">
+          <img src="https://via.placeholder.com/400x300" alt="Tour 2">
+          <h3>Swiss Alps Adventure</h3>
+          <p>Experience the thrill of mountain adventures.</p>
+          <p class="price">$1,500</p>
+          <button class="view-details">View Details</button>
         </div>
-        <div class="destination-card">
-          <img src="images/destination1.jpg" alt="Paris">
-          <div class="card-content">
-            <h3>Paris</h3>
-            <p>Discover the romance and culture of the City of Lights.</p>
-            <button class="learn-more">Learn More</button>
-          </div>
+        <div class="tour-card">
+          <img src="https://via.placeholder.com/400x300" alt="Tour 3">
+          <h3>Paris City Break</h3>
+          <p>Discover the romance and culture of the City of Lights.</p>
+          <p class="price">$1,000</p>
+          <button class="view-details">View Details</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section id="services" class="services">
+  <!-- Popular Destinations -->
+  <section id="destinations" class="popular-destinations">
     <div class="container">
-      <h2>Our Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Personalized Itineraries</h3>
-          <p>We craft tailor-made travel plans to suit your preferences.</p>
+      <h2>Popular Destinations</h2>
+      <div class="destinations-grid">
+        <div class="destination-card">
+          <img src="https://via.placeholder.com/400x300" alt="Bali">
+          <h3>Bali</h3>
+          <p>A tropical paradise with lush landscapes and vibrant culture.</p>
         </div>
-        <div class="service-card">
-          <h3>Local Expertise</h3>
-          <p>Our team provides insider knowledge for authentic experiences.</p>
+        <div class="destination-card">
+          <img src="https://via.placeholder.com/400x300" alt="Santorini">
+          <h3>Santorini</h3>
+          <p>Experience the charm of whitewashed buildings and blue domes.</p>
         </div>
-        <div class="service-card">
+        <div class="destination-card">
+          <img src="https://via.placeholder.com/400x300" alt="New York">
+          <h3>New York</h3>
+          <p>The city that never sleeps, full of energy and iconic landmarks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value-Added Content -->
+  <section class="value-added">
+    <div class="container">
+      <h2>Why Choose Us?</h2>
+      <div class="value-grid">
+        <div class="value-card">
+          <h3>Best Price Guarantee</h3>
+          <p>We offer competitive prices without compromising on quality.</p>
+        </div>
+        <div class="value-card">
+          <h3>Curated Itineraries</h3>
+          <p>Our expertly crafted itineraries ensure a seamless travel experience.</p>
+        </div>
+        <div class="value-card">
           <h3>24/7 Support</h3>
           <p>Enjoy round-the-clock assistance during your travels.</p>
         </div>
@@ -89,66 +117,89 @@
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section id="testimonials" class="testimonials">
+  <!-- Testimonials -->
+  <section class="testimonials">
     <div class="container">
       <h2>What Our Clients Say</h2>
-      <div class="testimonial-cards">
-        <div class="testimonial-card">
+      <div class="testimonial-slider">
+        <div class="testimonial active">
           <p>"An unforgettable experience! The team made everything seamless."</p>
           <h4>- Sarah L.</h4>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial">
           <p>"Highly recommend their services for personalized travel planning."</p>
           <h4>- John D.</h4>
+        </div>
+        <div class="testimonial">
+          <p>"The best travel agency I’ve ever worked with. Truly exceptional!"</p>
+          <h4>- Emily R.</h4>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
+  <!-- Blog Section -->
+  <section id="blog" class="blog">
     <div class="container">
-      <h2>Contact Us</h2>
-      <form id="contact-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send Request</button>
-      </form>
+      <h2>Travel Inspiration</h2>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <img src="https://via.placeholder.com/400x300" alt="Blog Post 1">
+          <h3>Top 10 Destinations for 2024</h3>
+          <p>Discover the hottest travel spots for the upcoming year.</p>
+          <a href="#">Read More</a>
+        </div>
+        <div class="blog-card">
+          <img src="https://via.placeholder.com/400x300" alt="Blog Post 2">
+          <h3>Packing Tips for Long Trips</h3>
+          <p>Learn how to pack efficiently for extended journeys.</p>
+          <a href="#">Read More</a>
+        </div>
+        <div class="blog-card">
+          <img src="https://via.placeholder.com/400x300" alt="Blog Post 3">
+          <h3>How to Plan Your Dream Vacation</h3>
+          <p>Step-by-step guide to planning the perfect getaway.</p>
+          <a href="#">Read More</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Footer Section -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">FAQs</a>
-        <a href="#">Terms of Service</a>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>About Us</h3>
+          <p>We are a leading travel agency dedicated to crafting unforgettable journeys.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#tours">Tours</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <p>Email: info@travelpro.com</p>
+          <p>Phone: +1 234 567 890</p>
+        </div>
+        <div class="footer-column">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="https://facebook.com" target="_blank"><img src="https://via.placeholder.com/30x30" alt="Facebook"></a>
+            <a href="https://instagram.com" target="_blank"><img src="https://via.placeholder.com/30x30" alt="Instagram"></a>
+            <a href="https://wa.me/1234567890" target="_blank"><img src="https://via.placeholder.com/30x30" alt="WhatsApp"></a>
+          </div>
+        </div>
       </div>
-      <div class="social-links">
-        <a href="https://facebook.com" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
-        <a href="https://instagram.com" target="_blank"><img src="images/instagram.png" alt="Instagram"></a>
-        <a href="https://wa.me/1234567890" target="_blank"><img src="images/whatsapp.png" alt="WhatsApp"></a>
-      </div>
-      <p>&copy; 2023 TravelPro. All rights reserved.</p>
+      <p class="copyright">&copy; 2023 TravelPro. All rights reserved.</p>
     </div>
   </footer>
-
-  <!-- Enquiry Modal -->
-  <div id="enquiry-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Enquiry Form</h2>
-      <form id="enquiry-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send Request</button>
-      </form>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
