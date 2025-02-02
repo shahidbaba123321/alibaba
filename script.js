@@ -1,42 +1,42 @@
-// Open Enquiry Modal for Hero Section Button
-document.getElementById('hero-cta').addEventListener('click', () => {
-  document.getElementById('enquiry-modal').style.display = 'block';
-});
+// Hero Slider
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
 
-// Open Enquiry Modal for Learn More Buttons
-document.querySelectorAll('.learn-more').forEach(button => {
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) slide.classList.add('active');
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+
+setInterval(nextSlide, 5000); // Auto-rotate every 5 seconds
+
+// Testimonial Slider
+let currentTestimonial = 0;
+const testimonials = document.querySelectorAll('.testimonial');
+
+function showTestimonial(index) {
+  testimonials.forEach((testimonial, i) => {
+    testimonial.classList.remove('active');
+    if (i === index) testimonial.classList.add('active');
+  });
+}
+
+function nextTestimonial() {
+  currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+  showTestimonial(currentTestimonial);
+}
+
+setInterval(nextTestimonial, 5000); // Auto-rotate every 5 seconds
+
+// Open Enquiry Modal
+document.querySelectorAll('.view-details').forEach(button => {
   button.addEventListener('click', () => {
-    document.getElementById('enquiry-modal').style.display = 'block';
+    alert('Redirecting to tour details page...');
   });
-});
-
-// Close Enquiry Modal
-document.querySelector('.close').addEventListener('click', () => {
-  document.getElementById('enquiry-modal').style.display = 'none';
-});
-
-// Handle Form Submission
-document.getElementById('enquiry-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  alert('Thank you for your enquiry! We will get back to you soon.');
-  document.getElementById('enquiry-modal').style.display = 'none';
-});
-
-// Intersection Observer for Lazy Loading Animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('animate');
-    }
-  });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.destination-card, .service-card, .testimonial-card').forEach(card => {
-  observer.observe(card);
-});
-
-// Add Animation Class
-document.querySelectorAll('.animate').forEach(el => {
-  el.style.transform = 'translateY(0)';
-  el.style.opacity = '1';
 });
