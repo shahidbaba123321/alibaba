@@ -9,54 +9,126 @@
 <body>
   <!-- Header Section -->
   <header>
-    <nav>
+    <div class="container">
       <div class="logo">Travel<span>Pro</span></div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="tour-packages.html">Tour Packages</a></li>
-        <li><a href="destinations.html">Destinations</a></li>
-        <li><a href="cab-services.html">Cab Services</a></li>
-        <li><a href="self-drive.html">Self-Drive</a></li>
-      </ul>
-    </nav>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section id="hero" class="hero">
     <div class="hero-content">
-      <h1>Explore the World with Us</h1>
-      <p>Your dream vacation starts here. Discover amazing destinations and services.</p>
-      <button id="hero-enquiry">Book Now</button>
+      <h1>Discover Your Next Adventure</h1>
+      <p>Explore breathtaking destinations, curated itineraries, and personalized travel experiences.</p>
+      <button id="hero-cta">Plan Your Journey</button>
+    </div>
+    <video autoplay muted loop class="hero-video">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <!-- Featured Destinations -->
+  <section id="destinations" class="featured-destinations">
+    <div class="container">
+      <h2>Featured Destinations</h2>
+      <div class="destinations-grid">
+        <div class="destination-card">
+          <img src="https://via.placeholder.com/400x300" alt="Maldives">
+          <h3>Maldives</h3>
+          <p>Escape to pristine beaches and turquoise waters.</p>
+          <button class="learn-more">Learn More</button>
+        </div>
+        <div class="destination-card">
+          <img src="https://via.placeholder.com/400x300" alt="Swiss Alps">
+          <h3>Swiss Alps</h3>
+          <p>Experience the thrill of mountain adventures.</p>
+          <button class="learn-more">Learn More</button>
+        </div>
+        <div class="destination-card">
+          <img src="https://via.placeholder.com/400x300" alt="Paris">
+          <h3>Paris</h3>
+          <p>Discover the romance and culture of the City of Lights.</p>
+          <button class="learn-more">Learn More</button>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Featured Tours Section -->
-  <section class="featured-tours">
-    <h2>Featured Tours</h2>
-    <div class="tours-grid">
-      <div class="tour-card">
-        <img src="https://via.placeholder.com/300x200" alt="Tour 1">
-        <h3>Beach Getaway</h3>
-        <p>Relax on pristine beaches and enjoy the sun.</p>
-        <button class="book-now">Book Now</button>
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Personalized Itineraries</h3>
+          <p>We craft tailor-made travel plans to suit your preferences.</p>
+        </div>
+        <div class="service-card">
+          <h3>Local Expertise</h3>
+          <p>Our team provides insider knowledge for authentic experiences.</p>
+        </div>
+        <div class="service-card">
+          <h3>24/7 Support</h3>
+          <p>Enjoy round-the-clock assistance during your travels.</p>
+        </div>
       </div>
-      <div class="tour-card">
-        <img src="https://via.placeholder.com/300x200" alt="Tour 2">
-        <h3>Mountain Adventure</h3>
-        <p>Experience the thrill of mountain trekking.</p>
-        <button class="book-now">Book Now</button>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2>What Our Clients Say</h2>
+      <div class="testimonial-cards">
+        <div class="testimonial-card">
+          <p>"An unforgettable experience! The team made everything seamless."</p>
+          <h4>- Sarah L.</h4>
+        </div>
+        <div class="testimonial-card">
+          <p>"Highly recommend their services for personalized travel planning."</p>
+          <h4>- John D.</h4>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form id="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Request</button>
+      </form>
     </div>
   </section>
 
   <!-- Footer Section -->
   <footer>
-    <div class="social-links">
-      <a href="https://facebook.com" target="_blank"><img src="https://via.placeholder.com/30x30" alt="Facebook"></a>
-      <a href="https://instagram.com" target="_blank"><img src="https://via.placeholder.com/30x30" alt="Instagram"></a>
-      <a href="https://wa.me/1234567890" target="_blank"><img src="https://via.placeholder.com/30x30" alt="WhatsApp"></a>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">FAQs</a>
+        <a href="#">Terms of Service</a>
+      </div>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank"><img src="https://via.placeholder.com/30x30" alt="Facebook"></a>
+        <a href="https://instagram.com" target="_blank"><img src="https://via.placeholder.com/30x30" alt="Instagram"></a>
+        <a href="https://wa.me/1234567890" target="_blank"><img src="https://via.placeholder.com/30x30" alt="WhatsApp"></a>
+      </div>
+      <p>&copy; 2023 TravelPro. All rights reserved.</p>
     </div>
-    <p>&copy; 2023 TravelPro. All rights reserved.</p>
   </footer>
 
   <!-- Enquiry Modal -->
