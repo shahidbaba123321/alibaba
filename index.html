@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour & Travel Agency</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <div class="logo">Travel<span>Pro</span></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tour-packages.html">Tour Packages</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="cab-services.html">Cab Services</a></li>
+        <li><a href="self-drive.html">Self-Drive</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Explore the World with Us</h1>
+      <p>Your dream vacation starts here. Discover amazing destinations and services.</p>
+      <button id="hero-enquiry">Book Now</button>
+    </div>
+  </section>
+
+  <!-- Featured Tours Section -->
+  <section class="featured-tours">
+    <h2>Featured Tours</h2>
+    <div class="tours-grid">
+      <div class="tour-card">
+        <img src="https://via.placeholder.com/300x200" alt="Tour 1">
+        <h3>Beach Getaway</h3>
+        <p>Relax on pristine beaches and enjoy the sun.</p>
+        <button class="book-now">Book Now</button>
+      </div>
+      <div class="tour-card">
+        <img src="https://via.placeholder.com/300x200" alt="Tour 2">
+        <h3>Mountain Adventure</h3>
+        <p>Experience the thrill of mountain trekking.</p>
+        <button class="book-now">Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="social-links">
+      <a href="https://facebook.com" target="_blank"><img src="https://via.placeholder.com/30x30" alt="Facebook"></a>
+      <a href="https://instagram.com" target="_blank"><img src="https://via.placeholder.com/30x30" alt="Instagram"></a>
+      <a href="https://wa.me/1234567890" target="_blank"><img src="https://via.placeholder.com/30x30" alt="WhatsApp"></a>
+    </div>
+    <p>&copy; 2023 TravelPro. All rights reserved.</p>
+  </footer>
+
+  <!-- Enquiry Modal -->
+  <div id="enquiry-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Enquiry Form</h2>
+      <form id="enquiry-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Request</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
