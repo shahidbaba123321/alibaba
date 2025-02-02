@@ -1,10 +1,10 @@
 /* Root Variables */
 :root {
-  --primary-color: #f90;
-  --secondary-color: #333;
+  --primary-color: #007BFF;
+  --secondary-color: #28A745;
   --light-bg: #f9f9f9;
-  --dark-bg: #333;
-  --font-family: 'Arial', sans-serif;
+  --dark-bg: #212529;
+  --font-family: 'Poppins', sans-serif;
   --transition-speed: 0.3s;
 }
 
@@ -18,7 +18,7 @@
 body {
   font-family: var(--font-family);
   line-height: 1.6;
-  color: var(--secondary-color);
+  color: var(--dark-bg);
   background: var(--light-bg);
 }
 
@@ -35,12 +35,16 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
 }
 
 .header .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--secondary-color);
+  color: var(--dark-bg);
 }
 
 .header .logo span {
@@ -55,7 +59,7 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--dark-bg);
   transition: color var(--transition-speed);
 }
 
@@ -97,10 +101,11 @@ body {
   font-size: 1rem;
   cursor: pointer;
   transition: background var(--transition-speed);
+  border-radius: 5px;
 }
 
 #hero-cta:hover {
-  background: #e88;
+  background: var(--secondary-color);
 }
 
 .hero-img {
@@ -131,17 +136,22 @@ body {
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  transition: transform var(--transition-speed);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
 
 .destination-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .destination-card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
+}
+
+.card-content {
+  padding: 1rem;
 }
 
 .learn-more {
@@ -151,10 +161,11 @@ body {
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: background var(--transition-speed);
+  border-radius: 5px;
 }
 
 .learn-more:hover {
-  background: #e88;
+  background: var(--secondary-color);
 }
 
 /* Services Section */
@@ -174,6 +185,12 @@ body {
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Testimonials Section */
@@ -193,6 +210,12 @@ body {
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Contact Section */
@@ -212,7 +235,14 @@ body {
 #contact-form textarea {
   padding: 0.8rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 5px;
+  transition: border-color var(--transition-speed);
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
 }
 
 #contact-form button {
@@ -222,10 +252,11 @@ body {
   padding: 0.8rem;
   cursor: pointer;
   transition: background var(--transition-speed);
+  border-radius: 5px;
 }
 
 #contact-form button:hover {
-  background: #e88;
+  background: var(--secondary-color);
 }
 
 /* Footer */
@@ -265,6 +296,7 @@ body {
   width: 50%;
   max-width: 500px;
   border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .close {
