@@ -1,4 +1,9 @@
-// Open Enquiry Modal
+// Open Enquiry Modal for Hero Section Button
+document.getElementById('hero-cta').addEventListener('click', () => {
+  document.getElementById('enquiry-modal').style.display = 'block';
+});
+
+// Open Enquiry Modal for Learn More Buttons
 document.querySelectorAll('.learn-more').forEach(button => {
   button.addEventListener('click', () => {
     document.getElementById('enquiry-modal').style.display = 'block';
