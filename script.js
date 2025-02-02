@@ -16,3 +16,22 @@ document.getElementById('enquiry-form').addEventListener('submit', (e) => {
   alert('Thank you for your enquiry! We will get back to you soon.');
   document.getElementById('enquiry-modal').style.display = 'none';
 });
+
+// Intersection Observer for Lazy Loading Animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate');
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.destination-card, .service-card, .testimonial-card').forEach(card => {
+  observer.observe(card);
+});
+
+// Add Animation Class
+document.querySelectorAll('.animate').forEach(el => {
+  el.style.transform = 'translateY(0)';
+  el.style.opacity = '1';
+});
