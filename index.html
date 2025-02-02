@@ -8,10 +8,10 @@
 </head>
 <body>
   <!-- Header Section -->
-  <header>
+  <header class="header">
     <div class="container">
       <div class="logo">Travel<span>Pro</span></div>
-      <nav>
+      <nav class="nav">
         <ul class="nav-links">
           <li><a href="#hero">Home</a></li>
           <li><a href="#destinations">Destinations</a></li>
@@ -30,10 +30,9 @@
       <p>Explore breathtaking destinations, curated itineraries, and personalized travel experiences.</p>
       <button id="hero-cta">Plan Your Journey</button>
     </div>
-    <video autoplay muted loop class="hero-video">
-      <source src="images/hero.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <div class="hero-image">
+      <img src="images/hero-bg.jpg" alt="Hero Image" class="hero-img">
+    </div>
   </section>
 
   <!-- Featured Destinations -->
@@ -42,19 +41,19 @@
       <h2>Featured Destinations</h2>
       <div class="destinations-grid">
         <div class="destination-card">
-          <img src="images/destination1.jpg" alt="Maldives">
+          <img src="images/gallery1.jp" alt="Maldives">
           <h3>Maldives</h3>
           <p>Escape to pristine beaches and turquoise waters.</p>
           <button class="learn-more">Learn More</button>
         </div>
         <div class="destination-card">
-          <img src="images/destination1.jpg" alt="Swiss Alps">
+          <img src="images/blog2.jpg" alt="Swiss Alps">
           <h3>Swiss Alps</h3>
           <p>Experience the thrill of mountain adventures.</p>
           <button class="learn-more">Learn More</button>
         </div>
         <div class="destination-card">
-          <img src="images/destination1.jpg" alt="Paris">
+          <img src="images/blog1.jpg" alt="Paris">
           <h3>Paris</h3>
           <p>Discover the romance and culture of the City of Lights.</p>
           <button class="learn-more">Learn More</button>
@@ -115,7 +114,7 @@
   </section>
 
   <!-- Footer Section -->
-  <footer>
+  <footer class="footer">
     <div class="container">
       <div class="footer-links">
         <a href="#">Privacy Policy</a>
