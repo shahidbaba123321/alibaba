@@ -6,7 +6,7 @@
     <title>Baba-HRMS - AI-Powered HR Management</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header Section -->
@@ -51,11 +51,16 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Transform HR with AI-Powered Tools</h1>
-            <p>Streamline recruitment, performance management, and payroll with next-generation HR solutions.</p>
-            <div class="hero-buttons">
-                <a href="#signup" class="btn hero-btn-primary">Start Free Trial</a>
-                <a href="#demo" class="btn hero-btn-secondary">Schedule Demo</a>
+            <div class="hero-content">
+                <h1>Transform HR with AI-Powered Tools</h1>
+                <p>Streamline recruitment, performance management, and payroll with next-generation HR solutions.</p>
+                <div class="hero-buttons">
+                    <a href="#signup" class="btn hero-btn-primary">Start Free Trial</a>
+                    <a href="#demo" class="btn hero-btn-secondary">Schedule Demo</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="hero-image.png" alt="HR Management Dashboard" class="animate-float">
             </div>
         </div>
     </section>
@@ -63,22 +68,28 @@
     <!-- Feature Showcase -->
     <section id="features" class="feature-showcase">
         <div class="container">
-            <h2>AI-Powered Features</h2>
+            <div class="section-header">
+                <h2>AI-Powered Features</h2>
+                <p>Experience the future of HR management with our cutting-edge tools</p>
+            </div>
             <div class="feature-grid">
                 <div class="feature-card">
                     <i class="fas fa-robot"></i>
                     <h3>AI Recruitment</h3>
                     <p>Smart resume screening and candidate matching using advanced AI algorithms.</p>
+                    <a href="#learn-more" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-chart-line"></i>
                     <h3>Performance Analytics</h3>
-                    <p>Real-time performance tracking with predictive insights.</p>
+                    <p>Real-time performance tracking with predictive insights and analytics.</p>
+                    <a href="#learn-more" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-brain"></i>
                     <h3>Smart Learning</h3>
                     <p>NLP-powered learning recommendations and skill gap analysis.</p>
+                    <a href="#learn-more" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -87,13 +98,37 @@
     <!-- AI Demo Section -->
     <section class="ai-demo">
         <div class="container">
-            <h2>Experience AI in Action</h2>
-            <div class="demo-widget">
-                <div id="sentiment-analyzer">
-                    <h3>AI Sentiment Analysis Demo</h3>
-                    <textarea id="analysis-input" placeholder="Enter text for sentiment analysis..." aria-label="Text for sentiment analysis"></textarea>
-                    <button onclick="analyzeSentiment()" class="btn primary">Analyze Sentiment</button>
-                    <div id="analysis-result"></div>
+            <div class="section-header">
+                <h2>Experience AI in Action</h2>
+                <p>Try our AI-powered tools and see the magic happen</p>
+            </div>
+            <div class="demo-container">
+                <div class="demo-card">
+                    <h3>Sentiment Analysis Demo</h3>
+                    <p>See how our AI analyzes employee feedback and reviews</p>
+                    <div class="demo-widget">
+                        <textarea id="analysis-input" 
+                                placeholder="Enter text for sentiment analysis..."
+                                aria-label="Text for sentiment analysis"></textarea>
+                        <button onclick="analyzeSentiment()" class="btn primary">
+                            Analyze Sentiment
+                        </button>
+                        <div id="analysis-result"></div>
+                    </div>
+                </div>
+                <div class="demo-card">
+                    <h3>Resume Parser Demo</h3>
+                    <p>Upload a resume and watch our AI extract key information</p>
+                    <div class="demo-widget">
+                        <div class="file-upload">
+                            <input type="file" id="resume-upload" accept=".pdf,.doc,.docx">
+                            <label for="resume-upload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                Choose File
+                            </label>
+                        </div>
+                        <div id="resume-result"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,11 +137,20 @@
     <!-- API Explorer Section -->
     <section class="api-explorer">
         <div class="container">
-            <h2>API Explorer</h2>
-            <div class="code-snippet">
-                <pre><code class="language-javascript">
-// Example API Request
-fetch('/api/v1/employees', {
+            <div class="section-header">
+                <h2>API Explorer</h2>
+                <p>Test our APIs directly in your browser</p>
+            </div>
+            <div class="api-container">
+                <div class="code-snippet">
+                    <div class="code-header">
+                        <span>Example API Request</span>
+                        <button class="copy-btn" onclick="copyCode()">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <pre><code class="language-javascript">
+fetch('https://api.baba-hrms.com/v1/employees', {
     method: 'GET',
     headers: {
         'Authorization': 'Bearer ${token}',
@@ -115,26 +159,34 @@ fetch('/api/v1/employees', {
 })
 .then(response => response.json())
 .then(data => console.log(data));</code></pre>
+                </div>
+                <div class="api-actions">
+                    <button class="btn secondary" id="try-api">Try it out</button>
+                    <div id="api-response"></div>
+                </div>
             </div>
-            <button class="btn secondary" id="try-api">Try it out</button>
-            <div id="api-response"></div>
         </div>
     </section>
 
     <!-- Integration Section -->
-    <section id="integration" class="integration-section">
+    <section class="integration-section">
         <div class="container">
-            <h2>Seamless Integration</h2>
+            <div class="section-header">
+                <h2>Seamless Integration</h2>
+                <p>Connect with your favorite tools and platforms</p>
+            </div>
             <div class="integration-grid">
                 <div class="integration-card">
                     <img src="zoho-logo.png" alt="Zoho Integration">
                     <h3>Zoho Marketplace</h3>
                     <p>Extend functionality with Zoho marketplace apps</p>
+                    <a href="#integrate" class="btn secondary">Integrate Now</a>
                 </div>
                 <div class="integration-card">
                     <img src="api-logo.png" alt="API Integration">
                     <h3>REST API</h3>
                     <p>Build custom solutions with our comprehensive API</p>
+                    <a href="#api-docs" class="btn secondary">View Docs</a>
                 </div>
             </div>
         </div>
@@ -143,26 +195,43 @@ fetch('/api/v1/employees', {
     <!-- Pricing Section -->
     <section id="pricing" class="pricing-section">
         <div class="container">
-            <h2>Flexible Pricing Plans</h2>
+            <div class="section-header">
+                <h2>Flexible Pricing Plans</h2>
+                <p>Choose the perfect plan for your business</p>
+            </div>
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <h3>Starter</h3>
-                    <div class="price">₹48<span>/user/month</span></div>
-                    <ul>
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">48</span>
+                            <span class="period">/user/month</span>
+                        </div>
+                    </div>
+                    <ul class="features-list">
                         <li><i class="fas fa-check"></i> Basic AI Recruitment</li>
                         <li><i class="fas fa-check"></i> Employee Database</li>
                         <li><i class="fas fa-check"></i> Standard Reports</li>
+                        <li><i class="fas fa-check"></i> Email Support</li>
                     </ul>
                     <button class="btn primary">Start Free Trial</button>
                 </div>
                 <div class="pricing-card featured">
-                    <h3>Professional</h3>
-                    <div class="price">₹96<span>/user/month</span></div>
-                    <ul>
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">96</span>
+                            <span class="period">/user/month</span>
+                        </div>
+                    </div>
+                    <ul class="features-list">
                         <li><i class="fas fa-check"></i> Advanced AI Features</li>
                         <li><i class="fas fa-check"></i> Performance Analytics</li>
                         <li><i class="fas fa-check"></i> API Access</li>
                         <li><i class="fas fa-check"></i> Priority Support</li>
+                        <li><i class="fas fa-check"></i> Custom Integrations</li>
                     </ul>
                     <button class="btn primary">Start Free Trial</button>
                 </div>
@@ -175,11 +244,21 @@ fetch('/api/v1/employees', {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
-                    <h4>Developer Resources</h4>
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#integrations">Integrations</a></li>
+                        <li><a href="#updates">Product Updates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Developers</h4>
                     <ul>
                         <li><a href="#api-docs">API Documentation</a></li>
                         <li><a href="#sdk">SDKs & Tools</a></li>
                         <li><a href="#status">System Status</a></li>
+                        <li><a href="#github">GitHub</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -187,6 +266,7 @@ fetch('/api/v1/employees', {
                     <ul>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#careers">Careers</a></li>
+                        <li><a href="#blog">Blog</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -195,7 +275,8 @@ fetch('/api/v1/employees', {
                     <ul>
                         <li><a href="#privacy">Privacy Policy</a></li>
                         <li><a href="#terms">Terms of Service</a></li>
-                        <li><a href="#gdpr">GDPR Compliance</a></li>
+                        <li><a href="#security">Security</a></li>
+                        <li><a href="#compliance">Compliance</a></li>
                     </ul>
                 </div>
             </div>
