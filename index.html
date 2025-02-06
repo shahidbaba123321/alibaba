@@ -1,154 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baba-HRMS</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <h1>Baba-HRMS</h1>
-            </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <nav>
-                <ul id="nav-list">
-                    <li><a href="#features">Features</a></li>
-                    <li class="dropdown">
-                        <a href="#">HR Modules <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-content">
-                            <li><a href="#recruitment">Recruitment</a></li>
-                            <li><a href="#performance">Performance Management</a></li>
-                            <li><a href="#payroll">Payroll</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#signin">Sign In</a></li>
-                    <li><a href="#signup" class="btn primary">Sign Up</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<!-- Add to the header navigation -->
+<nav>
+    <ul id="nav-list">
+        <!-- Add API Documentation dropdown -->
+        <li class="dropdown">
+            <a href="#">Developer Tools <i class="fas fa-caret-down"></i></a>
+            <ul class="dropdown-content">
+                <li><a href="#api-docs">API Documentation</a></li>
+                <li><a href="#fetch-api">Fetch Component API</a></li>
+                <li><a href="#extensions">Zoho Extensions</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Transform HR with AI-Powered Tools</h1>
-            <p>Streamline recruitment, performance management, and payroll with Baba-HRMS.</p>
-            <div class="hero-buttons">
-                <a href="#signup" class="btn hero-btn-primary">Free Trial</a>
-                <a href="#demo" class="btn hero-btn-secondary">Schedule Demo</a>
+<!-- Add AI Demo Section -->
+<section class="ai-demo">
+    <div class="container">
+        <h2>AI Capabilities Demo</h2>
+        <div class="demo-widget">
+            <div id="sentiment-analyzer">
+                <!-- AI Sentiment Analysis Demo Widget -->
+                <textarea id="analysis-input" placeholder="Enter text for sentiment analysis..."></textarea>
+                <button onclick="analyzeSentiment()" class="btn primary">Analyze</button>
+                <div id="analysis-result"></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Feature Showcase -->
-    <section id="features" class="feature-showcase">
-        <div class="container">
-            <h2>Core Functionalities</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <i class="fas fa-file-alt"></i>
-                    <h3>AI Recruitment Tools</h3>
-                    <p>Resume screening, video interview analysis, and candidate ranking.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-database"></i>
-                    <h3>Data Management</h3>
-                    <p>Employee data management and compliance automation.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-book"></i>
-                    <h3>Learning Management</h3>
-                    <p>NLP-supported learning systems for employee upskilling.</p>
-                </div>
-            </div>
+<!-- Add API Explorer Section -->
+<section class="api-explorer">
+    <div class="container">
+        <h2>Live API Explorer</h2>
+        <div class="code-snippet">
+            <pre><code class="language-javascript">
+// Sample API endpoint
+fetch('/api/v1/employees', {
+    method: 'GET',
+    headers: {
+        'Authorization': 'Bearer ${token}'
+    }
+})
+            </code></pre>
         </div>
-    </section>
-
-    <!-- Integration & Customization -->
-    <section id="integration" class="integration-section">
-        <div class="container">
-            <h2>Integration & Customization</h2>
-            <p>Customizable workflows and third-party integrations for seamless HR operations.</p>
-            <div class="api-docs">
-                <a href="#api-docs" class="btn secondary">API Documentation</a>
-                <a href="#custom-workflows" class="btn secondary">Custom Workflows</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials & Case Studies -->
-    <section id="testimonials" class="testimonial-section">
-        <div class="container">
-            <h2>Client Success Stories</h2>
-            <div class="carousel">
-                <div class="testimonial active">
-                    <p>"Baba-HRMS transformed our hiring process with AI-driven tools."</p>
-                    <span>- John Doe, CEO</span>
-                </div>
-                <div class="testimonial">
-                    <p>"The payroll module is intuitive and saves us hours every month."</p>
-                    <span>- Jane Smith, HR Manager</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing & Plans -->
-    <section id="pricing" class="pricing-section">
-        <div class="container">
-            <h2>Pricing Plans</h2>
-            <div class="pricing-table">
-                <div class="plan">
-                    <h3>Basic</h3>
-                    <p>₹48/user/month</p>
-                    <ul>
-                        <li>AI Recruitment Tools</li>
-                        <li>Data Management</li>
-                    </ul>
-                    <a href="#signup" class="btn primary">Choose Plan</a>
-                </div>
-                <div class="plan">
-                    <h3>Pro</h3>
-                    <p>₹96/user/month</p>
-                    <ul>
-                        <li>All Basic Features</li>
-                        <li>Learning Management</li>
-                        <li>Advanced Analytics</li>
-                    </ul>
-                    <a href="#signup" class="btn primary">Choose Plan</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <ul>
-                    <li><a href="#api-docs">API Documentation</a></li>
-                    <li><a href="#extensions-guide">Extensions Guide</a></li>
-                    <li><a href="#help-center">Help Center</a></li>
-                </ul>
-            </div>
-            <div class="compliance">
-                <p>Compliance: <img src="gdpr-badge.png" alt="GDPR Badge"> <img src="soc2-badge.png" alt="SOC 2 Badge"></p>
-            </div>
-            <p>&copy; 2023 Baba-HRMS. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+        <div id="api-response"></div>
+    </div>
+</section>
