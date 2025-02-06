@@ -7,7 +7,7 @@ mobileMenu.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
 });
 
-// AI Sentiment Analysis Demo
+// Sentiment Analysis Demo
 function analyzeSentiment() {
     const input = document.getElementById('analysis-input').value;
     const resultDiv = document.getElementById('analysis-result');
@@ -17,8 +17,13 @@ function analyzeSentiment() {
         return;
     }
 
-    // Show loading spinner
-    resultDiv.innerHTML = '<div class="spinner"></div>';
+    // Show loading state
+    resultDiv.innerHTML = `
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Analyzing sentiment...</p>
+        </div>
+    `;
     
     // Simulate API call
     setTimeout(() => {
@@ -51,7 +56,12 @@ class APIExplorer {
     }
 
     async makeRequest() {
-        this.responseDiv.innerHTML = '<div class="spinner"></div>';
+        this.responseDiv.innerHTML = `
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Fetching data...</p>
+            </div>
+        `;
 
         try {
             // Simulate API call
@@ -91,27 +101,23 @@ ${JSON.stringify(response, null, 2)}
     }
 }
 
-// Form Validation
-class FormValidator {
-    static validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email.toLowerCase());
-    }
-
-    static validatePassword(password) {
-        return password.length >= 8;
-    }
-
-    static showError(element, message) {
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.textContent = message;
-        element.parentNode.appendChild(errorDiv);
-        
-        setTimeout(() => {
-            errorDiv.remove();
-        }, 3000);
-    }
+// Copy Code Function
+function copyCode() {
+    const codeElement = document.querySelector('.code-snippet code');
+    const textArea = document.createElement('textarea');
+    textArea.value = codeElement.textContent;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    
+    // Show copied notification
+    const copyBtn = document.querySelector('.copy-btn');
+    const originalText = copyBtn.innerHTML;
+    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    setTimeout(() => {
+        copyBtn.innerHTML = originalText;
+    }, 2000);
 }
 
 // Lazy Loading Images
@@ -132,30 +138,36 @@ function lazyLoadImages() {
     images.forEach(img => imageObserver.observe(img));
 }
 
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new APIExplorer();
     lazyLoadImages();
     
-    // Initialize tooltips
+    // Initialize tooltips if any
     const tooltips = document.querySelectorAll('[data-tooltip]');
     tooltips.forEach(tooltip => {
         new Tooltip(tooltip);
     });
-});
 
-// Handle scroll animations
-const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    
-    elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementBottom = element.getBoundingClientRect().bottom;
-        
-        if (elementTop < window.innerHeight && elementBottom > 0) {
-            element.classList.add('animated');
-        }
+    // Add scroll animation class to elements
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
     });
-};
 
-window.addEventListener('scroll', animateOnScroll);
+    animateElements.forEach(element => observer.observe(element));
+});
