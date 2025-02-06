@@ -1,48 +1,215 @@
-<!-- Add to the header navigation -->
-<nav>
-    <ul id="nav-list">
-        <!-- Add API Documentation dropdown -->
-        <li class="dropdown">
-            <a href="#">Developer Tools <i class="fas fa-caret-down"></i></a>
-            <ul class="dropdown-content">
-                <li><a href="#api-docs">API Documentation</a></li>
-                <li><a href="#fetch-api">Fetch Component API</a></li>
-                <li><a href="#extensions">Zoho Extensions</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baba-HRMS - AI-Powered HR Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Baba-HRMS</h1>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <nav>
+                <ul id="nav-list">
+                    <li><a href="#features">Features</a></li>
+                    <li class="dropdown">
+                        <a href="#">HR Modules <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-content">
+                            <li><a href="#recruitment">Recruitment</a></li>
+                            <li><a href="#performance">Performance Management</a></li>
+                            <li><a href="#payroll">Payroll</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Developer Tools <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-content">
+                            <li><a href="#api-docs">API Documentation</a></li>
+                            <li><a href="#fetch-api">Fetch Component API</a></li>
+                            <li><a href="#extensions">Zoho Extensions</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#signin">Sign In</a></li>
+                    <li><a href="#signup" class="btn primary">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<!-- Add AI Demo Section -->
-<section class="ai-demo">
-    <div class="container">
-        <h2>AI Capabilities Demo</h2>
-        <div class="demo-widget">
-            <div id="sentiment-analyzer">
-                <!-- AI Sentiment Analysis Demo Widget -->
-                <textarea id="analysis-input" placeholder="Enter text for sentiment analysis..."></textarea>
-                <button onclick="analyzeSentiment()" class="btn primary">Analyze</button>
-                <div id="analysis-result"></div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Transform HR with AI-Powered Tools</h1>
+            <p>Streamline recruitment, performance management, and payroll with next-generation HR solutions.</p>
+            <div class="hero-buttons">
+                <a href="#signup" class="btn hero-btn-primary">Start Free Trial</a>
+                <a href="#demo" class="btn hero-btn-secondary">Schedule Demo</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Add API Explorer Section -->
-<section class="api-explorer">
-    <div class="container">
-        <h2>Live API Explorer</h2>
-        <div class="code-snippet">
-            <pre><code class="language-javascript">
-// Sample API endpoint
+    <!-- Feature Showcase -->
+    <section id="features" class="feature-showcase">
+        <div class="container">
+            <h2>AI-Powered Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Recruitment</h3>
+                    <p>Smart resume screening and candidate matching using advanced AI algorithms.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Performance Analytics</h3>
+                    <p>Real-time performance tracking with predictive insights.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Smart Learning</h3>
+                    <p>NLP-powered learning recommendations and skill gap analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Demo Section -->
+    <section class="ai-demo">
+        <div class="container">
+            <h2>Experience AI in Action</h2>
+            <div class="demo-widget">
+                <div id="sentiment-analyzer">
+                    <h3>AI Sentiment Analysis Demo</h3>
+                    <textarea id="analysis-input" placeholder="Enter text for sentiment analysis..." aria-label="Text for sentiment analysis"></textarea>
+                    <button onclick="analyzeSentiment()" class="btn primary">Analyze Sentiment</button>
+                    <div id="analysis-result"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Explorer Section -->
+    <section class="api-explorer">
+        <div class="container">
+            <h2>API Explorer</h2>
+            <div class="code-snippet">
+                <pre><code class="language-javascript">
+// Example API Request
 fetch('/api/v1/employees', {
     method: 'GET',
     headers: {
-        'Authorization': 'Bearer ${token}'
+        'Authorization': 'Bearer ${token}',
+        'Content-Type': 'application/json'
     }
 })
-            </code></pre>
+.then(response => response.json())
+.then(data => console.log(data));</code></pre>
+            </div>
+            <button class="btn secondary" id="try-api">Try it out</button>
+            <div id="api-response"></div>
         </div>
-        <div id="api-response"></div>
-    </div>
-</section>
+    </section>
+
+    <!-- Integration Section -->
+    <section id="integration" class="integration-section">
+        <div class="container">
+            <h2>Seamless Integration</h2>
+            <div class="integration-grid">
+                <div class="integration-card">
+                    <img src="zoho-logo.png" alt="Zoho Integration">
+                    <h3>Zoho Marketplace</h3>
+                    <p>Extend functionality with Zoho marketplace apps</p>
+                </div>
+                <div class="integration-card">
+                    <img src="api-logo.png" alt="API Integration">
+                    <h3>REST API</h3>
+                    <p>Build custom solutions with our comprehensive API</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2>Flexible Pricing Plans</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">₹48<span>/user/month</span></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Basic AI Recruitment</li>
+                        <li><i class="fas fa-check"></i> Employee Database</li>
+                        <li><i class="fas fa-check"></i> Standard Reports</li>
+                    </ul>
+                    <button class="btn primary">Start Free Trial</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">₹96<span>/user/month</span></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Advanced AI Features</li>
+                        <li><i class="fas fa-check"></i> Performance Analytics</li>
+                        <li><i class="fas fa-check"></i> API Access</li>
+                        <li><i class="fas fa-check"></i> Priority Support</li>
+                    </ul>
+                    <button class="btn primary">Start Free Trial</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Developer Resources</h4>
+                    <ul>
+                        <li><a href="#api-docs">API Documentation</a></li>
+                        <li><a href="#sdk">SDKs & Tools</a></li>
+                        <li><a href="#status">System Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#gdpr">GDPR Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="compliance-badges">
+                    <img src="gdpr-badge.png" alt="GDPR Compliant">
+                    <img src="soc2-badge.png" alt="SOC 2 Certified">
+                </div>
+                <p>&copy; 2023 Baba-HRMS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
