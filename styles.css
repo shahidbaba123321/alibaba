@@ -622,3 +622,44 @@ textarea:focus {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 }
+
+/* AI Sense Demo Section */
+.ai-sense-demo {
+    padding: 6rem 0;
+    background: var(--card-bg);
+    text-align: center;
+}
+
+.ai-sense-demo h2 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.ai-sense-demo p {
+    color: var(--light-text);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.demo-widget {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.demo-widget textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    resize: vertical;
+}
+
+#sentiment-result {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
