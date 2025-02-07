@@ -300,7 +300,7 @@ document.getElementById('analyze-button').addEventListener('click', async functi
     resultDiv.textContent = 'Analyzing...';
 
     try {
-        const response = await fetch('https://api-inference.huggingface.co/models/distilbert-base-uncased-finetuned-sst-2-english', {
+        const response = await fetch('https://api-inference.huggingface.co/models/distilbert/distilbert-base-uncased-finetuned-sst-2-english', {
             method: 'POST',
             headers: {
                 'Authorization': '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',
