@@ -1,4 +1,4 @@
-// Mobile Menu Functionality
+// Mobile Menu and Dropdown Functionality
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
@@ -7,20 +7,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdowns = document.querySelectorAll('.dropdown');
 
     // Toggle mobile menu
-    mobileMenu.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        menuOverlay.classList.toggle('active');
-        body.classList.toggle('menu-open');
+    mobileMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
     });
+
+    function toggleMenu(force = null) {
+        const isActive = force !== null ? force : !mobileMenu.classList.contains('active');
+        mobileMenu.classList.toggle('active', isActive);
+        navMenu.classList.toggle('active', isActive);
+        menuOverlay.classList.toggle('active', isActive);
+        body.classList.toggle('menu-open', isActive);
+    }
 
     // Handle dropdowns in mobile view
     dropdowns.forEach(dropdown => {
         const link = dropdown.querySelector('a');
+        const dropdownContent = dropdown.querySelector('.dropdown-content');
+
         link.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
-                dropdown.classList.toggle('active');
+                e.stopPropagation();
                 
                 // Close other dropdowns
                 dropdowns.forEach(other => {
@@ -28,49 +36,54 @@ document.addEventListener('DOMContentLoaded', function() {
                         other.classList.remove('active');
                     }
                 });
+                
+                dropdown.classList.toggle('active');
+            }
+        });
+
+        // Prevent dropdown content clicks from closing the menu
+        dropdownContent?.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.stopPropagation();
             }
         });
     });
 
     // Close menu when clicking overlay
     menuOverlay.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        navMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        body.classList.remove('menu-open');
-        
-        // Close all dropdowns
-        dropdowns.forEach(dropdown => {
-            dropdown.classList.remove('active');
-        });
-    });
-
-    // Close menu when clicking a link
-    const navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768 && !link.parentElement.classList.contains('dropdown')) {
-                mobileMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                body.classList.remove('menu-open');
-            }
-        });
+        toggleMenu(false);
+        dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
     });
 
     // Handle window resize
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
-            mobileMenu.classList.remove('active');
-            navMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            body.classList.remove('menu-open');
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
+            toggleMenu(false);
+            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
         }
     });
+
+    // Initialize smooth scroll
+    initSmoothScroll();
 });
+
+// Smooth Scroll Implementation
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            if (this.getAttribute('href') !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+}
 
 // Sentiment Analysis Demo
 function analyzeSentiment() {
@@ -82,6 +95,7 @@ function analyzeSentiment() {
         return;
     }
 
+    // Show loading state
     resultDiv.innerHTML = `
         <div class="loading">
             <div class="spinner"></div>
@@ -89,6 +103,7 @@ function analyzeSentiment() {
         </div>
     `;
     
+    // Simulate API call
     setTimeout(() => {
         const sentiments = ['Positive', 'Negative', 'Neutral'];
         const randomSentiment = sentiments[Math.floor(Math.random() * sentiments.length)];
@@ -104,6 +119,81 @@ function analyzeSentiment() {
     }, 1500);
 }
 
+// Resume Parser Demo
+function handleResumeUpload(event) {
+    const file = event.target.files[0];
+    const resultDiv = document.getElementById('resume-result');
+
+    if (!file) return;
+
+    // Show loading state
+    resultDiv.innerHTML = `
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Analyzing resume...</p>
+        </div>
+    `;
+
+    // Simulate file processing
+    setTimeout(() => {
+        resultDiv.innerHTML = `
+            <div class="resume-analysis">
+                <h4>Extracted Information:</h4>
+                <ul>
+                    <li>Name: John Doe</li>
+                    <li>Experience: 5 years</li>
+                    <li>Skills: AI, Machine Learning, HR Tech</li>
+                </ul>
+            </div>
+        `;
+    }, 2000);
+}
+
+// Copy Code Function
+function copyCode() {
+    const codeElement = document.querySelector('.code-snippet code');
+    const textArea = document.createElement('textarea');
+    textArea.value = codeElement.textContent;
+    document.body.appendChild(textArea);
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        showCopySuccess();
+    } catch (err) {
+        console.error('Failed to copy code:', err);
+        showCopyError();
+    } finally {
+        document.body.removeChild(textArea);
+    }
+}
+
+function showCopySuccess() {
+    const copyBtn = document.querySelector('.copy-btn');
+    const originalHTML = copyBtn.innerHTML;
+    
+    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    copyBtn.classList.add('success');
+    
+    setTimeout(() => {
+        copyBtn.innerHTML = originalHTML;
+        copyBtn.classList.remove('success');
+    }, 2000);
+}
+
+function showCopyError() {
+    const copyBtn = document.querySelector('.copy-btn');
+    const originalHTML = copyBtn.innerHTML;
+    
+    copyBtn.innerHTML = '<i class="fas fa-times"></i> Failed';
+    copyBtn.classList.add('error');
+    
+    setTimeout(() => {
+        copyBtn.innerHTML = originalHTML;
+        copyBtn.classList.remove('error');
+    }, 2000);
+}
+
 // Show Error Message
 function showError(element, message) {
     element.innerHTML = `
@@ -114,56 +204,61 @@ function showError(element, message) {
     `;
 }
 
-// Copy Code Function
-function copyCode() {
-    const codeElement = document.querySelector('.code-snippet code');
-    const textArea = document.createElement('textarea');
-    textArea.value = codeElement.textContent;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
-    
-    const copyBtn = document.querySelector('.copy-btn');
-    const originalText = copyBtn.innerHTML;
-    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-    setTimeout(() => {
-        copyBtn.innerHTML = originalText;
-    }, 2000);
-}
+// Intersection Observer for Animations
+document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        if (this.getAttribute('href') !== '#') {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-    });
-});
-
-// Add scroll animation class to elements
-const observeElements = () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
+    // Observe all elements with animate-on-scroll class
     document.querySelectorAll('.animate-on-scroll').forEach(element => {
         observer.observe(element);
     });
-};
 
-// Initialize on load
-document.addEventListener('DOMContentLoaded', () => {
-    observeElements();
+    // Initialize file upload listener
+    const resumeUpload = document.getElementById('resume-upload');
+    if (resumeUpload) {
+        resumeUpload.addEventListener('change', handleResumeUpload);
+    }
+});
+
+// API Explorer Demo
+document.getElementById('try-api')?.addEventListener('click', function() {
+    const responseDiv = document.getElementById('api-response');
+    
+    responseDiv.innerHTML = `
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Fetching data...</p>
+        </div>
+    `;
+
+    // Simulate API call
+    setTimeout(() => {
+        const mockResponse = {
+            status: 'success',
+            data: {
+                employees: [
+                    { id: 1, name: 'John Doe', department: 'Engineering' },
+                    { id: 2, name: 'Jane Smith', department: 'HR' }
+                ]
+            }
+        };
+
+        responseDiv.innerHTML = `
+            <pre><code class="language-json">
+${JSON.stringify(mockResponse, null, 2)}
+            </code></pre>
+        `;
+    }, 1500);
 });
