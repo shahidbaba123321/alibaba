@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Workwise Pro</title>
-    <link rel="stylesheet" href="logstyles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Login Page -->
@@ -14,11 +14,15 @@
             <form id="login-form">
                 <input type="email" placeholder="Email" required>
                 <input type="password" placeholder="Password" required>
+                <select id="login-role">
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
                 <button type="submit" class="btn primary">Login</button>
             </form>
             <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
         </div>
     </section>
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
