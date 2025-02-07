@@ -28,33 +28,58 @@
     </header>
 
     <!-- Login Page -->
-    <section class="login">
-        <div class="container login-container">
-            <div class="login-form">
-                <h2>Sign in</h2>
-                <p>to access Workwise Pro</p>
-                <form id="login-form">
-                    <input type="email" placeholder="Email address or mobile number" required>
-                    <button type="submit" class="btn primary">Next</button>
-                </form>
-                <p>Sign in using</p>
-                <div class="social-icons">
-                    <i class="fab fa-google"></i>
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-linkedin"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-apple"></i>
-                    <i class="fab fa-github"></i>
-                </div>
-                <p>Don't have an account? <a href="signup.html">Sign up now</a></p>
+   <!-- Keep header and other sections same as your original -->
+<section class="login">
+    <div class="container login-container">
+        <div class="login-form">
+            <h2>Sign in</h2>
+            <p>to access Workwise Pro</p>
+            <form id="login-form">
+                <input type="email" placeholder="Email address or mobile number" required>
+                <button type="submit" class="btn primary">Next</button>
+            </form>
+            <p>Sign in using</p>
+            <div class="social-icons">
+                <i class="fab fa-google"></i>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-linkedin"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-apple"></i>
+                <i class="fab fa-github"></i>
             </div>
-            <div class="login-info">
-                <h3>MFA for all accounts</h3>
-                <p>Secure online accounts with 2FA. Back up OTP secrets and never lose access to your accounts.</p>
-                <a href="#" class="btn secondary">Learn more</a>
+            <p>Don't have an account? <a href="signup.html">Sign up now</a></p>
+        </div>
+
+        <!-- Updated Right Section with Slider -->
+        <div class="login-info">
+            <div class="slider-container">
+                <div class="slide active">
+                    <div class="slide-content">
+                        <img src="mfa-illustration.png" alt="MFA" class="slide-image">
+                        <h3>MFA for all accounts</h3>
+                        <p>Secure online accounts with 2FA. Back up OTP secrets and never lose access to your accounts.</p>
+                        <a href="#" class="btn secondary">Learn more</a>
+                    </div>
+                </div>
+                
+                <div class="slide">
+                    <div class="slide-content">
+                        <img src="passwordless-illustration.png" alt="Passwordless" class="slide-image">
+                        <h3>Passwordless sign-in</h3>
+                        <p>Move away from risky passwords and experience one-tap access to Zoho. Download and install OneAuth.</p>
+                        <a href="#" class="btn secondary">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<!-- Keep footer same as your original -->
 
     <!-- Footer -->
     <footer>
