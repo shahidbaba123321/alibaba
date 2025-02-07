@@ -335,3 +335,14 @@ document.getElementById('analyze-button').addEventListener('click', async functi
         resultDiv.textContent = 'Error analyzing sentiment. Please try again later.';
     }
 });
+
+//signup
+document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const role = document.getElementById('role').value;
+    if (role === 'admin') {
+        window.location.href = 'admin-dashboard.html';
+    } else {
+        window.location.href = 'user-dashboard.html';
+    }
+});
