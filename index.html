@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay"></div>
+
     <!-- Header Section -->
     <header>
         <div class="container">
@@ -16,11 +19,11 @@
                 <h1>Baba-HRMS</h1>
             </div>
             <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <nav>
+            <nav id="nav-menu">
                 <ul id="nav-list">
                     <li><a href="#features">Features</a></li>
                     <li class="dropdown">
@@ -82,7 +85,7 @@
                 <div class="feature-card">
                     <i class="fas fa-chart-line"></i>
                     <h3>Performance Analytics</h3>
-                    <p>Real-time performance tracking with predictive insights and analytics.</p>
+                    <p>Real-time performance tracking with predictive insights.</p>
                     <a href="#learn-more" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
@@ -168,77 +171,6 @@ fetch('https://api.baba-hrms.com/v1/employees', {
         </div>
     </section>
 
-    <!-- Integration Section -->
-    <section class="integration-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Seamless Integration</h2>
-                <p>Connect with your favorite tools and platforms</p>
-            </div>
-            <div class="integration-grid">
-                <div class="integration-card">
-                    <img src="zoho-logo.png" alt="Zoho Integration">
-                    <h3>Zoho Marketplace</h3>
-                    <p>Extend functionality with Zoho marketplace apps</p>
-                    <a href="#integrate" class="btn secondary">Integrate Now</a>
-                </div>
-                <div class="integration-card">
-                    <img src="api-logo.png" alt="API Integration">
-                    <h3>REST API</h3>
-                    <p>Build custom solutions with our comprehensive API</p>
-                    <a href="#api-docs" class="btn secondary">View Docs</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Flexible Pricing Plans</h2>
-                <p>Choose the perfect plan for your business</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Starter</h3>
-                        <div class="price">
-                            <span class="currency">₹</span>
-                            <span class="amount">48</span>
-                            <span class="period">/user/month</span>
-                        </div>
-                    </div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Basic AI Recruitment</li>
-                        <li><i class="fas fa-check"></i> Employee Database</li>
-                        <li><i class="fas fa-check"></i> Standard Reports</li>
-                        <li><i class="fas fa-check"></i> Email Support</li>
-                    </ul>
-                    <button class="btn primary">Start Free Trial</button>
-                </div>
-                <div class="pricing-card featured">
-                    <div class="pricing-header">
-                        <h3>Professional</h3>
-                        <div class="price">
-                            <span class="currency">₹</span>
-                            <span class="amount">96</span>
-                            <span class="period">/user/month</span>
-                        </div>
-                    </div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Advanced AI Features</li>
-                        <li><i class="fas fa-check"></i> Performance Analytics</li>
-                        <li><i class="fas fa-check"></i> API Access</li>
-                        <li><i class="fas fa-check"></i> Priority Support</li>
-                        <li><i class="fas fa-check"></i> Custom Integrations</li>
-                    </ul>
-                    <button class="btn primary">Start Free Trial</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -249,7 +181,6 @@ fetch('https://api.baba-hrms.com/v1/employees', {
                         <li><a href="#features">Features</a></li>
                         <li><a href="#pricing">Pricing</a></li>
                         <li><a href="#integrations">Integrations</a></li>
-                        <li><a href="#updates">Product Updates</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -258,7 +189,6 @@ fetch('https://api.baba-hrms.com/v1/employees', {
                         <li><a href="#api-docs">API Documentation</a></li>
                         <li><a href="#sdk">SDKs & Tools</a></li>
                         <li><a href="#status">System Status</a></li>
-                        <li><a href="#github">GitHub</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -266,17 +196,7 @@ fetch('https://api.baba-hrms.com/v1/employees', {
                     <ul>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#careers">Careers</a></li>
-                        <li><a href="#blog">Blog</a></li>
                         <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                        <li><a href="#terms">Terms of Service</a></li>
-                        <li><a href="#security">Security</a></li>
-                        <li><a href="#compliance">Compliance</a></li>
                     </ul>
                 </div>
             </div>
@@ -290,7 +210,6 @@ fetch('https://api.baba-hrms.com/v1/employees', {
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
