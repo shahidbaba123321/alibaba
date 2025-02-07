@@ -349,10 +349,27 @@ document.getElementById('signup-form').addEventListener('submit', function(e) {
 
 document.getElementById('login-form').addEventListener('submit', function(e) {
     e.preventDefault();
+
+    const email = document.querySelector('input[type="email"]').value;
+    const password = document.querySelector('input[type="password"]').value;
     const role = document.getElementById('login-role').value;
-    if (role === 'admin') {
+
+    // Dummy credentials
+    const adminCredentials = {
+        email: 'admin@example.com',
+        password: 'admin123'
+    };
+
+    const userCredentials = {
+        email: 'user@example.com',
+        password: 'user123'
+    };
+
+    if (role === 'admin' && email === adminCredentials.email && password === adminCredentials.password) {
         window.location.href = 'admin-dashboard.html';
-    } else {
+    } else if (role === 'user' && email === userCredentials.email && password === userCredentials.password) {
         window.location.href = 'user-dashboard.html';
+    } else {
+        alert('Invalid credentials. Please try again.');
     }
 });
