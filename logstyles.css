@@ -37,105 +37,102 @@ nav a {
     font-weight: 500;
 }
 
-.login {
-    padding: 6rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f8f9fa;
-}
-
+/* Login Section Updates */
 .login-container {
     display: flex;
     background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
     overflow: hidden;
-}
-
-.login-form, .login-info {
-    padding: 2rem;
-    flex: 1;
+    margin: 2rem auto;
 }
 
 .login-form {
-    border-right: 1px solid #ddd;
+    padding: 3rem;
+    flex: 1;
+    border-right: 1px solid #e3e8f0;
+}
+
+.login-info {
+    flex: 1;
+    background: #f8faff;
+    position: relative;
+    padding: 2rem;
+}
+
+/* Slider Styling */
+.slider-container {
+    position: relative;
+    height: 100%;
+}
+
+.slide {
+    display: none;
+    height: 100%;
+}
+
+.slide.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-content {
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.slide-image {
+    width: 180px;
+    margin-bottom: 2rem;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
     text-align: center;
 }
 
-.login-form h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.login-form p {
-    margin-bottom: 1.5rem;
-}
-
-.login-form input {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-}
-
-.login-form .btn {
-    width: 100%;
-    padding: 1rem;
-    border-radius: 8px;
-    background-color: #4285f4;
-    color: #fff;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login-form .btn:hover {
-    background-color: #357ae8;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.social-icons i {
-    font-size: 1.5rem;
-    color: #333;
-    cursor: pointer;
-}
-
-.social-icons i:hover {
-    color: #4285f4;
-}
-
-.login-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.login-info p {
-    margin-bottom: 1.5rem;
-}
-
-.login-info .btn {
-    background-color: transparent;
-    color: #4285f4;
-    border: 2px solid #4285f4;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
+.dot {
     display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d0d5dd;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.login-info .btn:hover {
-    background-color: #4285f4;
+.dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: #2164f0;
+}
+
+/* Updated Button Styles */
+.btn.primary {
+    background: #2164f0;
     color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
 }
 
+.btn.secondary {
+    background: transparent;
+    color: #2164f0;
+    border: 2px solid #2164f0;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Keep other existing styles from your original CSS */
 footer {
     background: #2d3436;
     color: #fff;
