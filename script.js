@@ -303,7 +303,7 @@ document.getElementById('analyze-button').addEventListener('click', async functi
         const response = await fetch('https://api-inference.huggingface.co/models/distilbert-base-uncased-finetuned-sst-2-english', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer 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', // Replace with your API key
+                'Authorization': 'Bearer YOUR_HUGGING_FACE_API_KEY', // Replace with your API key
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ inputs: input })
@@ -314,13 +314,19 @@ document.getElementById('analyze-button').addEventListener('click', async functi
         }
 
         const data = await response.json();
-        const sentiment = data[0].label;
-        const confidence = data[0].score;
+        console.log('Data:', data);
 
-        resultDiv.innerHTML = `
-            <strong>Sentiment:</strong> ${sentiment}<br>
-            <strong>Confidence:</strong> ${(confidence * 100).toFixed(2)}%
-        `;
+        if (data && data.length > 0) {
+            const sentiment = data[0].label || 'Unknown';
+            const confidence = data[0].score || 0;
+
+            resultDiv.innerHTML = `
+                <strong>Sentiment:</strong> ${sentiment}<br>
+                <strong>Confidence:</strong> ${(confidence * 100).toFixed(2)}%
+            `;
+        } else {
+            resultDiv.textContent = 'No sentiment data available.';
+        }
     } catch (error) {
         console.error('Error:', error);
         resultDiv.textContent = 'Error analyzing sentiment. Please try again later.';
