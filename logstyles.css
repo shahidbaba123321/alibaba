@@ -1,3 +1,4 @@
+/* Original Header/Footer Styles */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
@@ -37,13 +38,39 @@ nav a {
     font-weight: 500;
 }
 
-/* Login Section Updates */
-/* Login Form Enhancements */
-.login-form {
-    padding: 4rem;
-    background: #fff;
+footer {
+    background: #2d3436;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
 }
 
+/* Updated Login Section */
+.login {
+    padding: 6rem 0;
+}
+
+.login-container {
+    display: flex;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.login-form {
+    padding: 4rem;
+    flex: 1;
+    border-right: 1px solid #e3e8f0;
+}
+
+.login-info {
+    flex: 1;
+    background: #f8faff;
+    position: relative;
+}
+
+/* Form Styling */
 .form-header {
     text-align: center;
     margin-bottom: 2.5rem;
@@ -144,10 +171,60 @@ nav a {
     transform: translateY(-1px);
 }
 
-.btn.primary i {
-    font-size: 0.9rem;
+/* Slider Styling */
+.slider-container {
+    position: relative;
+    height: 100%;
+    padding: 4rem;
 }
 
+.slide {
+    display: none;
+    height: 100%;
+}
+
+.slide.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-content {
+    text-align: center;
+    max-width: 300px;
+}
+
+.slide-image {
+    width: 180px;
+    margin-bottom: 2rem;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d0d5dd;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: #2164f0;
+}
+
+/* Additional Styling */
 .form-options {
     display: flex;
     justify-content: space-between;
@@ -164,20 +241,11 @@ nav a {
     cursor: pointer;
 }
 
-.remember-me input {
-    width: auto;
-    margin: 0;
-}
-
 .forgot-password {
     color: #2164f0;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
-}
-
-.forgot-password:hover {
-    text-decoration: underline;
 }
 
 .separator {
@@ -195,14 +263,12 @@ nav a {
     right: 0;
     height: 1px;
     background: #e2e8f0;
-    z-index: 1;
 }
 
 .separator span {
     position: relative;
     padding: 0 1rem;
     background: #fff;
-    z-index: 2;
 }
 
 .social-icons {
@@ -226,7 +292,6 @@ nav a {
 .social-btn:hover {
     border-color: #2164f0;
     color: #2164f0;
-    transform: translateY(-2px);
 }
 
 .signup-link {
@@ -238,15 +303,4 @@ nav a {
     color: #2164f0;
     text-decoration: none;
     font-weight: 500;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
-}
-/* Keep other existing styles from your original CSS */
-footer {
-    background: #2d3436;
-    color: #fff;
-    padding: 2rem 0;
-    text-align: center;
 }
