@@ -316,9 +316,12 @@ document.getElementById('analyze-button').addEventListener('click', async functi
         const data = await response.json();
         console.log('Data:', data);
 
-        if (data && data.length > 0) {
-            const sentiment = data[0].label || 'Unknown';
-            const confidence = data[0].score || 0;
+        if (data && data.length > 0 && data[0].length > 0) {
+            // Find the label with the highest score
+            const result = data[0].reduce((prev, current) => (prev.score > current.score) ? prev : current);
+
+            const sentiment = result.label;
+            const confidence = result.score;
 
             resultDiv.innerHTML = `
                 <strong>Sentiment:</strong> ${sentiment}<br>
