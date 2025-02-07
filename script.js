@@ -303,7 +303,7 @@ document.getElementById('analyze-button').addEventListener('click', async functi
         const response = await fetch('https://api-inference.huggingface.co/models/distilbert-base-uncased-finetuned-sst-2-english', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer YOUR_HUGGING_FACE_API_KEY', // Replace with your API key
+                'Authorization': 'Bearer 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', // Replace with your API key
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ inputs: input })
