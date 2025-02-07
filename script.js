@@ -287,3 +287,23 @@ window.addEventListener('load', () => {
         setTimeout(() => loader.remove(), 500);
     }
 });
+
+document.getElementById('analyze-button').addEventListener('click', function() {
+    const input = document.getElementById('feedback-input').value.trim();
+    const resultDiv = document.getElementById('sentiment-result');
+
+    if (!input) {
+        resultDiv.textContent = 'Please enter some feedback to analyze.';
+        return;
+    }
+
+    // Simulate sentiment analysis
+    const sentiments = ['Positive', 'Negative', 'Neutral'];
+    const randomSentiment = sentiments[Math.floor(Math.random() * sentiments.length)];
+    const confidence = (Math.random() * (0.99 - 0.70) + 0.70).toFixed(2);
+
+    resultDiv.innerHTML = `
+        <strong>Sentiment:</strong> ${randomSentiment}<br>
+        <strong>Confidence:</strong> ${confidence * 100}%
+    `;
+});
