@@ -1,10 +1,75 @@
-// Mobile Menu Toggle
-const mobileMenu = document.getElementById('mobile-menu');
-const navList = document.getElementById('nav-list');
+// Mobile Menu Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const body = document.body;
+    const dropdowns = document.querySelectorAll('.dropdown');
 
-mobileMenu.addEventListener('click', () => {
-    navList.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
+    // Toggle mobile menu
+    mobileMenu.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    });
+
+    // Handle dropdowns in mobile view
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+                
+                // Close other dropdowns
+                dropdowns.forEach(other => {
+                    if (other !== dropdown) {
+                        other.classList.remove('active');
+                    }
+                });
+            }
+        });
+    });
+
+    // Close menu when clicking overlay
+    menuOverlay.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        navMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        body.classList.remove('menu-open');
+        
+        // Close all dropdowns
+        dropdowns.forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking a link
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768 && !link.parentElement.classList.contains('dropdown')) {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            mobileMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
+    });
 });
 
 // Sentiment Analysis Demo
@@ -17,7 +82,6 @@ function analyzeSentiment() {
         return;
     }
 
-    // Show loading state
     resultDiv.innerHTML = `
         <div class="loading">
             <div class="spinner"></div>
@@ -25,7 +89,6 @@ function analyzeSentiment() {
         </div>
     `;
     
-    // Simulate API call
     setTimeout(() => {
         const sentiments = ['Positive', 'Negative', 'Neutral'];
         const randomSentiment = sentiments[Math.floor(Math.random() * sentiments.length)];
@@ -41,64 +104,14 @@ function analyzeSentiment() {
     }, 1500);
 }
 
-// API Explorer
-class APIExplorer {
-    constructor() {
-        this.tryButton = document.getElementById('try-api');
-        this.responseDiv = document.getElementById('api-response');
-        this.init();
-    }
-
-    init() {
-        if (this.tryButton) {
-            this.tryButton.addEventListener('click', () => this.makeRequest());
-        }
-    }
-
-    async makeRequest() {
-        this.responseDiv.innerHTML = `
-            <div class="loading">
-                <div class="spinner"></div>
-                <p>Fetching data...</p>
-            </div>
-        `;
-
-        try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            const mockResponse = {
-                status: 'success',
-                data: {
-                    employees: [
-                        { id: 1, name: 'John Doe', department: 'Engineering' },
-                        { id: 2, name: 'Jane Smith', department: 'Marketing' }
-                    ]
-                }
-            };
-
-            this.displayResponse(mockResponse);
-        } catch (error) {
-            this.displayError(error);
-        }
-    }
-
-    displayResponse(response) {
-        this.responseDiv.innerHTML = `
-            <pre><code class="language-json">
-${JSON.stringify(response, null, 2)}
-            </code></pre>
-        `;
-        Prism.highlightAll();
-    }
-
-    displayError(error) {
-        this.responseDiv.innerHTML = `
-            <div class="error-message">
-                Error: ${error.message}
-            </div>
-        `;
-    }
+// Show Error Message
+function showError(element, message) {
+    element.innerHTML = `
+        <div class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            ${message}
+        </div>
+    `;
 }
 
 // Copy Code Function
@@ -111,7 +124,6 @@ function copyCode() {
     document.execCommand('copy');
     document.body.removeChild(textArea);
     
-    // Show copied notification
     const copyBtn = document.querySelector('.copy-btn');
     const originalText = copyBtn.innerHTML;
     copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
@@ -120,54 +132,38 @@ function copyCode() {
     }, 2000);
 }
 
-// Lazy Loading Images
-function lazyLoadImages() {
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(img => imageObserver.observe(img));
-}
-
 // Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        if (this.getAttribute('href') !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
     });
 });
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new APIExplorer();
-    lazyLoadImages();
-    
-    // Initialize tooltips if any
-    const tooltips = document.querySelectorAll('[data-tooltip]');
-    tooltips.forEach(tooltip => {
-        new Tooltip(tooltip);
-    });
-
-    // Add scroll animation class to elements
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
+// Add scroll animation class to elements
+const observeElements = () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
+                entry.target.classList.add('animate-in');
             }
         });
-    });
+    }, { threshold: 0.1 });
 
-    animateElements.forEach(element => observer.observe(element));
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
+        observer.observe(element);
+    });
+};
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+    observeElements();
 });
