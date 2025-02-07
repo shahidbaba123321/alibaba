@@ -297,13 +297,30 @@ document.getElementById('analyze-button').addEventListener('click', function() {
         return;
     }
 
-    // Simulate sentiment analysis
-    const sentiments = ['Positive', 'Negative', 'Neutral'];
-    const randomSentiment = sentiments[Math.floor(Math.random() * sentiments.length)];
-    const confidence = (Math.random() * (0.99 - 0.70) + 0.70).toFixed(2);
+    // Simulate a more comprehensive sentiment analysis
+    const positiveWords = ['good', 'great', 'excellent', 'happy', 'love'];
+    const negativeWords = ['bad', 'terrible', 'sad', 'hate', 'poor'];
+    let positiveScore = 0;
+    let negativeScore = 0;
+
+    input.split(' ').forEach(word => {
+        if (positiveWords.includes(word.toLowerCase())) positiveScore++;
+        if (negativeWords.includes(word.toLowerCase())) negativeScore++;
+    });
+
+    let sentiment = 'Neutral';
+    let confidence = 0.5;
+
+    if (positiveScore > negativeScore) {
+        sentiment = 'Positive';
+        confidence = positiveScore / (positiveScore + negativeScore);
+    } else if (negativeScore > positiveScore) {
+        sentiment = 'Negative';
+        confidence = negativeScore / (positiveScore + negativeScore);
+    }
 
     resultDiv.innerHTML = `
-        <strong>Sentiment:</strong> ${randomSentiment}<br>
-        <strong>Confidence:</strong> ${confidence * 100}%
+        <strong>Sentiment:</strong> ${sentiment}<br>
+        <strong>Confidence:</strong> ${(confidence * 100).toFixed(2)}%
     `;
 });
