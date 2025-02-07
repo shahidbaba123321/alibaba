@@ -299,7 +299,7 @@ document.getElementById('analyze-button').addEventListener('click', function() {
 
     // Simulate a more comprehensive sentiment analysis
     const positiveWords = ['good', 'great', 'excellent', 'happy', 'love'];
-    const negativeWords = ['bad', 'terrible', 'sad', 'hate', 'poor'];
+    const negativeWords = ['bad', 'terrible', 'sad', 'hate', 'poor', 'disappointed'];
     let positiveScore = 0;
     let negativeScore = 0;
 
