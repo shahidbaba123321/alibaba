@@ -288,27 +288,41 @@ window.addEventListener('load', () => {
     }
 });
 
-document.getElementById('analyze-button').addEventListener('click', function() {
-        const input = document.getElementById('feedback-input').value.trim();
-        const resultDiv = document.getElementById('sentiment-result');
+document.getElementById('analyze-button').addEventListener('click', async function() {
+    const input = document.getElementById('feedback-input').value.trim();
+    const resultDiv = document.getElementById('sentiment-result');
 
-        if (!input) {
-            resultDiv.textContent = 'Please enter some feedback to analyze.';
-            return;
+    if (!input) {
+        resultDiv.textContent = 'Please enter some feedback to analyze.';
+        return;
+    }
+
+    resultDiv.textContent = 'Analyzing...';
+
+    try {
+        const response = await fetch('https://api-inference.huggingface.co/models/distilbert-base-uncased-finetuned-sst-2-english', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer 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', // Replace with your API key
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ inputs: input })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const sentiment = new Sentiment();
-        const result = sentiment.analyze(input);
-
-        let sentimentLabel = 'Neutral';
-        if (result.score > 0) {
-            sentimentLabel = 'Positive';
-        } else if (result.score < 0) {
-            sentimentLabel = 'Negative';
-        }
+        const data = await response.json();
+        const sentiment = data[0].label;
+        const confidence = data[0].score;
 
         resultDiv.innerHTML = `
-            <strong>Sentiment:</strong> ${sentimentLabel}<br>
-            <strong>Score:</strong> ${result.score}
+            <strong>Sentiment:</strong> ${sentiment}<br>
+            <strong>Confidence:</strong> ${(confidence * 100).toFixed(2)}%
         `;
-    });
+    } catch (error) {
+        console.error('Error:', error);
+        resultDiv.textContent = 'Error analyzing sentiment. Please try again later.';
+    }
+});
