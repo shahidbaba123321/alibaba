@@ -34,14 +34,6 @@
                             <li><a href="#payroll">Payroll</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#">Developer Tools <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-content">
-                            <li><a href="#api-docs">API Documentation</a></li>
-                            <li><a href="#fetch-api">Fetch Component API</a></li>
-                            <li><a href="#extensions">Zoho Extensions</a></li>
-                        </ul>
-                    </li>
                     <li><a href="#resources">Resources</a></li>
                     <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#signin">Sign In</a></li>
@@ -68,113 +60,169 @@
         </div>
     </section>
 
-    <!-- Feature Showcase -->
-    <section id="features" class="feature-showcase">
+    <!-- Performance Management Section -->
+    <section class="performance-section">
         <div class="container">
-            <div class="section-header">
-                <h2>AI-Powered Features</h2>
-                <p>Experience the future of HR management with our cutting-edge tools</p>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <i class="fas fa-robot"></i>
-                    <h3>AI Recruitment</h3>
-                    <p>Smart resume screening and candidate matching using advanced AI algorithms.</p>
-                    <a href="#learn-more" class="learn-more">
-                        Learn More
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Performance Analytics</h3>
-                    <p>Real-time performance tracking with predictive insights.</p>
-                    <a href="#learn-more" class="learn-more">
-                        Learn More
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-brain"></i>
-                    <h3>Smart Learning</h3>
-                    <p>NLP-powered learning recommendations and skill gap analysis.</p>
-                    <a href="#learn-more" class="learn-more">
-                        Learn More
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Demo Section -->
-    <section class="ai-demo">
-        <div class="container">
-            <div class="section-header">
-                <h2>Experience AI in Action</h2>
-                <p>Try our AI-powered tools and see the magic happen</p>
-            </div>
-            <div class="demo-container">
-                <div class="demo-card">
-                    <h3>Sentiment Analysis Demo</h3>
-                    <p>See how our AI analyzes employee feedback and reviews</p>
-                    <div class="demo-widget">
-                        <textarea id="analysis-input" 
-                                placeholder="Enter text for sentiment analysis..."
-                                aria-label="Text for sentiment analysis"></textarea>
-                        <button onclick="analyzeSentiment()" class="btn primary">
-                            Analyze Sentiment
-                        </button>
-                        <div id="analysis-result"></div>
-                    </div>
-                </div>
-                <div class="demo-card">
-                    <h3>Resume Parser Demo</h3>
-                    <p>Upload a resume and watch our AI extract key information</p>
-                    <div class="demo-widget">
-                        <div class="file-upload">
-                            <input type="file" id="resume-upload" accept=".pdf,.doc,.docx">
-                            <label for="resume-upload">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                Choose File
-                            </label>
+            <div class="section-content">
+                <div class="performance-info">
+                    <div class="rating-header">
+                        <img src="profile-avatar.jpg" alt="Profile" class="avatar">
+                        <div class="rating">
+                            <h3>4.5</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
                         </div>
-                        <div id="resume-result"></div>
                     </div>
+                    <div class="performance-metrics">
+                        <div class="metric">
+                            <span>Jan</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 42%"></div>
+                            </div>
+                            <span>4.2</span>
+                        </div>
+                        <div class="metric">
+                            <span>Feb</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 48%"></div>
+                            </div>
+                            <span>4.8</span>
+                        </div>
+                        <div class="metric">
+                            <span>Mar</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 45%"></div>
+                            </div>
+                            <span>4.5</span>
+                        </div>
+                        <div class="metric">
+                            <span>Apr</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 45%"></div>
+                            </div>
+                            <span>4.5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="performance-details">
+                    <h2>Performance management at its best</h2>
+                    <p>Enrich the talent that nurtures your business. Get insight on how each team is performing, every individual's skills and potential, and the ways you can improve organizational performance.</p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Flexible goal setting and KRA mapping</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Continuous reviews and performance appraisals</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>360-degree feedback</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Analytics to identify performance gaps</span>
+                        </div>
+                    </div>
+                    <a href="#" class="learn-more">Learn more</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- API Explorer Section -->
-    <section class="api-explorer">
+    <!-- Time and Attendance Section -->
+    <section class="attendance-section">
         <div class="container">
-            <div class="section-header">
-                <h2>API Explorer</h2>
-                <p>Test our APIs directly in your browser</p>
-            </div>
-            <div class="api-container">
-                <div class="code-snippet">
-                    <div class="code-header">
-                        <span>Example API Request</span>
-                        <button class="copy-btn" onclick="copyCode()">
-                            <i class="fas fa-copy"></i>
-                        </button>
+            <div class="section-content">
+                <div class="attendance-info">
+                    <h2>Optimize your time and attendance</h2>
+                    <p>Spend less time tracking time and days off. Zoho People's time and attendance system lets you focus on employee productivity while accurately tracking work hours and providing error-free reporting.</p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Track attendance with ease</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Schedule shifts effortlessly</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Track days off efficiently</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Convert time to timesheets</span>
+                        </div>
                     </div>
-                    <pre><code class="language-javascript">
-fetch('https://api.baba-hrms.com/v1/employees', {
-    method: 'GET',
-    headers: {
-        'Authorization': 'Bearer ${token}',
-        'Content-Type': 'application/json'
-    }
-})
-.then(response => response.json())
-.then(data => console.log(data));</code></pre>
+                    <a href="#" class="learn-more">Learn more</a>
                 </div>
-                <div class="api-actions">
-                    <button class="btn secondary" id="try-api">Try it out</button>
-                    <div id="api-response"></div>
+                <div class="attendance-image">
+                    <img src="attendance-dashboard.png" alt="Attendance Dashboard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core HR Section -->
+    <section class="core-hr-section">
+        <div class="container">
+            <div class="section-content">
+                <div class="core-hr-dashboard">
+                    <div class="dashboard-header">
+                        <img src="logo.png" alt="Logo" class="dashboard-logo">
+                        <div class="user-profile">
+                            <img src="profile.jpg" alt="Profile" class="profile-img">
+                        </div>
+                    </div>
+                    <div class="user-list">
+                        <div class="user-item">
+                            <img src="user1.jpg" alt="User" class="user-avatar">
+                            <div class="user-info">
+                                <h4>Emma Carter, 4585</h4>
+                                <p>emma.carter@ylker.com</p>
+                            </div>
+                            <div class="user-location">
+                                <span>01-June-2018</span>
+                                <span>California</span>
+                            </div>
+                        </div>
+                        <!-- Add more user items -->
+                    </div>
+                    <div class="dashboard-stats">
+                        <div class="stats-graph">
+                            <!-- Add your graph/chart here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="core-hr-info">
+                    <h2>Core HR simplified</h2>
+                    <p>Say goodbye to mundane spreadsheets or rigid systems to manage HR tasks. Get smarter and more efficient software with features designed to free you from administrative work.</p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>An employee database that scales</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Efficient employee case management</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Smart HR workflows</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Insightful analytics</span>
+                        </div>
+                    </div>
+                    <a href="#" class="learn-more">Learn more</a>
                 </div>
             </div>
         </div>
@@ -193,11 +241,11 @@ fetch('https://api.baba-hrms.com/v1/employees', {
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Developers</h4>
+                    <h4>Resources</h4>
                     <ul>
-                        <li><a href="#api-docs">API Documentation</a></li>
-                        <li><a href="#sdk">SDKs & Tools</a></li>
-                        <li><a href="#status">System Status</a></li>
+                        <li><a href="#documentation">Documentation</a></li>
+                        <li><a href="#tutorials">Tutorials</a></li>
+                        <li><a href="#blog">Blog</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -210,10 +258,6 @@ fetch('https://api.baba-hrms.com/v1/employees', {
                 </div>
             </div>
             <div class="footer-bottom">
-                <div class="compliance-badges">
-                    <img src="gdpr-badge.png" alt="GDPR Compliant">
-                    <img src="soc2-badge.png" alt="SOC 2 Certified">
-                </div>
                 <p>&copy; 2023 Baba-HRMS. All rights reserved.</p>
             </div>
         </div>
