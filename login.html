@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Workwise Pro</title>
     <link rel="stylesheet" href="logstyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-     <!-- Mobile Menu Overlay -->
+    <!-- Mobile Menu Overlay -->
     <div class="menu-overlay"></div>
 
     <!-- Header Section -->
@@ -17,82 +18,48 @@
             <div class="logo">
                 <h1>Workwise Pro</h1>
             </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
             <nav id="nav-menu">
                 <ul id="nav-list">
-                    <li><a href="#features">Features</a></li>
-                    <li class="dropdown">
-                        <a href="#">HR/Accounts Modules <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-content">
-                            <li><a href="#recruitment">People Management</a></li>
-                            <li><a href="#performance">Performance Management</a></li>
-                            <li><a href="#payroll">Payroll</a></li>
-                            <li><a href="#payroll">Book-keeping</a></li>
-                            <li><a href="#payroll">ADP</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="login.html">Sign In</a></li>
-                    <li><a href="signup.html" class="btn primary">Sign Up</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
     <!-- Login Page -->
     <section class="login">
-        <div class="container">
-            <h2>Login</h2>
-            <form id="login-form">
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <select id="login-role">
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
-                </select>
-                <button type="submit" class="btn primary">Login</button>
-            </form>
-            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        <div class="container login-container">
+            <div class="login-form">
+                <h2>Sign in</h2>
+                <p>to access Workwise Pro</p>
+                <form id="login-form">
+                    <input type="email" placeholder="Email address or mobile number" required>
+                    <button type="submit" class="btn primary">Next</button>
+                </form>
+                <p>Sign in using</p>
+                <div class="social-icons">
+                    <i class="fab fa-google"></i>
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-apple"></i>
+                    <i class="fab fa-github"></i>
+                </div>
+                <p>Don't have an account? <a href="signup.html">Sign up now</a></p>
+            </div>
+            <div class="login-info">
+                <h3>MFA for all accounts</h3>
+                <p>Secure online accounts with 2FA. Back up OTP secrets and never lose access to your accounts.</p>
+                <a href="#" class="btn secondary">Learn more</a>
+            </div>
         </div>
     </section>
 
-     <!-- Footer -->
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#integrations">Integrations</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Developers</h4>
-                    <ul>
-                        <li><a href="#api-docs">API Documentation</a></li>
-                        <li><a href="#sdk">SDKs & Tools</a></li>
-                        <li><a href="#status">System Status</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                
-                <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
-            </div>
+            <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
         </div>
     </footer>
 
