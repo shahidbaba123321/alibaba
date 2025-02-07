@@ -55,22 +55,72 @@ document.addEventListener('DOMContentLoaded', function() {
         dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
     });
 
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            toggleMenu(false);
-            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-        }
-    });
-
+    // Initialize progress circles
+    initializeProgressCircles();
+    
+    // Initialize performance metrics
+    initializePerformanceMetrics();
+    
     // Initialize smooth scroll
     initSmoothScroll();
 });
 
+// Progress Circles Animation
+function initializeProgressCircles() {
+    const circles = document.querySelectorAll('.progress-circle');
+    
+    circles.forEach(circle => {
+        const progress = circle.getAttribute('data-progress');
+        const circumference = 2 * Math.PI * 19; // radius = 19 (40px diameter - 2px border)
+        const offset = circumference - (progress / 100 * circumference);
+        
+        // Create SVG circle
+        circle.innerHTML = `
+            <svg width="40" height="40" viewBox="0 0 40 40">
+                <circle
+                    cx="20"
+                    cy="20"
+                    r="19"
+                    fill="none"
+                    stroke="#e9ecef"
+                    stroke-width="2"
+                />
+                <circle
+                    cx="20"
+                    cy="20"
+                    r="19"
+                    fill="none"
+                    stroke="var(--primary-color)"
+                    stroke-width="2"
+                    stroke-dasharray="${circumference}"
+                    stroke-dashoffset="${offset}"
+                    transform="rotate(-90 20 20)"
+                />
+                <text x="50%" y="50%" text-anchor="middle" dy=".3em" font-size="12">
+                    ${progress}%
+                </text>
+            </svg>
+        `;
+    });
+}
+
+// Performance Metrics Animation
+function initializePerformanceMetrics() {
+    const metrics = document.querySelectorAll('.metric-item .progress');
+    
+    metrics.forEach(metric => {
+        const width = metric.style.width;
+        metric.style.width = '0';
+        setTimeout(() => {
+            metric.style.width = width;
+        }, 100);
+    });
+}
+
 // Smooth Scroll Implementation
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function(e) {
             if (this.getAttribute('href') !== '#') {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
@@ -85,116 +135,100 @@ function initSmoothScroll() {
     });
 }
 
-// Sentiment Analysis Demo
-function analyzeSentiment() {
-    const input = document.getElementById('analysis-input').value;
-    const resultDiv = document.getElementById('analysis-result');
-    
-    if (!input.trim()) {
-        showError(resultDiv, 'Please enter some text to analyze');
-        return;
-    }
+// Intersection Observer for Animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
 
-    // Show loading state
-    resultDiv.innerHTML = `
-        <div class="loading">
-            <div class="spinner"></div>
-            <p>Analyzing sentiment...</p>
-        </div>
-    `;
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe elements with animation classes
+document.querySelectorAll('.animate-on-scroll').forEach(element => {
+    observer.observe(element);
+});
+
+// Calendar Functionality
+function initializeCalendar() {
+    const calendar = document.querySelector('.calendar-view');
+    if (!calendar) return;
+
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+
+    // Update calendar dates
+    updateCalendarDates(currentDate);
+}
+
+function updateCalendarDates(date) {
+    const daysContainer = document.querySelector('.calendar-header .dates');
+    if (!daysContainer) return;
+
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     
-    // Simulate API call
+    // Clear existing dates
+    daysContainer.innerHTML = '';
+
+    // Add dates
+    for (let i = 1; i <= 5; i++) {
+        const dateSpan = document.createElement('span');
+        dateSpan.textContent = i;
+        daysContainer.appendChild(dateSpan);
+    }
+}
+
+// Graph Animation
+function initializeGraph() {
+    const graphContainer = document.querySelector('.graph-container');
+    if (!graphContainer) return;
+
+    // Add graph animation
+    const graph = document.createElement('div');
+    graph.classList.add('graph-line');
+    graphContainer.appendChild(graph);
+
+    // Animate graph line
     setTimeout(() => {
-        const sentiments = ['Positive', 'Negative', 'Neutral'];
-        const randomSentiment = sentiments[Math.floor(Math.random() * sentiments.length)];
-        const confidence = (Math.random() * (0.99 - 0.70) + 0.70).toFixed(2);
+        graph.style.width = '100%';
+    }, 500);
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeCalendar();
+    initializeGraph();
+    
+    // Add scroll animations
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        const menuOverlay = document.querySelector('.menu-overlay');
         
-        resultDiv.innerHTML = `
-            <div class="analysis-result ${randomSentiment.toLowerCase()}">
-                <h4>Analysis Result:</h4>
-                <p>Sentiment: ${randomSentiment}</p>
-                <p>Confidence: ${confidence}</p>
-            </div>
-        `;
-    }, 1500);
-}
-
-// Resume Parser Demo
-function handleResumeUpload(event) {
-    const file = event.target.files[0];
-    const resultDiv = document.getElementById('resume-result');
-
-    if (!file) return;
-
-    // Show loading state
-    resultDiv.innerHTML = `
-        <div class="loading">
-            <div class="spinner"></div>
-            <p>Analyzing resume...</p>
-        </div>
-    `;
-
-    // Simulate file processing
-    setTimeout(() => {
-        resultDiv.innerHTML = `
-            <div class="resume-analysis">
-                <h4>Extracted Information:</h4>
-                <ul>
-                    <li>Name: John Doe</li>
-                    <li>Experience: 5 years</li>
-                    <li>Skills: AI, Machine Learning, HR Tech</li>
-                </ul>
-            </div>
-        `;
-    }, 2000);
-}
-
-// Copy Code Function
-function copyCode() {
-    const codeElement = document.querySelector('.code-snippet code');
-    const textArea = document.createElement('textarea');
-    textArea.value = codeElement.textContent;
-    document.body.appendChild(textArea);
-    textArea.select();
-    
-    try {
-        document.execCommand('copy');
-        showCopySuccess();
-    } catch (err) {
-        console.error('Failed to copy code:', err);
-        showCopyError();
-    } finally {
-        document.body.removeChild(textArea);
+        mobileMenu?.classList.remove('active');
+        navMenu?.classList.remove('active');
+        menuOverlay?.classList.remove('active');
+        document.body.classList.remove('menu-open');
     }
-}
+});
 
-function showCopySuccess() {
-    const copyBtn = document.querySelector('.copy-btn');
-    const originalHTML = copyBtn.innerHTML;
-    
-    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-    copyBtn.classList.add('success');
-    
-    setTimeout(() => {
-        copyBtn.innerHTML = originalHTML;
-        copyBtn.classList.remove('success');
-    }, 2000);
-}
-
-function showCopyError() {
-    const copyBtn = document.querySelector('.copy-btn');
-    const originalHTML = copyBtn.innerHTML;
-    
-    copyBtn.innerHTML = '<i class="fas fa-times"></i> Failed';
-    copyBtn.classList.add('error');
-    
-    setTimeout(() => {
-        copyBtn.innerHTML = originalHTML;
-        copyBtn.classList.remove('error');
-    }, 2000);
-}
-
-// Show Error Message
+// Error Handler
 function showError(element, message) {
     element.innerHTML = `
         <div class="error-message">
@@ -204,61 +238,25 @@ function showError(element, message) {
     `;
 }
 
-// Intersection Observer for Animations
-document.addEventListener('DOMContentLoaded', () => {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observe all elements with animate-on-scroll class
-    document.querySelectorAll('.animate-on-scroll').forEach(element => {
-        observer.observe(element);
-    });
-
-    // Initialize file upload listener
-    const resumeUpload = document.getElementById('resume-upload');
-    if (resumeUpload) {
-        resumeUpload.addEventListener('change', handleResumeUpload);
-    }
-});
-
-// API Explorer Demo
-document.getElementById('try-api')?.addEventListener('click', function() {
-    const responseDiv = document.getElementById('api-response');
-    
-    responseDiv.innerHTML = `
-        <div class="loading">
-            <div class="spinner"></div>
-            <p>Fetching data...</p>
+// Success Handler
+function showSuccess(element, message) {
+    element.innerHTML = `
+        <div class="success-message">
+            <i class="fas fa-check-circle"></i>
+            ${message}
         </div>
     `;
+}
 
-    // Simulate API call
-    setTimeout(() => {
-        const mockResponse = {
-            status: 'success',
-            data: {
-                employees: [
-                    { id: 1, name: 'John Doe', department: 'Engineering' },
-                    { id: 2, name: 'Jane Smith', department: 'HR' }
-                ]
-            }
-        };
+// Loading State Handler
+function showLoading(element, message = 'Loading...') {
+    element.innerHTML = `
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>${message}</p>
+        </div>
+    `;
+}
 
-        responseDiv.innerHTML = `
-            <pre><code class="language-json">
-${JSON.stringify(mockResponse, null, 2)}
-            </code></pre>
-        `;
-    }, 1500);
-});
+// Add touch support for mobile devices
+document.addEventListener('touchstart', function() {}, true);
