@@ -32,22 +32,67 @@
 <section class="login">
     <div class="container login-container">
         <div class="login-form">
-            <h2>Sign in</h2>
-            <p>to access Workwise Pro</p>
-            <form id="login-form">
-                <input type="email" placeholder="Email address or mobile number" required>
-                <button type="submit" class="btn primary">Next</button>
-            </form>
-            <p>Sign in using</p>
-            <div class="social-icons">
-                <i class="fab fa-google"></i>
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-linkedin"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-apple"></i>
-                <i class="fab fa-github"></i>
+            <div class="form-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to access Workwise Pro</p>
             </div>
-            <p>Don't have an account? <a href="signup.html">Sign up now</a></p>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                    <i class="fas fa-user input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Login as</label>
+                    <div class="custom-select">
+                        <select id="role" required>
+                            <option value="">Select role</option>
+                            <option value="admin">Administrator</option>
+                            <option value="user">Standard User</option>
+                        </select>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn primary">
+                    <span>Sign In</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+            </form>
+
+            <div class="separator">
+                <span>or continue with</span>
+            </div>
+
+            <div class="social-icons">
+                <button class="social-btn">
+                    <i class="fab fa-google"></i>
+                </button>
+                <button class="social-btn">
+                    <i class="fab fa-microsoft"></i>
+                </button>
+                <button class="social-btn">
+                    <i class="fab fa-apple"></i>
+                </button>
+            </div>
+
+            <p class="signup-link">Don't have an account? <a href="signup.html">Create account</a></p>
         </div>
 
         <!-- Updated Right Section with Slider -->
