@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRMS Dashboard</title>
+    <link rel="stylesheet" href="dashboardstyles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>HRMS Dashboard</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Employees</a></li>
+                    <li><a href="#">Performance</a></li>
+                    <li><a href="#">Payroll</a></li>
+                    <li><a href="#">Reports</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <div class="container">
+            <section class="metrics">
+                <div class="metric-card">
+                    <h2>Total Employees</h2>
+                    <p>150</p>
+                </div>
+                <div class="metric-card">
+                    <h2>Active Projects</h2>
+                    <p>12</p>
+                </div>
+                <div class="metric-card">
+                    <h2>Pending Reviews</h2>
+                    <p>5</p>
+                </div>
+                <div class="metric-card">
+                    <h2>Monthly Payroll</h2>
+                    <p>$120,000</p>
+                </div>
+            </section>
+
+            <section class="charts">
+                <div class="chart-card">
+                    <h3>Performance Overview</h3>
+                    <canvas id="performanceChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Employee Distribution</h3>
+                    <canvas id="employeeChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 HRMS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboardscripts.js"></script>
+</body>
+</html>
