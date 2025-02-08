@@ -51,6 +51,58 @@
                 grid-template-columns: 1fr;
             }
         }
+.data-management {
+            padding: 4rem 0;
+            background: var(--card-bg);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .data-table th, 
+        .data-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+
+        .onboarding-section {
+            padding: 4rem 0;
+            background: var(--section-bg);
+        }
+
+        .onboarding-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: var(--box-shadow);
+        }
+
+        .message-bubble {
+            background: var(--secondary-blue);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .hr-contact {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
     </style>
 </head>
 <body>
@@ -94,63 +146,104 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Complete HR Management Solution</h1>
-                <p>Automate HR processes, manage employee lifecycle, and streamline operations</p>
-                <div class="hero-buttons">
-                    <a href="#signup" class="btn hero-btn-primary">Start Free Trial</a>
-                    <a href="#demo" class="btn hero-btn-secondary">Schedule Demo</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="hero-image.png" alt="HR Management Dashboard" class="animate-float">
+                <h1>Features, tailor-made for your people</h1>
+                <p>HR involves numerous complex functions and processing. With Workwise Pro, you get a simple yet comprehensive and flexible system to manage all your HR processes so you can focus more on your people.</p>
+                <a href="#getstarted" class="btn hero-btn-primary">GET STARTED</a>
             </div>
         </div>
     </section>
 
-    <!-- Key Features -->
-    <section class="zoho-style-section">
-        <div class="container features-grid">
-            <div class="feature-card">
-                <i class="fas fa-user-clock feature-icon"></i>
-                <h3>Attendance Tracking</h3>
-                <p>Automated time tracking with geofencing and shift management</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-file-invoice-dollar feature-icon"></i>
-                <h3>Payroll Management</h3>
-                <p>Multi-country payroll processing with tax compliance</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-robot feature-icon"></i>
-                <h3>HR Automation</h3>
-                <p>Automate onboarding, reminders, and approvals</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Workflow Automation Section -->
-    <section class="automation-section">
+    <!-- Data Management Section (Image 2) -->
+    <section class="data-management">
         <div class="container">
-            <div class="section-header">
-                <h2>Workflow Automation Features</h2>
-                <p>Experience next-generation HR automation capabilities</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h4>Employee Onboarding</h4>
-                    <p>Automated checklist for equipment allocation and system access</p>
+            <h2>Manage data efficiently</h2>
+            <p>Streamline both your data collection and secure storage with our employee database management system.</p>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Employee View</th>
+                        <th>Employee ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email ID</th>
+                        <th>Date of Joining</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="photo-placeholder.png" alt="Employee" width="40"></td>
+                        <td>2T134</td>
+                        <td>Rebecca</td>
+                        <td>Blogglo</td>
+                        <td>blogglob@zytker.com</td>
+                        <td>11-Aug-2017</td>
+                        <td>Human Resources</td>
+                    </tr>
+                    <!-- Add other rows similarly -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- HR Management Section (Image 3) -->
+    <section class="onboarding-section">
+        <div class="container">
+            <h2>Effortless HR management</h2>
+            <p>Workwise Pro provides all the tools you need to help your HR staff and employees stay efficient, up-to-date, and productive, even on the go.</p>
+
+            <div class="onboarding-card">
+                <div class="message-bubble">
+                    <h3>Time aboard! We wish you a solid journey in our organization.</h3>
+                    <ul class="onboarding-checklist">
+                        <li>Provide and other forms</li>
+                        <li>Documents and policies</li>
+                        <li>Objectives</li>
+                        <li>You're still set</li>
+                    </ul>
                 </div>
-                <div class="feature-card">
-                    <h4>Leave Management</h4>
-                    <p>Auto-approvals and balance calculations</p>
+
+                <div class="message-bubble">
+                    <div class="message-header">
+                        <span class="timestamp">Today 5:47 AM</span>
+                        <h4>Keb Lisa has posted a message:</h4>
+                    </div>
+                    <p>HR @ Jack Oliver, welcome to ZyReez.</p>
+                    <div class="message-reply">
+                        <strong>Jack Oliver:</strong>
+                        <p>Thank you. I'm excited to work with you!</p>
+                        <span class="timestamp">Today 5:53 AM</span>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <h4>Custom Workflows</h4>
-                    <p>Create custom functions for unique business needs</p>
+
+                <div class="hr-contact">
+                    <h4>YOUR HR CONTACT</h4>
+                    <div class="contact-card">
+                        <h5>Keb Lisa</h5>
+                        <p>HR Manager - Recruitment</p>
+                        <p>7/392</p>
+                    </div>
+                </div>
+
+                <div class="onboarding-features">
+                    <h4>Onboarding</h4>
+                    <p>Start a structured onboarding process for new recruits.</p>
+                    <div class="trackers">
+                        <div class="tracker">
+                            <i class="fas fa-clock"></i>
+                            <span>Attendance Tracker</span>
+                        </div>
+                        <div class="tracker">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Leave Tracker</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Existing Footer Section -->
     <footer>
