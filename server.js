@@ -47,3 +47,16 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// Register endpoint
+app.post('/register', async (req, res) => {
+  const { email, password, role } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await pool.query('INSERT INTO users (email, password, role) VALUES ($1, $2, $3)', [email, hashedPassword, role]);
+    res.status(201).send('User registered');
+  } catch (error) {
+    console.error('Error during registration:', error);
+    res.status(500).send('Server error');
+  }
+});
