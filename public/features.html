@@ -3,394 +3,647 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workwise Pro - HR Management Software</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Zoho People - HR Management Software</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Zoho-style enhancements */
         :root {
-            --primary-blue: #2C5AFF;
-            --section-bg: #F8FAFF;
+            --primary-blue: #2196f3;
+            --dark-blue: #1a237e;
+            --accent-yellow: #ffd700;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --bg-light: #f8faff;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        /* Content section styles */
-        .zoho-style-section {
-            padding: 6rem 0;
-            background: var(--section-bg);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 4rem 0;
-        }
-
-        .feature-card {
-            padding: 2rem;
-            border-radius: 8px;
-            background: var(--card-bg);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-.hero {
-            background: #f8faff;
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 36px;
-            color: #2d2d2d;
-            margin-bottom: 24px;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .hero p {
-            color: #5e5e5e;
-            font-size: 18px;
-            max-width: 780px;
-            margin: 0 auto 40px;
+        body {
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-light);
         }
 
-        .get-started-btn {
-            background: #2c5aff;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 4px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: background 0.2s;
-        }
-
-        /* Data Management Section (Image 2) */
-        .data-section {
-            padding: 60px 0;
-            background: white;
-        }
-
-        .data-section h2 {
-            font-size: 28px;
-            color: #2d2d2d;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-        }
-
-        .data-table th {
-            background: #2c5aff;
-            color: white;
-            padding: 16px;
-            text-align: left;
-            font-weight: 500;
-        }
-
-        .data-table td {
-            padding: 16px;
-            border-bottom: 1px solid #eee;
-            color: #444;
-        }
-
-        .data-table tr:nth-child(even) {
-            background: #f8faff;
-        }
-
-        /* HR Management Section (Image 3) */
-        .hr-section {
-            padding: 60px 0;
-            background: #f5f6fa;
-        }
-
-        .hr-section h2 {
-            font-size: 28px;
-            color: #2d2d2d;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        .onboarding-card {
-            background: white;
-            border-radius: 6px;
-            padding: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            max-width: 800px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .welcome-message {
-            background: #e8f0fe;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
+        /* Header Styles */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
 
-        .welcome-message h3 {
-            color: #2d2d2d;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-
-        .checklist {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .checklist li {
-            padding: 8px 0;
-            color: #444;
+        .nav-container {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
             align-items: center;
         }
 
-        .checklist li:before {
-            content: "•";
-            color: #2c5aff;
-            margin-right: 12px;
-            font-size: 20px;
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .message-bubble {
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #1976d2;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: var(--bg-light);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-illustration {
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-illustration img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Data Management Section */
+        .data-management {
+            padding: 4rem 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .database-interface {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+
+        .interface-header {
+            background: var(--dark-blue);
+            padding: 1rem;
+            color: var(--white);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--white);
+        }
+
+        .data-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #f5f5f5;
+            align-items: center;
+        }
+
+        .view-selector, .data-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 25px 0;
+        }
+
+        .edit-btn {
+            padding: 0.5rem 1rem;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Table Styles */
+        .data-table {
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .employee-photo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Continue with Part 2... */
+        /* HR Management Section Styles */
+        .hr-management {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+
+        .onboarding-interface {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .onboarding-panel {
+            flex: 2;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .welcome-message {
+            background: var(--dark-blue);
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .onboarding-steps {
+            margin-top: 1.5rem;
+        }
+
+        .step {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step i {
+            color: var(--accent-yellow);
+        }
+
+        .chat-section {
+            padding: 2rem;
+        }
+
+        .chat-message {
+            margin-bottom: 2rem;
         }
 
         .message-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .message-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .name {
+            font-weight: 500;
         }
 
         .timestamp {
-            color: #888;
-            font-size: 14px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
         }
 
-        .hr-contact {
-            border-left: 3px solid #2c5aff;
-            padding-left: 20px;
-            margin: 30px 0;
+        .message-content {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-left: 50px;
         }
 
-        .tracker-badges {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
+        .message-reactions {
+            margin-left: 50px;
+            margin-top: 0.5rem;
         }
 
-        .tracker {
-            background: #f8faff;
-            padding: 12px 20px;
-            border-radius: 6px;
+        .reaction {
+            background: rgba(0,0,0,0.05);
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        /* Features Panel Styles */
+        .features-panel {
+            flex: 1;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .feature-card h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
+        }
+
+        .feature-card h4 i {
+            color: var(--primary-blue);
+        }
+
+        .feature-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-link:hover {
+            transform: translateX(5px);
+        }
+
+        .learn-more {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .learn-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .onboarding-interface {
+                flex-direction: column;
+            }
+
+            .features-panel {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .data-controls {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .features-panel {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Mobile Menu Overlay -->
-    <div class="menu-overlay"></div>
-
-    <!-- Header Section from Existing Code -->
     <header>
-        <div class="container">
-            <div class="logo">
-                <h1>Workwise Pro</h1>
-            </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav id="nav-menu">
-                <ul id="nav-list">
-                    <li><a href="features.html">Features</a></li>
-                    <li class="dropdown">
-                        <a href="#">HR/Accounts Modules <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-content">
-                            <li><a href="#recruitment">People Management</a></li>
-                            <li><a href="#performance">Performance Management</a></li>
-                            <li><a href="#payroll">Payroll</a></li>
-                            <li><a href="#payroll">Book-keeping</a></li>
-                            <li><a href="#payroll">ADP</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="login.html">Sign In</a></li>
-                    <li><a href="signup.html" class="btn primary">Sign Up</a></li>
-                </ul>
+        <div class="container nav-container">
+            <div class="logo">Zoho People</div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-link">Features</a>
+                <a href="#" class="nav-link">Solutions</a>
+                <a href="#" class="nav-link">Pricing</a>
+                <a href="#" class="nav-link">Resources</a>
+                <a href="#" class="btn-primary">Get Started</a>
             </nav>
+            <button class="mobile-menu-btn" style="display: none;">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <!-- Image 1: Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Features, tailor-made for your people</h1>
-            <p>HR involves numerous complex functions and processing. With Zoho People, you get a simple yet comprehensive and flexible system to manage all your HR processes so you can focus more on your people.</p>
-            <a href="#" class="get-started-btn">GET STARTED</a>
-        </div>
-    </section>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Features, tailor-made for your people</h1>
+                    <p>HR involves numerous complex functions and processing. With Zoho People, you get a simple yet
+                        comprehensive and flexible system to manage all your HR processes so you can focus more on your people.</p>
+                    <a href="#" class="btn-primary">GET STARTED</a>
+                </div>
+                <div class="hero-illustration">
+                    <img src="path-to-your-hero-illustration.svg" alt="HR Management Illustration">
+                </div>
+            </div>
+        </section>
 
-    <!-- Image 2: Data Management -->
-    <section class="data-section">
-        <div class="container">
-            <h2>Manage data efficiently</h2>
-            <p>Streamline both your data collection and secure storage with our employee database management system.</p>
-            
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Employee View</th>
-                        <th>Employee ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email ID</th>
-                        <th>Date of joining</th>
-                        <th>Department</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img src="user-icon.png" alt="user" width="40"></td>
-                        <td>2T134</td>
-                        <td>Rebecca</td>
-                        <td>Blogglo</td>
-                        <td>blogglob@zytker.com</td>
-                        <td>11-Aug-2017</td>
-                        <td>Human Resources</td>
-                    </tr>
-                    <!-- Add other rows -->
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Image 3: HR Management -->
-    <section class="hr-section">
-        <div class="container">
-            <h2>Effortless HR management</h2>
-            <div class="onboarding-card">
-                <div class="welcome-message">
-                    <h3>Time aboard! We wish you a solid journey in our organization.</h3>
-                    <ul class="checklist">
-                        <li>Provide and other forms</li>
-                        <li>Documents and policies</li>
-                        <li>Objectives</li>
-                        <li>You're still set</li>
-                    </ul>
+        <!-- Data Management Section -->
+        <section class="data-management">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Manage data efficiently</h2>
+                    <p>Streamline both your data collection and secure storage with our employee database management
+                        system. Set up your organization and maintain all your employee records in one central location.</p>
+                    <a href="#" class="learn-more">Learn More</a>
                 </div>
 
-                <div class="message-bubble">
-                    <div class="message-header">
-                        <span class="timestamp">Today 5:47 AM</span>
-                        <h4>Keb Lisa has posted a message:</h4>
-                    </div>
-                    <p>HR @ Jack Oliver, welcome to ZyReez.</p>
-                    <div class="message-reply">
-                        <div class="message-header">
-                            <span class="timestamp">Today 5:53 AM</span>
-                            <h4>Jack Oliver:</h4>
+                <div class="database-interface">
+                    <div class="interface-header">
+                        <div class="app-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff">
+                                <!-- Add your app icon SVG here -->
+                            </svg>
                         </div>
-                        <p>Thank you. I'm excited to work with you!</p>
+                        <div class="breadcrumb">
+                            <span>← Employee Information</span>
+                        </div>
+                        <div class="nav-tabs">
+                            <div class="tab">Userwise Operations</div>
+                            <div class="tab">Employees</div>
+                            <div class="tab active">Departments</div>
+                            <div class="tab">Designations</div>
+                            <div class="tab">HR Process</div>
+                            <div class="tab">Groups</div>
+                            <div class="tab">Delegation</div>
+                        </div>
+                    </div>
+
+                    <div class="data-controls">
+                        <div class="view-selector">
+                            <select>
+                                <option>Employee View</option>
+                            </select>
+                            <button class="edit-btn">Edit</button>
+                        </div>
+                        <div class="data-filters">
+                            <select>
+                                <option>All Data</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>Photo</th>
+                                    <th>Employee ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email ID</th>
+                                    <th>Date of joining</th>
+                                    <th>Department</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td><img src="employee1.jpg" alt="Employee" class="employee-photo"></td>
+                                    <td>ZY134</td>
+                                    <td>Rebecca</td>
+                                    <td>Biaggio</td>
+                                    <td>biaggio@zyker.com</td>
+                                    <td>11-Aug-2017</td>
+                                    <td>Human Resources</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="hr-contact">
-                    <h4>YOUR HR CONTACT</h4>
-                    <div class="contact-info">
-                        <h5>Keb Lisa</h5>
-                        <p>HR Manager - Recruitment</p>
-                        <p>7/392</p>
-                    </div>
+        <!-- HR Management Section -->
+        <section class="hr-management">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Effortless HR management</h2>
+                    <p>Zoho People provides all the tools you need to help your HR staff and employees stay efficient,
+                        up-to-date, and productive, even on the go.</p>
                 </div>
 
-                <div class="onboarding-info">
-                    <h4>Onboarding</h4>
-                    <p>Start a structured onboarding process for new recruits.</p>
-                    <div class="tracker-badges">
-                        <div class="tracker">
-                            <i class="fas fa-clock"></i>
+                <div class="onboarding-interface">
+                    <div class="onboarding-panel">
+                        <div class="welcome-message">
+                            <h3>Welcome aboard! We wish you a successful journey in our organization.</h3>
+                            <div class="onboarding-steps">
+                                <div class="step">Profile and other forms</div>
+                                <div class="step">Documents and policies</div>
+                                <div class="step">Objectives</div>
+                                <div class="step">You're all set</div>
+                            </div>
+                        </div>
+
+                        <div class="chat-section">
+                            <div class="chat-message">
+                                <div class="message-header">
+                                    <img src="hr-avatar.jpg" alt="HR" class="avatar">
+                                    <div class="message-info">
+                                        <span class="name">Keb Lisa</span>
+                                        <span class="timestamp">Today 5:49 AM</span>
+                                    </div>
+                                </div>
+                                <div class="message-content">
+                                    Hi @Jack Oliver, welcome to Zyker.
+                                </div>
+                                <div class="message-reactions">
+                                    <span class="reaction">❤️ 1</span>
+                                </div>
+                            </div>
+
+                            <div class="chat-message reply">
+                                <div class="message-header">
+                                    <img src="user-avatar.jpg" alt="User" class="avatar">
+                                    <div class="message-info">
+                                        <span class="name">Jack Oliver</span>
+                                        <span class="timestamp">Today 5:53 AM</span>
+                                    </div>
+                                </div>
+                                <div class="message-content">
+                                    Thank you. I'm excited to work with you!
+                                </div>
+                                <div class="message-reactions">
+                                    <span class="reaction">❤️ 1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-panel">
+                        <div class="feature-card">
+                            <h4>Onboarding</h4>
+                            <p>Start a structured onboarding process for new recruits. Initiate onboarding procedures with a new hire portal,
+                                customizable workflows, checklists and status-view reports.</p>
+                            <a href="#" class="learn-more">Learn more</a>
+                        </div>
+
+                        <div class="feature-link">
+                            <i class="icon-attendance"></i>
                             <span>Attendance Tracker</span>
                         </div>
-                        <div class="tracker">
-                            <i class="fas fa-calendar-alt"></i>
+
+                        <div class="feature-link">
+                            <i class="icon-leave"></i>
                             <span>Leave Tracker</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Existing Footer Section -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#integrations">Integrations</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Developers</h4>
-                    <ul>
-                        <li><a href="#api-docs">API Documentation</a></li>
-                        <li><a href="#sdk">SDKs & Tools</a></li>
-                        <li><a href="#status">System Status</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
 
-    <script src="script.js"></script>
+        mobileMenuBtn?.addEventListener('click', () => {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Tabs functionality
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
