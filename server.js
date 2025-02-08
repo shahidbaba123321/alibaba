@@ -2,12 +2,24 @@ const express = require('express');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { Pool } = require('pg');
+const { MongoClient } = require('mongodb');
 
 const app = express();
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+
+// MongoDB connection
+const uri = process.env.MONGODB_URI; // Ensure this environment variable is set
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+async function connectDB() {
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB Atlas");
+  } catch (err) {
+    console.error("Error connecting to MongoDB Atlas:", err);
+  }
+}
+
+connectDB();
 
 app.use(express.json());
 
@@ -28,8 +40,9 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
   const { username, password, role } = req.body;
   try {
-    const result = await pool.query('SELECT * FROM users WHERE username = $1 AND role = $2', [username, role]);
-    const user = result.rows[0];
+    const database = client.db('infocraftorbis');
+    const users = database.collection('users');
+    const user = await users.findOne({ username, role });
 
     if (user && await bcrypt.compare(password, user.password)) {
       const token = jwt.sign({ username: user.username, role: user.role }, process.env.JWT_SECRET);
@@ -43,20 +56,22 @@ app.post('/login', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
 // Register endpoint
 app.post('/register', async (req, res) => {
   const { email, password, role } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    await pool.query('INSERT INTO users (email, password, role) VALUES ($1, $2, $3)', [email, hashedPassword, role]);
+    const database = client.db('infocraftorbis');
+    const users = database.collection('users');
+    await users.insertOne({ email, password: hashedPassword, role });
     res.status(201).send('User registered');
   } catch (error) {
     console.error('Error during registration:', error);
     res.status(500).send('Server error');
   }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
