@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoho People - HR Management Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Zoho-style CSS */
+        :root {
+            --primary-blue: #2C5AFF;
+            --secondary-blue: #E8F0FE;
+            --text-dark: #2D2D2D;
+            --text-light: #5E5E5E;
+            --section-bg: #F8FAFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .navbar {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 120px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--section-bg);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* HR Automation Section */
+        .automation-section {
+            background: var(--section-bg);
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .automation-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .automation-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <img src="zoho-logo.png" alt="Zoho Logo" class="logo">
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#integrations">Integrations</a>
+                <a href="#resources">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Complete HR Management Solution</h1>
+            <p>Automate HR processes, manage employee lifecycle, and streamline operations</p>
+            <button class="cta-button">Start Free Trial</button>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="container features-grid">
+        <div class="feature-card">
+            <i class="fas fa-user-clock feature-icon"></i>
+            <h3>Attendance Tracking</h3>
+            <p>Automated time tracking with geofencing and shift management :cite[8]</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fas fa-file-invoice-dollar feature-icon"></i>
+            <h3>Payroll Management</h3>
+            <p>Multi-country payroll processing with tax compliance :cite[1]:cite[4]</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fas fa-robot feature-icon"></i>
+            <h3>HR Automation</h3>
+            <p>Automate onboarding, reminders, and approvals :cite[4]:cite[8]</p>
+        </div>
+    </section>
+
+    <!-- Automation Section -->
+    <section class="automation-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Workflow Automation Features</h2>
+            </div>
+            <div class="automation-steps">
+                <div class="step-card">
+                    <h4>Employee Onboarding</h4>
+                    <p>Automated checklist for equipment allocation and system access :cite[4]</p>
+                </div>
+                <div class="step-card">
+                    <h4>Leave Management</h4>
+                    <p>Auto-approvals and balance calculations :cite[8]</p>
+                </div>
+                <div class="step-card">
+                    <h4>Custom Workflows</h4>
+                    <p>Create custom functions for unique business needs :cite[8]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Section -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Seamless Integrations</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-code feature-icon"></i>
+                <h3>API Access</h3>
+                <p>Comprehensive REST API for custom integrations :cite[2]:cite[10]</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-window-restore feature-icon"></i>
+                <h3>Embed Forms</h3>
+                <p>Embed HR forms directly into your website :cite[1]:cite[7]</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
