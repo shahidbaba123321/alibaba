@@ -38,11 +38,11 @@ app.get('/login', (req, res) => {
 
 // Login endpoint
 app.post('/login', async (req, res) => {
-  const { username, password, role } = req.body;
+  const { email, password, role } = req.body; // Change username to email
   try {
     const database = client.db('infocraftorbis');
     const users = database.collection('users');
-    const user = await users.findOne({ username, role });
+    const user = await users.findOne({ email, role }); // Use email in the query
 
     console.log('User found:', user);
 
@@ -51,7 +51,7 @@ app.post('/login', async (req, res) => {
       console.log('Password match:', isPasswordMatch);
 
       if (isPasswordMatch) {
-        const token = jwt.sign({ username: user.username, role: user.role }, process.env.JWT_SECRET);
+        const token = jwt.sign({ email: user.email, role: user.role }, process.env.JWT_SECRET);
         res.json({ token });
       } else {
         res.status(401).send('Invalid credentials');
