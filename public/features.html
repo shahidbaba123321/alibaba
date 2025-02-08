@@ -377,7 +377,7 @@ header {
             height: auto;
         }
 
-        /* Data Management Section */
+         /* Data Management Section */
         .data-management {
             padding: 4rem 0;
             background: var(--white);
@@ -410,6 +410,10 @@ header {
             background: var(--dark-blue);
             padding: 1rem;
             color: var(--white);
+        }
+
+        .breadcrumb {
+            margin: 0.5rem 0;
         }
 
         .nav-tabs {
@@ -494,9 +498,7 @@ header {
             border-radius: 50%;
             object-fit: cover;
         }
-
-        /* Continue with Part 2... */
-        /* HR Management Section Styles */
+          /* HR Management Section Styles */
         .hr-management {
             padding: 4rem 0;
             background: var(--bg-light);
@@ -533,10 +535,6 @@ header {
             gap: 1rem;
         }
 
-        .step i {
-            color: var(--accent-yellow);
-        }
-
         .chat-section {
             padding: 2rem;
         }
@@ -556,6 +554,7 @@ header {
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            object-fit: cover;
         }
 
         .message-info {
@@ -591,7 +590,6 @@ header {
             font-size: 0.9rem;
         }
 
-        /* Features Panel Styles */
         .features-panel {
             flex: 1;
         }
@@ -607,13 +605,6 @@ header {
         .feature-card h4 {
             color: var(--primary-blue);
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .feature-card h4 i {
-            color: var(--primary-blue);
         }
 
         .feature-link {
@@ -633,6 +624,14 @@ header {
             transform: translateX(5px);
         }
 
+        .icon-attendance,
+        .icon-leave {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+        }
+
         .learn-more {
             color: var(--primary-blue);
             text-decoration: none;
@@ -643,20 +642,16 @@ header {
             margin-top: 1rem;
         }
 
-        .learn-more:hover {
-            text-decoration: underline;
-        }
-
         /* Responsive Design */
         @media (max-width: 1024px) {
             .onboarding-interface {
                 flex-direction: column;
             }
 
-            .features-panel {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1rem;
+            .nav-tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
             }
         }
 
@@ -665,24 +660,15 @@ header {
                 font-size: 2rem;
             }
 
-            .nav-menu {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
             .data-controls {
                 flex-direction: column;
                 gap: 1rem;
             }
 
-            .features-panel {
-                grid-template-columns: 1fr;
+            .data-table {
+                overflow-x: auto;
             }
-        }
-    </style>
+        }    </style>
 </head>
 <body>
     <!-- Mobile Menu Overlay -->
