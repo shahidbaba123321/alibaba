@@ -181,7 +181,7 @@
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem('token', data.token);
-                window.location.href = role === 'Super Admin' ? 'dashboard.html' : 'dashboard.html';
+                window.location.href = role === 'user' ? 'dashboard.html' : 'dashboard.html';
             } else {
                 alert('Invalid credentials. Please try again.');
             }
