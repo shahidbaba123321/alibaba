@@ -3,66 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRMS Dashboard</title>
-    <link rel="stylesheet" href="dashboardStyles.css">
+    <title>Super Admin Dashboard</title>
+    <link rel="stylesheet" href="superadmin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="container">
-            <h1>HRMS Dashboard</h1>
+            <div class="logo">
+                <h1>Super Admin Dashboard</h1>
+            </div>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Employees</a></li>
-                    <li><a href="#">Performance</a></li>
-                    <li><a href="#">Payroll</a></li>
-                    <li><a href="#">Reports</a></li>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#user-management">User Management</a></li>
+                    <li><a href="#company-management">Company Management</a></li>
+                    <li><a href="#system-config">System Config</a></li>
+                    <li><a href="#security">Security</a></li>
+                    <li><a href="#support">Support</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="dashboard">
-        <div class="container">
-            <section class="metrics">
-                <div class="metric-card">
-                    <h2>Total Employees</h2>
-                    <p>150</p>
+    <!-- Main Content -->
+    <main>
+        <!-- Overview Section -->
+        <section id="overview" class="dashboard-section">
+            <h2>High-Level Overview & Analytics</h2>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>Payroll Metrics</h3>
+                    <p>Real-time data for India, USA, UAE, Qatar</p>
                 </div>
-                <div class="metric-card">
-                    <h2>Active Projects</h2>
-                    <p>12</p>
+                <div class="card">
+                    <h3>Performance Analytics</h3>
+                    <p>KPIs and alerts for anomalies</p>
                 </div>
-                <div class="metric-card">
-                    <h2>Pending Reviews</h2>
-                    <p>5</p>
-                </div>
-                <div class="metric-card">
-                    <h2>Monthly Payroll</h2>
-                    <p>$120,000</p>
-                </div>
-            </section>
+                <!-- Add more cards as needed -->
+            </div>
+        </section>
 
-            <section class="charts">
-                <div class="chart-card">
-                    <h3>Performance Overview</h3>
-                    <canvas id="performanceChart"></canvas>
-                </div>
-                <div class="chart-card">
-                    <h3>Employee Distribution</h3>
-                    <canvas id="employeeChart"></canvas>
-                </div>
-            </section>
-        </div>
+        <!-- User Management Section -->
+        <section id="user-management" class="dashboard-section">
+            <h2>User & Role Management</h2>
+            <p>Manage user accounts and permissions</p>
+            <!-- Add user management tools here -->
+        </section>
+
+        <!-- Company Management Section -->
+        <section id="company-management" class="dashboard-section">
+            <h2>Company Onboarding & Management</h2>
+            <p>Create and manage company profiles</p>
+            <!-- Add company management tools here -->
+        </section>
+
+        <!-- System Configuration Section -->
+        <section id="system-config" class="dashboard-section">
+            <h2>System Configuration & Integration Control</h2>
+            <p>Manage global settings and integrations</p>
+            <!-- Add system configuration tools here -->
+        </section>
+
+        <!-- Security Section -->
+        <section id="security" class="dashboard-section">
+            <h2>Security & Audit Oversight</h2>
+            <p>Track user actions and system changes</p>
+            <!-- Add security tools here -->
+        </section>
+
+        <!-- Support Section -->
+        <section id="support" class="dashboard-section">
+            <h2>Maintenance & Support Tools</h2>
+            <p>Manage helpdesk queries and system notifications</p>
+            <!-- Add support tools here -->
+        </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2023 HRMS. All rights reserved.</p>
+            <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="dashboardscript.js"></script>
 </body>
 </html>
