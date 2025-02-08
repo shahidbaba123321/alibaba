@@ -56,8 +56,9 @@
                         <div class="custom-select">
                             <select id="role" required>
                                 <option value="">Select role</option>
-                                <option value="admin">Administrator</option>
-                                <option value="user">Standard User</option>
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+                                <option value="user">Super Admin</option>
                             </select>
                             <i class="fas fa-chevron-down select-arrow"></i>
                         </div>
@@ -180,7 +181,7 @@
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem('token', data.token);
-                window.location.href = role === 'admin' ? 'dashboard.html' : 'user-dashboard.html';
+                window.location.href = role === 'Super Admin' ? 'dashboard.html' : 'user-dashboard.html';
             } else {
                 alert('Invalid credentials. Please try again.');
             }
