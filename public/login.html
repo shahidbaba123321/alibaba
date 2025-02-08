@@ -163,32 +163,29 @@
             showSlide(currentSlide);
         }, 5000);
 // Dummy credentials and login functionality
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+   <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
 
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const role = document.getElementById('role').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
 
-        // Dummy credentials
-        const adminCredentials = {
-            username: 'admin',
-            password: 'admin123'
-        };
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password, role })
+            });
 
-        const userCredentials = {
-            username: 'user',
-            password: 'user123'
-        };
-
-        if (role === 'admin' && username === adminCredentials.username && password === adminCredentials.password) {
-            window.location.href = 'dashboard.html';
-        } else if (role === 'user' && username === userCredentials.username && password === userCredentials.password) {
-            window.location.href = 'user-dashboard.html';
-        } else {
-            alert('Invalid credentials. Please try again.');
-        }
-    });
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem('token', data.token);
+                window.location.href = role === 'admin' ? 'dashboard.html' : 'user-dashboard.html';
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        });
+    </script>
     </script>
      <script src="script.js"></script>
 </body>
