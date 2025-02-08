@@ -44,9 +44,18 @@ app.post('/login', async (req, res) => {
     const users = database.collection('users');
     const user = await users.findOne({ username, role });
 
-    if (user && await bcrypt.compare(password, user.password)) {
-      const token = jwt.sign({ username: user.username, role: user.role }, process.env.JWT_SECRET);
-      res.json({ token });
+    console.log('User found:', user);
+
+    if (user) {
+      const isPasswordMatch = await bcrypt.compare(password, user.password);
+      console.log('Password match:', isPasswordMatch);
+
+      if (isPasswordMatch) {
+        const token = jwt.sign({ username: user.username, role: user.role }, process.env.JWT_SECRET);
+        res.json({ token });
+      } else {
+        res.status(401).send('Invalid credentials');
+      }
     } else {
       res.status(401).send('Invalid credentials');
     }
@@ -55,7 +64,6 @@ app.post('/login', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-
 // Register endpoint
 app.post('/register', async (req, res) => {
   const { email, password, role } = req.body;
