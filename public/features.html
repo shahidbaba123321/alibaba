@@ -195,59 +195,136 @@ footer {
         }
 
         /* Header Styles */
-        header {
-            background: var(--white);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+       /* Updated Header Styles */
+header {
+    background: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark-blue);
-        }
+.logo {
+    margin-right: 2rem;
+}
 
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
+.logo-link {
+    color: #1a237e;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+}
 
-        .nav-link {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+#nav-menu {
+    flex: 1;
+}
 
-        .nav-link:hover {
-            color: var(--primary-blue);
-        }
+#nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
 
-        .btn-primary {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 0.8rem 1.5rem;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
+#nav-list li a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
 
-        .btn-primary:hover {
-            background: #1976d2;
-        }
+#nav-list li a:hover {
+    color: var(--primary-blue);
+}
 
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 200px;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    padding: 0.5rem 0;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    padding: 0.8rem 1.5rem;
+    display: block;
+}
+
+.btn-signup {
+    background: var(--primary-blue);
+    color: white !important;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease;
+}
+
+.btn-signup:hover {
+    background: #1976d2;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .container {
+        justify-content: space-between;
+    }
+    
+    #nav-menu {
+        display: none;
+    }
+    
+    #nav-menu.active {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 1rem;
+        box-shadow: var(--box-shadow);
+    }
+    
+    #nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        padding-left: 1rem;
+    }
+}
         /* Hero Section */
         .hero {
             padding: 8rem 0 4rem;
@@ -599,38 +676,33 @@ footer {
 <div class="menu-overlay"></div>
 
 <!-- Header Section -->
+<!-- Header Section -->
 <header>
     <div class="container">
         <div class="logo">
-            <h1>Workwise Pro</h1>
-        </div>
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
+            <a href="/" class="logo-link">Workwise Pro</a>
         </div>
         <nav id="nav-menu">
             <ul id="nav-list">
-                <li><a href="features.html">Features</a></li>
+                <li><a href="#features">Features</a></li>
                 <li class="dropdown">
-                    <a href="#">HR/Accounts Modules <i class="fas fa-caret-down"></i></a>
+                    <a href="#" class="dropdown-toggle">HR/Accounts Modules ▼</a>
                     <ul class="dropdown-content">
                         <li><a href="#recruitment">People Management</a></li>
                         <li><a href="#performance">Performance Management</a></li>
                         <li><a href="#payroll">Payroll</a></li>
-                        <li><a href="#payroll">Book-keeping</a></li>
-                        <li><a href="#payroll">ADP</a></li>
+                        <li><a href="#bookkeeping">Book-keeping</a></li>
+                        <li><a href="#adp">ADP</a></li>
                     </ul>
                 </li>
                 <li><a href="#resources">Resources</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="login.html">Sign In</a></li>
-                <li><a href="signup.html" class="btn primary">Sign Up</a></li>
+                <li><a href="#signin">Sign In</a></li>
+                <li><a href="#signup" class="btn-signup">Sign Up</a></li>
             </ul>
         </nav>
     </div>
 </header>
-
     <main>
         <!-- Hero Section -->
         <section class="hero">
