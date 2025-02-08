@@ -166,29 +166,29 @@
         }, 5000);
 // Dummy credentials and login functionality
   
-       document.getElementById('loginForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+      document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const role = document.getElementById('role').value;
+    const email = document.getElementById('email').value; // Change username to email
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('role').value;
 
-            const response = await fetch('/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password, role })
-            });
+    const response = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, role }) // Use email in the request
+    });
 
-            if (response.ok) {
-                const data = await response.json();
-                localStorage.setItem('token', data.token);
-                window.location.href = role === 'user' ? 'dashboard.html' : 'dashboard.html';
-            } else {
-                alert('Invalid credentials. Please try again.');
-            }
-        });
+    if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        window.location.href = role === 'user' ? 'dashboard.html' : 'user-dashboard.html';
+    } else {
+        alert('Invalid credentials. Please try again.');
+    }
+});
     </script>
-    </script>
+    
      <script src="script.js"></script>
 </body>
 </html>
