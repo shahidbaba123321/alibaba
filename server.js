@@ -83,3 +83,38 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// API Endpoint for Payroll Metrics
+app.get('/api/payroll-metrics', async (req, res) => {
+  try {
+    const database = client.db('infocraftorbis');
+    const payroll = database.collection('payroll');
+    const metrics = await payroll.aggregate([
+      { $group: { _id: "$region", totalAmount: { $sum: "$amount" }, avgTaxRate: { $avg: "$taxRate" } } }
+    ]).toArray();
+    res.json(metrics);
+  } catch (error) {
+    console.error('Error fetching payroll metrics:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+// API Endpoint for Performance Analytics
+app.get('/api/performance-analytics', async (req, res) => {
+  try {
+    const database = client.db('infocraftorbis');
+    const performance = database.collection('performance');
+    const analytics = await performance.aggregate([
+      { $group: { _id: "$metric", avgScore: { $avg: "$score" } } }
+    ]).toArray();
+    res.json(analytics);
+  } catch (error) {
+    console.error('Error fetching performance analytics:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
