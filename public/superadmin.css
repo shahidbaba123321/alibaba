@@ -90,6 +90,7 @@ main {
 }
 
 /* Cards System */
+/* Cards System */
 .dashboard-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -122,6 +123,7 @@ main {
     font-size: 1.5rem;
     color: var(--primary-color);
 }
+
 
 /* Overview Section */
 .metric-item {
