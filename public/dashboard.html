@@ -30,20 +30,91 @@
     <!-- Main Content -->
     <main>
         <!-- Overview Section -->
-        <section id="overview" class="dashboard-section">
-            <h2>High-Level Overview & Analytics</h2>
-            <div class="dashboard-cards">
-                <div class="card">
-                    <h3>Payroll Metrics</h3>
-                    <p>Real-time data for India, USA, UAE, Qatar</p>
-                </div>
-                <div class="card">
-                    <h3>Performance Analytics</h3>
-                    <p>KPIs and alerts for anomalies</p>
-                </div>
-                <!-- Add more cards as needed -->
+        <!-- Overview Section -->
+<section id="overview" class="dashboard-section">
+    <h2>High-Level Overview & Analytics</h2>
+    <div class="dashboard-cards">
+        <!-- Payroll Metrics Card -->
+        <div class="card analytics-card">
+            <div class="card-header">
+                <i class="fas fa-coins"></i>
+                <h3>Payroll Metrics</h3>
             </div>
-        </section>
+            <div class="card-content">
+                <div class="metric-item">
+                    <span class="country-flag in">🇮🇳</span>
+                    <div class="metric-details">
+                        <span class="metric-label">India</span>
+                        <span class="metric-value">₹12.5M</span>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <span class="country-flag us">🇺🇸</span>
+                    <div class="metric-details">
+                        <span class="metric-label">USA</span>
+                        <span class="metric-value">$2.8M</span>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <span class="country-flag ae">🇦🇪</span>
+                    <div class="metric-details">
+                        <span class="metric-label">UAE</span>
+                        <span class="metric-value">د.إ1.2M</span>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <span class="country-flag qa">🇶🇦</span>
+                    <div class="metric-details">
+                        <span class="metric-label">Qatar</span>
+                        <span class="metric-value">ر.ق0.9M</span>
+                    </div>
+                </div>
+                <div class="update-status">
+                    <i class="fas fa-sync"></i>
+                    Last updated: Real-time
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Analytics Card -->
+        <div class="card analytics-card">
+            <div class="card-header">
+                <i class="fas fa-chart-line"></i>
+                <h3>Performance Analytics</h3>
+            </div>
+            <div class="card-content">
+                <div class="kpi-item">
+                    <div class="kpi-progress">
+                        <div class="progress-bar" style="width: 85%"></div>
+                    </div>
+                    <div class="kpi-details">
+                        <span>System Health</span>
+                        <span>85%</span>
+                    </div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-progress">
+                        <div class="progress-bar warning" style="width: 65%"></div>
+                    </div>
+                    <div class="kpi-details">
+                        <span>Data Accuracy</span>
+                        <span>65%</span>
+                    </div>
+                </div>
+                <div class="alerts">
+                    <div class="alert-item critical">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>3 Critical Anomalies</span>
+                    </div>
+                    <div class="alert-item warning">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>5 Warnings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- User Management Section -->
         <section id="user-management" class="dashboard-section">
