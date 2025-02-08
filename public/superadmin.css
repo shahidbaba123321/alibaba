@@ -2,13 +2,12 @@
     --primary-color: #4285f4;
     --secondary-color: #6c757d;
     --success-color: #28a745;
-    --background-color: #f8f9fa;
+    --background-color: #f4f7fa;
     --text-color: #333;
     --light-text: #6c757d;
     --border-radius: 8px;
     --transition: all 0.3s ease;
-    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --card-bg: #ffffff;
 }
 
@@ -33,12 +32,10 @@ body {
 }
 
 header {
-    background: var(--card-bg);
-    box-shadow: var(--box-shadow);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    background: var(--primary-color);
+    color: #fff;
     padding: 1rem 0;
+    box-shadow: var(--box-shadow);
 }
 
 header .container {
@@ -49,7 +46,6 @@ header .container {
 
 .logo h1 {
     font-size: 1.8rem;
-    color: var(--primary-color);
     font-weight: 700;
 }
 
@@ -64,13 +60,13 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: var(--text-color);
+    color: #fff;
     font-weight: 500;
     transition: var(--transition);
 }
 
 nav a:hover {
-    color: var(--primary-color);
+    color: #d1e3ff;
 }
 
 main {
@@ -85,12 +81,14 @@ main {
     font-size: 2.5rem;
     color: var(--text-color);
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .dashboard-cards {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {
@@ -100,6 +98,14 @@ main {
     box-shadow: var(--box-shadow);
     flex: 1;
     min-width: 250px;
+    max-width: 300px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 footer {
