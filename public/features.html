@@ -51,57 +51,171 @@
                 grid-template-columns: 1fr;
             }
         }
-.data-management {
-            padding: 4rem 0;
-            background: var(--card-bg);
+.hero {
+            background: #f8faff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 36px;
+            color: #2d2d2d;
+            margin-bottom: 24px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            color: #5e5e5e;
+            font-size: 18px;
+            max-width: 780px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .get-started-btn {
+            background: #2c5aff;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
+        }
+
+        /* Data Management Section (Image 2) */
+        .data-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .data-section h2 {
+            font-size: 28px;
+            color: #2d2d2d;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
 
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 2rem 0;
-            box-shadow: var(--box-shadow);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-        }
-
-        .data-table th, 
-        .data-table td {
-            padding: 1.2rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
+            margin: 30px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
         }
 
         .data-table th {
-            background: var(--primary-color);
+            background: #2c5aff;
             color: white;
+            padding: 16px;
+            text-align: left;
             font-weight: 500;
         }
 
-        .onboarding-section {
-            padding: 4rem 0;
-            background: var(--section-bg);
+        .data-table td {
+            padding: 16px;
+            border-bottom: 1px solid #eee;
+            color: #444;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f8faff;
+        }
+
+        /* HR Management Section (Image 3) */
+        .hr-section {
+            padding: 60px 0;
+            background: #f5f6fa;
+        }
+
+        .hr-section h2 {
+            font-size: 28px;
+            color: #2d2d2d;
+            margin-bottom: 30px;
+            font-weight: 600;
         }
 
         .onboarding-card {
             background: white;
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin: 1.5rem 0;
-            box-shadow: var(--box-shadow);
+            border-radius: 6px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .welcome-message {
+            background: #e8f0fe;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .welcome-message h3 {
+            color: #2d2d2d;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            color: #444;
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist li:before {
+            content: "•";
+            color: #2c5aff;
+            margin-right: 12px;
+            font-size: 20px;
         }
 
         .message-bubble {
-            background: var(--secondary-blue);
-            border-radius: 12px;
-            padding: 1.2rem;
-            margin: 1rem 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .timestamp {
+            color: #888;
+            font-size: 14px;
         }
 
         .hr-contact {
-            border-left: 4px solid var(--primary-color);
-            padding-left: 1.5rem;
-            margin: 2rem 0;
+            border-left: 3px solid #2c5aff;
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        .tracker-badges {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .tracker {
+            background: #f8faff;
+            padding: 12px 20px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
     </style>
 </head>
@@ -142,19 +256,17 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Image 1: Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Features, tailor-made for your people</h1>
-                <p>HR involves numerous complex functions and processing. With Workwise Pro, you get a simple yet comprehensive and flexible system to manage all your HR processes so you can focus more on your people.</p>
-                <a href="#getstarted" class="btn hero-btn-primary">GET STARTED</a>
-            </div>
+            <h1>Features, tailor-made for your people</h1>
+            <p>HR involves numerous complex functions and processing. With Zoho People, you get a simple yet comprehensive and flexible system to manage all your HR processes so you can focus more on your people.</p>
+            <a href="#" class="get-started-btn">GET STARTED</a>
         </div>
     </section>
 
-    <!-- Data Management Section (Image 2) -->
-    <section class="data-management">
+    <!-- Image 2: Data Management -->
+    <section class="data-section">
         <div class="container">
             <h2>Manage data efficiently</h2>
             <p>Streamline both your data collection and secure storage with our employee database management system.</p>
@@ -167,13 +279,13 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email ID</th>
-                        <th>Date of Joining</th>
+                        <th>Date of joining</th>
                         <th>Department</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><img src="photo-placeholder.png" alt="Employee" width="40"></td>
+                        <td><img src="user-icon.png" alt="user" width="40"></td>
                         <td>2T134</td>
                         <td>Rebecca</td>
                         <td>Blogglo</td>
@@ -181,22 +293,20 @@
                         <td>11-Aug-2017</td>
                         <td>Human Resources</td>
                     </tr>
-                    <!-- Add other rows similarly -->
+                    <!-- Add other rows -->
                 </tbody>
             </table>
         </div>
     </section>
 
-    <!-- HR Management Section (Image 3) -->
-    <section class="onboarding-section">
+    <!-- Image 3: HR Management -->
+    <section class="hr-section">
         <div class="container">
             <h2>Effortless HR management</h2>
-            <p>Workwise Pro provides all the tools you need to help your HR staff and employees stay efficient, up-to-date, and productive, even on the go.</p>
-
             <div class="onboarding-card">
-                <div class="message-bubble">
+                <div class="welcome-message">
                     <h3>Time aboard! We wish you a solid journey in our organization.</h3>
-                    <ul class="onboarding-checklist">
+                    <ul class="checklist">
                         <li>Provide and other forms</li>
                         <li>Documents and policies</li>
                         <li>Objectives</li>
@@ -211,25 +321,27 @@
                     </div>
                     <p>HR @ Jack Oliver, welcome to ZyReez.</p>
                     <div class="message-reply">
-                        <strong>Jack Oliver:</strong>
+                        <div class="message-header">
+                            <span class="timestamp">Today 5:53 AM</span>
+                            <h4>Jack Oliver:</h4>
+                        </div>
                         <p>Thank you. I'm excited to work with you!</p>
-                        <span class="timestamp">Today 5:53 AM</span>
                     </div>
                 </div>
 
                 <div class="hr-contact">
                     <h4>YOUR HR CONTACT</h4>
-                    <div class="contact-card">
+                    <div class="contact-info">
                         <h5>Keb Lisa</h5>
                         <p>HR Manager - Recruitment</p>
                         <p>7/392</p>
                     </div>
                 </div>
 
-                <div class="onboarding-features">
+                <div class="onboarding-info">
                     <h4>Onboarding</h4>
                     <p>Start a structured onboarding process for new recruits.</p>
-                    <div class="trackers">
+                    <div class="tracker-badges">
                         <div class="tracker">
                             <i class="fas fa-clock"></i>
                             <span>Attendance Tracker</span>
@@ -243,7 +355,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Existing Footer Section -->
     <footer>
