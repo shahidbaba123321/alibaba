@@ -427,71 +427,159 @@ section {
     color: var(--light-text);
 }
 
-/* Dashboard Preview */
-.dashboard-preview {
-    position: relative;
-    padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: var(--box-shadow);
-    margin-top: 3rem;
+/* Testimonials Section */
+.testimonials-section {
+    padding: 6rem 0;
+    background: var(--card-bg);
 }
 
-.dashboard-preview::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    width: 12px;
-    height: 12px;
-    background: #ff6b6b;
-    border-radius: 50%;
-    box-shadow: 20px 0 0 #ffd93d, 40px 0 0 #6bff6b;
-}
-
-.dashboard-preview img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 1.5rem;
-}
-
-/* Analytics Section */
-.analytics-features {
+.testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 3rem;
 }
 
-.analytics-card {
+.testimonial-card {
     background: var(--card-bg);
     border-radius: var(--border-radius);
-    padding: 2rem;
-    text-align: center;
+    padding: 2.5rem;
     box-shadow: var(--box-shadow);
     transition: transform 0.3s ease;
 }
 
-.analytics-card:hover {
+.testimonial-card:hover {
     transform: translateY(-5px);
 }
 
-.analytics-card i {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
+.testimonial-content {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
-/* Security Section */
-.security-features {
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.testimonial-author img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-info h4 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 0.3rem;
+}
+
+.author-info p {
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+/* Pricing Section */
+.pricing-section {
+    padding: 6rem 0;
+    background: var(--background-color);
+}
+
+.pricing-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-top: 3rem;
 }
 
-.security-card {
+.pricing-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+}
+
+.pricing-card.featured {
+    transform: scale(1.05);
+    border: 2px solid var(--primary-color);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-5px);
+}
+
+.pricing-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.price {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.price span {
+    font-size: 1rem;
+    color: var(--light-text);
+    font-weight: normal;
+}
+
+.pricing-card .features {
+    list-style: none;
+    margin: 2rem 0;
+    padding: 0;
+    text-align: left;
+}
+
+.pricing-card .features li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--light-text);
+}
+
+.pricing-card .features li i {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    color: var(--primary-color);
+}
+
+.pricing-card .btn {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Resources Section */
+.resources-section {
+    padding: 6rem 0;
+    background: var(--card-bg);
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.resource-card {
     background: var(--card-bg);
     border-radius: var(--border-radius);
     padding: 2.5rem;
@@ -500,8 +588,44 @@ section {
     transition: transform 0.3s ease;
 }
 
-.security-card:hover {
+.resource-card:hover {
     transform: translateY(-5px);
+}
+
+.resource-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.resource-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.resource-card p {
+    color: var(--light-text);
+    margin-bottom: 1.5rem;
+    min-height: 48px;
+}
+
+.resource-card .learn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.resource-card .learn-more:hover {
+    color: #3367d6;
+}
+
+.resource-card .learn-more:hover i {
+    transform: translateX(5px);
 }
 
 /* Footer - Baba Theme */
@@ -560,14 +684,21 @@ footer .container {
 @media (max-width: 1024px) {
     .benefits-grid,
     .features-grid,
-    .analytics-features,
-    .security-features {
+    .pricing-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .feature-split {
         flex-direction: column;
         text-align: center;
+    }
+
+    .pricing-card.featured {
+        transform: none;
+    }
+
+    .pricing-card.featured:hover {
+        transform: translateY(-5px);
     }
 }
 
@@ -603,25 +734,6 @@ footer .container {
         width: 100%;
     }
 
-    nav ul li a {
-        display: block;
-        padding: 1rem 0;
-    }
-
-    .dropdown-content {
-        position: static;
-        box-shadow: none;
-        background: rgba(0, 0, 0, 0.03);
-        border-radius: var(--border-radius);
-        margin-top: 0.5rem;
-        padding: 0.5rem 0;
-        display: none;
-    }
-
-    .dropdown.active .dropdown-content {
-        display: block;
-    }
-
     .bookkeeping-hero .container {
         flex-direction: column;
         text-align: center;
@@ -642,28 +754,40 @@ footer .container {
 
     .benefits-grid,
     .features-grid,
-    .analytics-features,
-    .security-features {
+    .testimonials-grid,
+    .pricing-grid,
+    .resources-grid {
         grid-template-columns: 1fr;
+    }
+
+    .testimonial-card,
+    .pricing-card,
+    .resource-card {
+        padding: 2rem;
+    }
+
+    .price {
+        font-size: 2.5rem;
+    }
+
+    .pricing-card .features {
+        text-align: center;
+    }
+
+    .pricing-card .features li {
+        padding-left: 0;
+        padding-top: 1.5rem;
+    }
+
+    .pricing-card .features li i {
+        position: static;
+        margin-right: 0.5rem;
     }
 
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-}
-
-/* Mobile Menu Animation */
-.menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
 }
 
 /* Animations */
@@ -682,15 +806,15 @@ footer .container {
     animation: fadeIn 0.6s ease forwards;
 }
 
-/* Utility Classes */
-.text-center {
-    text-align: center;
+/* Mobile Menu Animation */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
 }
 
-.mt-3 {
-    margin-top: 3rem;
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
 }
 
-.mb-3 {
-    margin-bottom: 3rem;
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
 }
