@@ -3,1028 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zoho People - HR Management Software</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-blue: #2196f3;
-            --dark-blue: #1a237e;
-            --accent-yellow: #ffd700;
-            --text-primary: #333;
-            --text-secondary: #666;
-            --bg-light: #f8faff;
-            --white: #ffffff;
-            --border-radius: 8px;
-            --box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        /* Header Additional Styles */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: var(--text-primary);
-    transition: var(--transition);
-}
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--white);
-    min-width: 200px;
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    z-index: 1000;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content a {
-    display: block;
-    padding: 0.8rem 1.5rem;
-}
-
-/* Footer */
-footer {
-    background: #2d3436;
-    color: #fff;
-    padding: 6rem 0 2rem;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 4rem;
-    margin-bottom: 4rem;
-}
-
-.footer-section h4 {
-    margin-bottom: 1.5rem;
-    font-size: 1.2rem;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.8rem;
-}
-
-.footer-section ul li a {
-    color: #a0a0a0;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.footer-section ul li a:hover {
-    color: #fff;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 2rem;
-    text-align: center;
-}
-
-/* Mobile Menu Overlay */
-.menu-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-}
-
-.menu-overlay.active {
-    display: block;
-}
-
-/* Mobile Styles */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-    }
-
-    nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 400px;
-        height: 100vh;
-        background: var(--white);
-        padding: 80px 20px 20px;
-        transition: var(--transition);
-        z-index: 999;
-        overflow-y: auto;
-    }
-
-    nav.active {
-        right: 0;
-    }
-
-    nav ul {
-        flex-direction: column;
-        width: 100%;
-        gap: 1rem;
-    }
-
-    nav ul li {
-        width: 100%;
-    }
-
-    nav ul li a {
-        display: block;
-        padding: 10px 0;
-    }
-
-    .dropdown-content {
-        position: static;
-        box-shadow: none;
-        background: rgba(0, 0, 0, 0.03);
-        border-radius: var(--border-radius);
-        margin-top: 0.5rem;
-        padding: 0.5rem 0;
-        display: none;
-    }
-
-    .dropdown.active .dropdown-content {
-        display: block;
-    }
-}
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--bg-light);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-       /* Updated Header Styles */
-header {
-    background: var(--white);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.logo {
-    margin-right: 2rem;
-}
-
-.logo-link {
-    color: #1a237e;
-    font-size: 1.8rem;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-#nav-menu {
-    flex: 1;
-}
-
-#nav-list {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-}
-
-#nav-list li a {
-    color: var(--text-primary);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-#nav-list li a:hover {
-    color: var(--primary-blue);
-}
-
-.dropdown-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--white);
-    min-width: 200px;
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    padding: 0.5rem 0;
-}
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content a {
-    padding: 0.8rem 1.5rem;
-    display: block;
-}
-
-.btn-signup {
-    background: var(--primary-blue);
-    color: white !important;
-    padding: 0.8rem 1.5rem;
-    border-radius: var(--border-radius);
-    transition: background-color 0.3s ease;
-}
-
-.btn-signup:hover {
-    background: #1976d2;
-}
-        .btn-primary {
-        background: var(--primary-blue);
-        color: var(--white);
-        padding: 0.8rem 1.5rem;
-        border-radius: var(--border-radius);
-        text-decoration: none;
-        font-weight: 500;
-        transition: background-color 0.3s ease;
-    }
-
-    .btn-primary:hover {
-        background: #1976d2;
-    }
-
-/* Mobile styles */
-@media (max-width: 768px) {
-    .container {
-        justify-content: space-between;
-    }
-    
-    #nav-menu {
-        display: none;
-    }
-    
-    #nav-menu.active {
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--white);
-        padding: 1rem;
-        box-shadow: var(--box-shadow);
-    }
-    
-    #nav-list {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .dropdown-content {
-        position: static;
-        box-shadow: none;
-        padding-left: 1rem;
-    }
-}
-        /* Hero Section */
-        .hero {
-            padding: 8rem 0 4rem;
-            background: var(--bg-light);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .hero-illustration {
-            margin-top: 4rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-illustration img {
-            max-width: 100%;
-            height: auto;
-        }
-
-         /* Data Management Section */
-        .data-management {
-            padding: 4rem 0;
-            background: var(--white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .database-interface {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-        }
-
-        .interface-header {
-            background: var(--dark-blue);
-            padding: 1rem;
-            color: var(--white);
-        }
-
-        .breadcrumb {
-            margin: 0.5rem 0;
-        }
-
-        .nav-tabs {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 0.5rem;
-        }
-
-        .tab {
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--white);
-        }
-
-        .data-controls {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem;
-            background: #f5f5f5;
-            align-items: center;
-        }
-
-        .view-selector, .data-filters {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        select {
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background: white;
-        }
-
-        .edit-btn {
-            padding: 0.5rem 1rem;
-            background: var(--primary-blue);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Table Styles */
-        .data-table {
-            padding: 1rem;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-
-        .employee-photo {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-          /* HR Management Section Styles */
-        .hr-management {
-            padding: 4rem 0;
-            background: var(--bg-light);
-        }
-
-        .onboarding-interface {
-            display: flex;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .onboarding-panel {
-            flex: 2;
-            background: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-        }
-
-        .welcome-message {
-            background: var(--dark-blue);
-            color: var(--white);
-            padding: 2rem;
-        }
-
-        .onboarding-steps {
-            margin-top: 1.5rem;
-        }
-
-        .step {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .chat-section {
-            padding: 2rem;
-        }
-
-        .chat-message {
-            margin-bottom: 2rem;
-        }
-
-        .message-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .message-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .name {
-            font-weight: 500;
-        }
-
-        .timestamp {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .message-content {
-            background: #f5f5f5;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            margin-left: 50px;
-        }
-
-        .message-reactions {
-            margin-left: 50px;
-            margin-top: 0.5rem;
-        }
-
-        .reaction {
-            background: rgba(0,0,0,0.05);
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-        }
-
-        .features-panel {
-            flex: 1;
-        }
-
-        .feature-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--box-shadow);
-        }
-
-        .feature-card h4 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-
-        .feature-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--white);
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
-            box-shadow: var(--box-shadow);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-link:hover {
-            transform: translateX(5px);
-        }
-
-        .icon-attendance,
-        .icon-leave {
-            width: 24px;
-            height: 24px;
-            background: var(--primary-blue);
-            border-radius: 50%;
-        }
-
-        .learn-more {
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .onboarding-interface {
-                flex-direction: column;
-            }
-
-            .nav-tabs {
-                overflow-x: auto;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .data-controls {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .data-table {
-                overflow-x: auto;
-            }
-        }    </style>
+    <title>Workwise Pro - AI-Powered HR Management</title>
+    <link rel="stylesheet" href="featurestyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sentiment@5.0.2/build/sentiment.min.js"></script>
 </head>
 <body>
     <!-- Mobile Menu Overlay -->
-<div class="menu-overlay"></div>
+    <div class="menu-overlay"></div>
 
-<!-- Header Section -->
-<!-- Header Section -->
-<header>
-    <div class="container">
-        <div class="logo">
-            <a href="/" class="logo-link">Workwise Pro</a>
-        </div>
-        <nav id="nav-menu">
-            <ul id="nav-list">
-                <li><a href="#features">Features</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">HR/Accounts Modules ▼</a>
-                    <ul class="dropdown-content">
-                        <li><a href="#recruitment">People Management</a></li>
-                        <li><a href="#performance">Performance Management</a></li>
-                        <li><a href="#payroll">Payroll</a></li>
-                        <li><a href="#bookkeeping">Book-keeping</a></li>
-                        <li><a href="#adp">ADP</a></li>
-                    </ul>
-                </li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#signin">Sign In</a></li>
-                <li><a href="#signup" class="btn-signup">Sign Up</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Features, tailor-made for your people</h1>
-                    <p>HR involves numerous complex functions and processing. With Zoho People, you get a simple yet
-                        comprehensive and flexible system to manage all your HR processes so you can focus more on your people.</p>
-                    <a href="#" class="btn-primary">GET STARTED</a>
-                </div>
-                <div class="hero-illustration">
-                    <img src="path-to-your-hero-illustration.svg" alt="HR Management Illustration">
-                </div>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Workwise Pro</h1>
             </div>
-        </section>
-
-        <!-- Data Management Section -->
-        <section class="data-management">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Manage data efficiently</h2>
-                    <p>Streamline both your data collection and secure storage with our employee database management
-                        system. Set up your organization and maintain all your employee records in one central location.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-                </div>
-
-                <div class="database-interface">
-                    <div class="interface-header">
-                        <div class="app-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff">
-                                <!-- Add your app icon SVG here -->
-                            </svg>
-                        </div>
-                        <div class="breadcrumb">
-                            <span>← Employee Information</span>
-                        </div>
-                        <div class="nav-tabs">
-                            <div class="tab">Userwise Operations</div>
-                            <div class="tab">Employees</div>
-                            <div class="tab active">Departments</div>
-                            <div class="tab">Designations</div>
-                            <div class="tab">HR Process</div>
-                            <div class="tab">Groups</div>
-                            <div class="tab">Delegation</div>
-                        </div>
-                    </div>
-
-                    <div class="data-controls">
-                        <div class="view-selector">
-                            <select>
-                                <option>Employee View</option>
-                            </select>
-                            <button class="edit-btn">Edit</button>
-                        </div>
-                        <div class="data-filters">
-                            <select>
-                                <option>All Data</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="data-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th><input type="checkbox"></th>
-                                    <th>Photo</th>
-                                    <th>Employee ID</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email ID</th>
-                                    <th>Date of joining</th>
-                                    <th>Department</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td><img src="employee1.jpg" alt="Employee" class="employee-photo"></td>
-                                    <td>ZY134</td>
-                                    <td>Rebecca</td>
-                                    <td>Biaggio</td>
-                                    <td>biaggio@zyker.com</td>
-                                    <td>11-Aug-2017</td>
-                                    <td>Human Resources</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        </section>
-
-        <!-- HR Management Section -->
-        <section class="hr-management">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Effortless HR management</h2>
-                    <p>Zoho People provides all the tools you need to help your HR staff and employees stay efficient,
-                        up-to-date, and productive, even on the go.</p>
-                </div>
-
-                <div class="onboarding-interface">
-                    <div class="onboarding-panel">
-                        <div class="welcome-message">
-                            <h3>Welcome aboard! We wish you a successful journey in our organization.</h3>
-                            <div class="onboarding-steps">
-                                <div class="step">Profile and other forms</div>
-                                <div class="step">Documents and policies</div>
-                                <div class="step">Objectives</div>
-                                <div class="step">You're all set</div>
-                            </div>
-                        </div>
-
-                        <div class="chat-section">
-                            <div class="chat-message">
-                                <div class="message-header">
-                                    <img src="hr-avatar.jpg" alt="HR" class="avatar">
-                                    <div class="message-info">
-                                        <span class="name">Keb Lisa</span>
-                                        <span class="timestamp">Today 5:49 AM</span>
-                                    </div>
-                                </div>
-                                <div class="message-content">
-                                    Hi @Jack Oliver, welcome to Zyker.
-                                </div>
-                                <div class="message-reactions">
-                                    <span class="reaction">❤️ 1</span>
-                                </div>
-                            </div>
-
-                            <div class="chat-message reply">
-                                <div class="message-header">
-                                    <img src="user-avatar.jpg" alt="User" class="avatar">
-                                    <div class="message-info">
-                                        <span class="name">Jack Oliver</span>
-                                        <span class="timestamp">Today 5:53 AM</span>
-                                    </div>
-                                </div>
-                                <div class="message-content">
-                                    Thank you. I'm excited to work with you!
-                                </div>
-                                <div class="message-reactions">
-                                    <span class="reaction">❤️ 1</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="features-panel">
-                        <div class="feature-card">
-                            <h4>Onboarding</h4>
-                            <p>Start a structured onboarding process for new recruits. Initiate onboarding procedures with a new hire portal,
-                                customizable workflows, checklists and status-view reports.</p>
-                            <a href="#" class="learn-more">Learn more</a>
-                        </div>
-
-                        <div class="feature-link">
-                            <i class="icon-attendance"></i>
-                            <span>Attendance Tracker</span>
-                        </div>
-
-                        <div class="feature-link">
-                            <i class="icon-leave"></i>
-                            <span>Leave Tracker</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Product</h4>
-                <ul>
-                    <li><a href="#features">Features</a></li>
+            <nav id="nav-menu">
+                <ul id="nav-list">
+                    <li><a href="features.html">Features</a></li>
+                    <li class="dropdown">
+                        <a href="#">HR/Accounts Modules <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-content">
+                            <li><a href="#recruitment">People Management</a></li>
+                            <li><a href="#performance">Performance Management</a></li>
+                            <li><a href="#payroll">Payroll</a></li>
+                            <li><a href="#payroll">Book-keeping</a></li>
+                            <li><a href="#payroll">ADP</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#resources">Resources</a></li>
                     <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#integrations">Integrations</a></li>
+                    <li><a href="login.html">Sign In</a></li>
+                    <li><a href="signup.html" class="btn primary">Sign Up</a></li>
                 </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Features, tailor-made for your people</h1>
+                <p>HR involves numerous complex functions and processing. With Workwise Pro, you get a simple yet comprehensive and flexible system to manage all your HR processes so you can focus more on your people.</p>
+                <div class="hero-cta">
+                    <a href="#" class="btn primary">GET STARTED</a>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Developers</h4>
-                <ul>
-                    <li><a href="#api-docs">API Documentation</a></li>
-                    <li><a href="#sdk">SDKs & Tools</a></li>
-                    <li><a href="#status">System Status</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#careers">Careers</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <div class="hero-image">
+                <img src="path-to-your-hero-illustration.svg" alt="HR Management Illustration">
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
+    </section>
+
+    <!-- HR Management Section -->
+    <section class="hr-management">
+        <div class="container">
+            <div class="section-header">
+                <h2>Effortless HR management</h2>
+                <p>Workwise Pro provides all the tools you need to help your HR staff and employees stay efficient, up-to-date, and productive, even on the go.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Onboarding</h3>
+                    <p>Start a structured onboarding process for new recruits. Initiate onboarding procedures with a new hire portal, customizable workflows, checklists and status-view reports.</p>
+                    <a href="#" class="learn-more">Learn more</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Attendance Tracker</h3>
+                    <p>Track employee attendance efficiently with our automated system.</p>
+                    <a href="#" class="learn-more">Learn more</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Leave Tracker</h3>
+                    <p>Manage employee leave requests and tracking in one place.</p>
+                    <a href="#" class="learn-more">Learn more</a>
+                </div>
+            </div>
         </div>
-    </div>
-</footer>
-    <script>
-        // Mobile menu functionality
-    const mobileMenuBtn = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('nav-menu');
-    const menuOverlay = document.querySelector('.menu-overlay');
-    const dropdowns = document.querySelectorAll('.dropdown');
+    </section>
 
-    // Mobile menu toggle
-    mobileMenuBtn?.addEventListener('click', () => {
-        mobileMenuBtn.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        menuOverlay.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-    });
+    <!-- Data Management Section -->
+    <section class="data-management">
+        <div class="container">
+            <div class="section-header">
+                <h2>Manage data efficiently</h2>
+                <p>Streamline both your data collection and secure storage with our employee database management system. Set up your organization and maintain all your employee records in one central location.</p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+            <div class="dashboard-preview">
+                <img src="path-to-your-dashboard-image.png" alt="Employee Database Dashboard">
+            </div>
+        </div>
+    </section>
 
-    // Close menu when clicking overlay
-    menuOverlay?.addEventListener('click', () => {
-        mobileMenuBtn.classList.remove('active');
-        navMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-    });
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#integrations">Integrations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Developers</h4>
+                    <ul>
+                        <li><a href="#api-docs">API Documentation</a></li>
+                        <li><a href="#sdk">SDKs & Tools</a></li>
+                        <li><a href="#status">System Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    // Mobile dropdown functionality
-    dropdowns.forEach(dropdown => {
-        const link = dropdown.querySelector('a');
-        link?.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-            }
-        });
-    });
-
-    // Close mobile menu on window resize
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            mobileMenuBtn.classList.remove('active');
-            navMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-        }
-    });
-
-    // Tabs functionality (keeping your existing tabs code)
-    const tabs = document.querySelectorAll('.tab');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-        });
-    });
-
-    // Add smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            if (this.getAttribute('href') !== '#') {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-    });
-
-    // Add active state for navigation items based on scroll position
-    window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollY = window.pageYOffset;
-
-        sections.forEach(section => {
-            const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - 100;
-            const sectionId = section.getAttribute('id');
-            const navLink = document.querySelector(`nav a[href="#${sectionId}"]`);
-
-            if (navLink && scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLink.classList.add('active');
-            } else if (navLink) {
-                navLink.classList.remove('active');
-            }
-        });
-    });
-
-    // Add intersection observer for animation on scroll
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements with animation classes
-    document.querySelectorAll('.feature-card, .hero-content, .hero-image').forEach(element => {
-        observer.observe(element);
-    });
-
-        // Tabs functionality
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-            });
-        });
-    </script>
+    <script src="featurescript.js"></script>
 </body>
 </html>
