@@ -5,13 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeDropdowns();
 });
 
-// Mobile Menu Functionality
 function initializeMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     const menuOverlay = document.querySelector('.menu-overlay');
     const body = document.body;
+    const dropdowns = document.querySelectorAll('.dropdown');
 
+    // Toggle mobile menu
     mobileMenu?.addEventListener('click', (e) => {
         e.stopPropagation();
         toggleMenu();
@@ -25,15 +26,38 @@ function initializeMobileMenu() {
         body.classList.toggle('menu-open', isActive);
     }
 
+    // Handle dropdowns in mobile view
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        
+        link?.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Close other dropdowns
+                dropdowns.forEach(other => {
+                    if (other !== dropdown) {
+                        other.classList.remove('active');
+                    }
+                });
+                
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
+
     // Close menu when clicking overlay
     menuOverlay?.addEventListener('click', () => {
         toggleMenu(false);
+        dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!navMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
             toggleMenu(false);
+            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
         }
     });
 }
