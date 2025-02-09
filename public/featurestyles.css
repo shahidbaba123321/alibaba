@@ -155,6 +155,29 @@ nav a:hover {
     margin: 0 auto;
 }
 
+/* Learn More Link */
+.learn-more {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.learn-more:hover {
+    color: #3367d6;
+}
+
+.learn-more i {
+    transition: transform 0.3s ease;
+}
+
+.learn-more:hover i {
+    transform: translateX(5px);
+}
+
 /* Features Hero Section */
 .features-hero {
     background-color: #f0f7ff;
@@ -197,6 +220,7 @@ nav a:hover {
     max-width: 100%;
     height: auto;
 }
+
 /* HR Management Section */
 .hr-management {
     padding: 6rem 0;
@@ -214,7 +238,7 @@ nav a:hover {
     background: #fff;
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
     transition: transform 0.3s ease;
 }
 
@@ -249,13 +273,12 @@ nav a:hover {
     margin-bottom: 1.5rem;
 }
 
-/* Data Management Section */
-.data-management {
-    padding: 6rem 0;
-    background-color: var(--background-color);
-}
-
-/* Case Management Section */
+/* New Sections Common Styles */
+.analytics-section,
+.integrations-section,
+.customize-section,
+.document-section,
+.engagement-section,
 .case-management,
 .learning-management,
 .performance-evaluation {
@@ -263,19 +286,82 @@ nav a:hover {
     background-color: var(--card-bg);
 }
 
-.case-management:nth-child(odd),
-.learning-management:nth-child(odd),
-.performance-evaluation:nth-child(odd) {
-    background-color: var(--background-color);
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
 }
 
-/* Dashboard Preview Styles */
+.content-wrapper.reverse {
+    flex-direction: row-reverse;
+}
+
+.text-content {
+    flex: 1;
+}
+
+.text-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.text-content p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    margin-bottom: 2rem;
+}
+
+.image-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Feature Split Layout */
+.feature-split {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.feature-info {
+    flex: 1;
+}
+
+.feature-item {
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+}
+
+.feature-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.feature-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+/* Dashboard Preview */
 .dashboard-preview {
     position: relative;
     padding: 20px;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
     margin-top: 3rem;
 }
 
@@ -298,23 +384,9 @@ nav a:hover {
     display: block;
 }
 
-/* Learn More Link Styles */
-.learn-more {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.learn-more i {
-    transition: transform 0.3s ease;
-}
-
-.learn-more:hover i {
-    transform: translateX(5px);
+/* Alternating Backgrounds */
+section:nth-child(even) {
+    background-color: var(--background-color);
 }
 
 /* Footer */
@@ -360,41 +432,6 @@ footer {
     text-align: center;
 }
 
-/* Mobile Menu Toggle */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: var(--text-color);
-    transition: var(--transition);
-}
-
-/* Mobile Menu Overlay */
-.menu-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-}
-
-.menu-overlay.active {
-    display: block;
-}
-
 /* Animations */
 @keyframes fadeIn {
     from {
@@ -413,55 +450,27 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
-    .features-hero .container {
+    .content-wrapper,
+    .content-wrapper.reverse,
+    .feature-split {
         flex-direction: column;
         text-align: center;
     }
 
-    .features-hero-content {
+    .text-content,
+    .feature-info {
         max-width: 100%;
     }
 
     .features-cards {
         grid-template-columns: repeat(2, 1fr);
     }
-
-    .features-hero-content h1 {
-        font-size: 3rem;
-    }
 }
 
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-    }
-
-    nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 400px;
-        height: 100vh;
-        background: var(--card-bg);
-        padding: 80px 20px 20px;
-        transition: var(--transition);
-        z-index: 999;
-        overflow-y: auto;
-    }
-
-    nav.active {
-        right: 0;
-    }
-
-    nav ul {
+    .features-hero .container {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    nav ul li {
-        width: 100%;
+        text-align: center;
     }
 
     .features-hero-content h1 {
@@ -472,56 +481,16 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .section-header h2 {
+    .text-content h2 {
         font-size: 2rem;
     }
 
-    .section-header p {
-        font-size: 1rem;
+    section {
+        padding: 4rem 0;
     }
 
     .dashboard-preview {
         margin-top: 2rem;
         padding: 15px;
     }
-
-    .case-management,
-    .learning-management,
-    .performance-evaluation {
-        padding: 4rem 0;
-    }
-}
-
-/* Mobile Menu Animation */
-.menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
-}
-
-/* Accessibility */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
-}
-
-/* Focus Styles */
-a:focus,
-button:focus,
-input:focus,
-textarea:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
 }
