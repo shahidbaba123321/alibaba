@@ -445,6 +445,11 @@ section {
 }
 
 /* Pricing Section */
+.pricing-section {
+    padding: 6rem 0;
+    background: var(--background-color);
+}
+
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -452,17 +457,74 @@ section {
     margin-top: 3rem;
 }
 
+.pricing-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+}
+
+.pricing-card.featured {
+    transform: scale(1.05);
+    border: 2px solid var(--primary-color);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-5px);
+}
+
+.pricing-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
 .price {
     font-size: 3rem;
     color: var(--primary-color);
     margin-bottom: 2rem;
+    font-weight: 600;
 }
 
 .price span {
     font-size: 1rem;
     color: var(--light-text);
+    font-weight: normal;
 }
 
+.pricing-card .features {
+    list-style: none;
+    margin: 2rem 0;
+    padding: 0;
+    text-align: left;
+}
+
+.pricing-card .features li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--light-text);
+}
+
+.pricing-card .features li i {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    color: var(--primary-color);
+}
+
+.pricing-card .btn {
+    width: 100%;
+    margin-top: 1rem;
+}
 /* Resources Section */
 .resources-grid {
     display: grid;
