@@ -50,9 +50,6 @@ header .container {
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
 }
 
 .logo {
@@ -69,6 +66,7 @@ header .container {
     text-decoration: none;
     color: inherit;
 }
+
 /* Navigation */
 nav {
     flex-grow: 1;
@@ -93,6 +91,67 @@ nav a {
 
 nav a:hover {
     color: var(--primary-color);
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--card-bg);
+    min-width: 200px;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: var(--transition);
+}
+
+/* Mobile Menu Overlay */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+.menu-overlay.active {
+    display: block;
 }
 
 /* Button Styles */
@@ -128,7 +187,31 @@ nav a:hover {
     color: white;
 }
 
-/* Bookkeeping Hero Section */
+/* Section Common Styles */
+section {
+    padding: 5rem 0;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+/* Hero Section */
 .bookkeeping-hero {
     background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%);
     padding: 6rem 0;
@@ -204,30 +287,6 @@ nav a:hover {
 
 .highlight:hover {
     transform: translateY(-3px);
-}
-
-/* Section Common Styles */
-section {
-    padding: 5rem 0;
-}
-
-.section-header {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-color);
-}
-
-.section-header p {
-    font-size: 1.1rem;
-    color: var(--light-text);
-    margin: 0 auto;
-    max-width: 600px;
 }
 /* Benefits Grid */
 .benefits-grid {
@@ -325,10 +384,6 @@ section {
 }
 
 /* Integration Section */
-.integration-section {
-    background: var(--background-color);
-}
-
 .feature-split {
     display: flex;
     align-items: center;
@@ -449,89 +504,56 @@ section {
     transform: translateY(-5px);
 }
 
-/* Testimonials Section */
-.testimonials-grid {
+/* Footer - Baba Theme */
+footer {
+    background: #2d3436;
+    color: #fff;
+    padding: 6rem 0 2rem;
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4rem;
+    margin-bottom: 4rem;
 }
 
-.testimonial-card {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    box-shadow: var(--box-shadow);
-}
-
-.testimonial-content {
-    font-style: italic;
+.footer-section h4 {
     margin-bottom: 1.5rem;
-    color: var(--text-color);
+    font-size: 1.2rem;
+    color: #fff;
 }
 
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.footer-section ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.testimonial-author img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
+.footer-section ul li {
+    margin-bottom: 0.8rem;
 }
 
-/* Pricing Section */
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
+.footer-section ul li a {
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: var(--transition);
 }
 
-.pricing-card {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 2.5rem;
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
     text-align: center;
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease;
-}
-
-.pricing-card.featured {
-    transform: scale(1.05);
-    border: 2px solid var(--primary-color);
-}
-
-.pricing-card:hover {
-    transform: translateY(-5px);
-}
-
-.pricing-card.featured:hover {
-    transform: scale(1.05) translateY(-5px);
-}
-
-/* Resources Section */
-.resources-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.resource-card {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    text-align: center;
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease;
-}
-
-.resource-card:hover {
-    transform: translateY(-5px);
 }
 
 /* Responsive Styles */
@@ -547,13 +569,59 @@ section {
         flex-direction: column;
         text-align: center;
     }
-
-    .pricing-grid {
-        gap: 1rem;
-    }
 }
 
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 400px;
+        height: 100vh;
+        background: var(--card-bg);
+        padding: 80px 20px 20px;
+        transition: var(--transition);
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 1rem 0;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background: rgba(0, 0, 0, 0.03);
+        border-radius: var(--border-radius);
+        margin-top: 0.5rem;
+        padding: 0.5rem 0;
+        display: none;
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+
     .bookkeeping-hero .container {
         flex-direction: column;
         text-align: center;
@@ -575,20 +643,27 @@ section {
     .benefits-grid,
     .features-grid,
     .analytics-features,
-    .security-features,
-    .testimonials-grid,
-    .pricing-grid,
-    .resources-grid {
+    .security-features {
         grid-template-columns: 1fr;
     }
 
-    .pricing-card.featured {
-        transform: none;
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
+}
 
-    .pricing-card.featured:hover {
-        transform: translateY(-5px);
-    }
+/* Mobile Menu Animation */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
 }
 
 /* Animations */
@@ -618,55 +693,4 @@ section {
 
 .mb-3 {
     margin-bottom: 3rem;
-}
-
-/* Dropdown Styles */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--card-bg);
-    min-width: 200px;
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    z-index: 1000;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content a {
-    display: block;
-    padding: 0.8rem 1.5rem;
-}
-/* Dropdown Styles */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--card-bg);
-    min-width: 200px;
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    z-index: 1000;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content a {
-    display: block;
-    padding: 0.8rem 1.5rem;
 }
