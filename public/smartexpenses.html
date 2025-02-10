@@ -4,126 +4,497 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Management - Workwise Pro</title>
-    <link rel="stylesheet" href="expensestyles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Root Variables */
+        :root {
+            --primary-color: #e33333;
+            --text-dark: #0f1964;
+            --text-body: #333;
+            --background-light: #fff6f4;
+            --link-blue: #2962ff;
+            --border-color: #e0e0e0;
+            --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --header-height: 70px;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-body);
+            background-color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: var(--header-height);
+            margin: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            height: var(--header-height);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* Main Navigation */
+        .main-nav {
+            margin-left: auto;
+            height: 100%;
+        }
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            height: 100%;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-list > li {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-list > li > a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            padding: 0 12px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .nav-list > li > a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Dropdown Styling */
+        .dropdown {
+            height: 100%;
+        }
+
+        .dropdown > a {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dropdown > a::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg) translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            padding: 8px 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content li {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 8px 16px;
+            display: block;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--background-light);
+            color: var(--primary-color);
+        }
+
+        /* Auth Buttons */
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-left: 1.5rem;
+        }
+
+        .sign-in {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .sign-up {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .sign-up:hover {
+            background: #d42f2f;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+                /* Mobile Styles */
+        @media screen and (max-width: 768px) {
+            header .container {
+                padding: 0 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+                z-index: 1002;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .main-nav {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                width: 85%;
+                height: calc(100vh - var(--header-height));
+                background: white;
+                transition: right 0.3s ease;
+                overflow-y: auto;
+                z-index: 1001;
+            }
+
+            .main-nav.active {
+                right: 0;
+            }
+
+            .nav-list {
+                flex-direction: column;
+                gap: 0;
+                height: auto;
+                padding: 1rem 0;
+            }
+
+            .nav-list > li {
+                width: 100%;
+                height: auto;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-list > li > a {
+                padding: 1rem;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                background: var(--background-light);
+            }
+
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+
+            .auth-buttons {
+                flex-direction: column;
+                margin: 1rem;
+                gap: 0.5rem;
+                border-bottom: none !important;
+            }
+
+            .sign-in, .sign-up {
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(to right, #fff6f4, #fff);
+            padding: calc(var(--header-height) + 2rem) 0 4rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero-content h2 {
+            color: var(--text-dark);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            color: var(--text-body);
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero-buttons {
+                flex-direction: column;
+                padding: 0 2rem;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+        }
+
+        /* Menu Overlay */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #d42f2f;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-dark);
+            border: 1px solid var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--background-light);
+        }
+
+        @media screen and (max-width: 768px) {
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" aria-hidden="true">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="menu-overlay" aria-hidden="true"></div>
-
-    <!-- Header Section -->
-    <header class="animate-fade-in">
+    <!-- Header -->
+    <header>
         <div class="container">
-            <div class="logo">
-                <a href="https://workpro.onrender.com" aria-label="Workwise Pro Home">
-                    <h1>Workwise Pro</h1>
-                </a>
+            <a href="/" class="logo">
+                <h1>Workwise Pro</h1>
+            </a>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <nav id="nav-menu" aria-label="Main navigation">
-                <ul id="nav-list">
-                    <li><a href="features.html">Features</a></li>
+
+            <nav class="main-nav" id="main-nav">
+                <ul class="nav-list">
+                    <li><a href="/features">Features</a></li>
                     <li class="dropdown">
-                        <a href="#">HR/Accounts Modules <i class="fas fa-caret-down"></i></a>
+                        <a href="#">HR/Accounts Modules</a>
                         <ul class="dropdown-content">
-                            <li><a href="peoplemanagement.html">People Management</a></li>
-                            <li><a href="pms.html">Performance Management</a></li>
-                            <li><a href="payroll.html">Payroll</a></li>
-                            <li><a href="bookkeeping.html">Book-keeping</a></li>
-                            <li><a href="expense.html">Expense Management</a></li>
+                            <li><a href="/peoplemanagement">People Management</a></li>
+                            <li><a href="/pms">Performance Management</a></li>
+                            <li><a href="/payroll">Payroll</a></li>
+                            <li><a href="/bookkeeping">Book-keeping</a></li>
+                            <li><a href="/expense">Expense Management</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#">Business Operations <i class="fas fa-caret-down"></i></a>
+                        <a href="#">Business Operations</a>
                         <ul class="dropdown-content">
-                            <li><a href="smartexpenses.html">SmartExpenses</a></li>
-                            <li><a href="shiftmaster.html">ShiftMaster</a></li>
+                            <li><a href="/smartexpenses">SmartExpenses</a></li>
+                            <li><a href="/shiftmaster">ShiftMaster</a></li>
                             <li><a href="#">FlexHire - Coming Soon</a></li>
-                            <li><a href="stockflow.html">StockFlow</a></li>
-                            <li><a href="globalinvoice.html">GlobalInvoice</a></li>
+                            <li><a href="/stockflow">StockFlow</a></li>
+                            <li><a href="/globalinvoice">GlobalInvoice</a></li>
                         </ul>
                     </li>
                     <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="login.html">Sign In</a></li>
-                    <li><a href="signup.html" class="btn primary">Sign Up</a></li>
+                    <div class="auth-buttons">
+                        <a href="/login" class="sign-in">Sign In</a>
+                        <a href="/signup" class="sign-up">Sign Up</a>
+                    </div>
                 </ul>
             </nav>
-            <div class="menu-toggle" id="mobile-menu" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </header>
 
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+        <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h2>Expense software loaded with powerful features</h2>
+            <p>With its comprehensive set of features for all stages of your expense reporting, Workwise Pro is your go-to expense software.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">TRY NOW</a>
+                <a href="#" class="btn btn-secondary">REQUEST A DEMO</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <section class="expense-hero">
-            <div class="container">
-                <div class="hero-content animate-fade-in">
-                    <h1>Expense software loaded with powerful features</h1>
-                    <p>With its comprehensive set of features for all stages of your expense reporting, Workwise Pro is your go-to expense software.</p>
-                    <div class="hero-cta">
-                        <a href="#" class="btn primary">TRY NOW</a>
-                        <a href="#" class="btn secondary">REQUEST A DEMO</a>
-                    </div>
-                </div>
-                <div class="floating-elements">
-                    <div class="floating-circle circle-1"></div>
-                    <div class="floating-circle circle-2"></div>
-                    <div class="floating-icon animate-float" style="top: 30%; left: 20%;">
-                        <i class="fas fa-receipt" aria-hidden="true"></i>
-                    </div>
-                    <div class="floating-icon animate-float" style="top: 50%; right: 25%;">
-                        <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    </div>
-                    <div class="floating-icon animate-float" style="bottom: 30%; left: 30%;">
-                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Expense Layout with Horizontal Navigation -->
-        <div class="expense-layout">
-            <!-- Horizontal Navigation -->
-            <aside class="side-nav animate-fade-in">
-                <button class="side-menu-toggle" aria-label="Toggle side menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <nav aria-label="Features navigation">
-                    <ul class="nav-sections">
-                        <li><a href="#receipts" class="nav-link active" data-section="receipts">Receipts and expenses</a></li>
-                        <li><a href="#cards" class="nav-link" data-section="cards">Cards</a></li>
-                        <li><a href="#reports" class="nav-link" data-section="reports">Expense reports</a></li>
-                        <li><a href="#trips" class="nav-link" data-section="trips">Trips</a></li>
-                        <li><a href="#requests" class="nav-link" data-section="requests">Purchase requests</a></li>
-                        <li><a href="#approvals" class="nav-link" data-section="approvals">Approvals</a></li>
-                        <li><a href="#control" class="nav-link" data-section="control">Control</a></li>
-                        <li><a href="#reimbursement" class="nav-link" data-section="reimbursement">Reimbursement</a></li>
-                        <li><a href="#audit" class="nav-link" data-section="audit">Audit and compliance</a></li>
-                        <li><a href="#automation" class="nav-link" data-section="automation">Automation</a></li>
-                        <li><a href="#customization" class="nav-link" data-section="customization">Customization</a></li>
-                        <li><a href="#collaboration" class="nav-link" data-section="collaboration">Collaboration</a></li>
-                        <li><a href="#integrations" class="nav-link" data-section="integrations">Integrations</a></li>
-                        <li><a href="#mobile" class="nav-link" data-section="mobile">Mobile apps</a></li>
-                        <li><a href="#security" class="nav-link" data-section="security">Security</a></li>
-                    </ul>
-                </nav>
-            </aside>
-
-            <!-- Main Content Area -->
-            <div class="main-content">
+       <div class="main-content">
                 <!-- Receipts and Expenses Section -->
                 <section id="receipts" class="feature-section scroll-reveal" data-section="receipts">
                     <h2>Receipts and expenses</h2>
@@ -207,136 +578,139 @@
                         </div>
                     </div>
                 </section>
-
-                <!-- Back to Top Button -->
-                <button id="backToTop" class="back-to-top" aria-label="Back to Top">
-                    <i class="fas fa-arrow-up" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-        <!-- Footer -->
-        <footer class="animate-fade-in">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-section">
-                        <h4>Product</h4>
-                        <ul>
-                            <li><a href="#features">Features</a></li>
-                            <li><a href="#pricing">Pricing</a></li>
-                            <li><a href="#integrations">Integrations</a></li>
-                            <li><a href="#mobile-apps">Mobile Apps</a></li>
-                            <li><a href="#security">Security</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Solutions</h4>
-                        <ul>
-                            <li><a href="#small-business">Small Business</a></li>
-                            <li><a href="#enterprise">Enterprise</a></li>
-                            <li><a href="#accountants">Accountants</a></li>
-                            <li><a href="#nonprofits">Nonprofits</a></li>
-                            <li><a href="#startups">Startups</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Resources</h4>
-                        <ul>
-                            <li><a href="#help-center">Help Center</a></li>
-                            <li><a href="#api-docs">API Documentation</a></li>
-                            <li><a href="#community">Community</a></li>
-                            <li><a href="#partners">Partners</a></li>
-                            <li><a href="#marketplace">Marketplace</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Company</h4>
-                        <ul>
-                            <li><a href="#about">About Us</a></li>
-                            <li><a href="#careers">Careers</a></li>
-                            <li><a href="#press">Press</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li><a href="#blog">Blog</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Connect With Us</h4>
-                        <div class="social-links">
-                            <a href="#" aria-label="Follow us on Facebook">
-                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" aria-label="Follow us on Twitter">
-                                <i class="fab fa-twitter" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" aria-label="Connect with us on LinkedIn">
-                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                            </a>
-                            <a href="#" aria-label="Follow us on Instagram">
-                                <i class="fab fa-instagram" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <div class="footer-info">
-                        <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
-                        <nav class="footer-nav" aria-label="Footer navigation">
-                            <a href="#privacy">Privacy Policy</a>
-                            <a href="#terms">Terms of Service</a>
-                            <a href="#cookies">Cookie Policy</a>
-                            <a href="#security-policy">Security Policy</a>
-                            <a href="#gdpr">GDPR</a>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Cookie Consent -->
-        <div id="cookieConsent" class="cookie-consent" role="alert" aria-live="polite">
-            <div class="cookie-content">
-                <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
-                <div class="cookie-buttons">
-                    <button id="acceptCookies" class="btn primary">Accept</button>
-                    <button id="cookieSettings" class="btn secondary">Cookie Settings</button>
-                </div>
-            </div>
-        </div>
     </main>
 
-    <!-- Side Navigation Overlay -->
-    <div class="side-nav-overlay" aria-hidden="true"></div>
-
-    <!-- Scripts -->
-    <script src="expensescript.js"></script>
     <script>
-        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             initializeMobileMenu();
-            initializeScrollReveal();
-            initializeHorizontalNav();
-            initializeBackToTop();
-            initializeProgressBar();
-            initializeCookieConsent();
-            handleSmoothScroll();
-            initializeAnimations();
-            initializeHeaderScroll();
         });
 
-        // Handle loading state
-        window.addEventListener('load', function() {
-            document.querySelector('.loading-overlay').style.display = 'none';
-        });
+        function initializeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mainNav = document.getElementById('main-nav');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const dropdowns = document.querySelectorAll('.dropdown');
+            let isMenuOpen = false;
 
-        // Handle responsive layout
-        window.addEventListener('resize', debounce(() => {
-            if (window.innerWidth > 768) {
-                document.getElementById('mobile-menu')?.classList.remove('active');
-                document.getElementById('nav-menu')?.classList.remove('active');
-                document.querySelector('.menu-overlay')?.classList.remove('active');
-                document.querySelector('.side-nav-overlay')?.classList.remove('active');
-                document.body.classList.remove('no-scroll');
+            // Toggle menu function
+            function toggleMenu(show) {
+                isMenuOpen = show;
+                mobileMenu.classList.toggle('active', show);
+                mainNav.classList.toggle('active', show);
+                menuOverlay.classList.toggle('active', show);
+                document.body.style.overflow = show ? 'hidden' : '';
+
+                // Reset dropdowns when closing menu
+                if (!show) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
             }
-        }, 250));
+
+            // Mobile menu button click handler
+            mobileMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu(!isMenuOpen);
+            });
+
+            // Enhanced dropdown handling for mobile
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('a');
+                
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Close other dropdowns
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) {
+                                d.classList.remove('active');
+                            }
+                        });
+
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+
+            // Close menu when clicking overlay
+            menuOverlay.addEventListener('click', () => {
+                toggleMenu(false);
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (isMenuOpen && 
+                    !mainNav.contains(e.target) && 
+                    !mobileMenu.contains(e.target)) {
+                    toggleMenu(false);
+                }
+            });
+
+            // Handle escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isMenuOpen) {
+                    toggleMenu(false);
+                }
+            });
+
+            // Handle window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    if (window.innerWidth > 768 && isMenuOpen) {
+                        toggleMenu(false);
+                    }
+                }, 250);
+            });
+
+            // Touch event handling
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+
+            document.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+
+                if (isMenuOpen && swipeDistance > swipeThreshold) {
+                    // Swipe right - close menu
+                    toggleMenu(false);
+                } else if (!isMenuOpen && swipeDistance < -swipeThreshold) {
+                    // Swipe left - open menu
+                    toggleMenu(true);
+                }
+            }
+        }
+
+        // Prevent dropdown hover on touch devices
+        window.addEventListener('touchstart', function() {
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @media (hover: none) {
+                    .dropdown:hover .dropdown-content {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                    .dropdown.active .dropdown-content {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }, { once: true });
     </script>
 </body>
 </html>
