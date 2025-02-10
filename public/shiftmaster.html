@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShiftMaster - Employee Scheduling Software</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #37B34A;
+            --text-dark: #1A1A1A;
+            --text-body: #333;
+            --background-light: #f5f5f5;
+            --blue-accent: #1E40AF;
+            --border-color: #e0e0e0;
+            --transition: all 0.3s ease;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-body);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 0;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-label {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .hero-title span {
+            color: var(--primary-color);
+        }
+
+        .hero-title .blue-text {
+            color: var(--blue-accent);
+        }
+
+        .avatar-group {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -10px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #E53935;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: black;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 0;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+      /* Section Styles */
+.section {
+    padding: 80px 0;
+    background: white;
+}
+
+.section-gray {
+    background: var(--background-light);
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Feature Cards */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background: var(--background-light);
+    padding: 2rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: var(--text-body);
+    margin-bottom: 1.5rem;
+}
+
+.feature-image {
+    margin-top: auto;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.feature-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Info Cards */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.info-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-card.blue {
+    background: var(--blue-accent);
+    color: white;
+}
+
+.info-card.black {
+    background: black;
+    color: white;
+}
+
+.info-card.green {
+    background: var(--primary-color);
+    color: white;
+}
+
+.info-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.info-card p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Pricing Section */
+.pricing-section {
+    text-align: center;
+}
+
+.pricing-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: var(--primary-color);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+.pricing-card {
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.pricing-card.basic {
+    background: black;
+    color: white;
+}
+
+.pricing-card.standard {
+    background: var(--primary-color);
+    color: white;
+    position: relative;
+}
+
+.best-deal-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #CD853F;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 1rem 0;
+}
+
+.price-period {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.section-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    color: var(--text-body);
+    font-size: 1.1rem;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stat-table td {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .feature-grid,
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-container {
+        padding: 0 1rem;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header h2 {
+        font-size: 1.75rem;
+    }
+
+    .feature-card,
+    .info-card,
+    .pricing-card {
+        padding: 1.5rem;
+    }
+}
+/* Header & Navigation */
+header {
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: var(--header-height);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo h1 {
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Main Navigation */
+.main-nav {
+    margin-left: auto;
+    height: 100%;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list > li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.nav-list > li > a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 0 12px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.nav-list > li > a:hover {
+    color: var(--primary-color);
+}
+
+/* Dropdown Styling */
+.dropdown {
+    height: 100%;
+}
+
+.dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropdown > a::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 220px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-content li {
+    display: block;
+}
+
+.dropdown-content a {
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 8px 16px;
+    display: block;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background: var(--background-light);
+    color: var(--primary-color);
+}
+
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 1.5rem;
+}
+
+.sign-in {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.sign-up {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background 0.3s ease;
+}
+
+/* Footer Styling */
+footer {
+    background: #2d3436;
+    color: white;
+    padding: 4rem 0 2rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.footer-section h4 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul li a {
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.social-links a {
+    color: #a0a0a0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: white;
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+/* Mobile Menu Overlay */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    header .container {
+        padding: 0 1rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+        z-index: 1002;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .main-nav {
+        position: fixed;
+        top: var(--header-height);
+        right: -100%;
+        width: 85%;
+        height: calc(100vh - var(--header-height));
+        background: white;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+        z-index: 1001;
+    }
+
+    .main-nav.active {
+        right: 0;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 0;
+        height: auto;
+        padding: 1rem 0;
+    }
+
+    .nav-list > li {
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-list > li > a {
+        padding: 1rem;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        background: var(--background-light);
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+
+    .auth-buttons {
+        flex-direction: column;
+        margin: 1rem;
+        gap: 0.5rem;
+        border-bottom: none !important;
+    }
+
+    .sign-in, .sign-up {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-content {
+        padding: 0 1rem;
+    }
+
+    .footer-bottom {
+        margin-top: 2rem;
+        padding: 1.5rem 1rem 0;
+    }
+}
+/* Utility Classes */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-label">Shift scheduling software</div>
+                <h1 class="hero-title">
+                    Employee <span>scheduling</span><br>
+                    and time <span class="blue-text">tracking</span><br>
+                    made simple
+                    <div class="avatar-group">
+                        <img src="avatar1.jpg" alt="" class="avatar">
+                        <img src="avatar2.jpg" alt="" class="avatar">
+                        <img src="avatar3.jpg" alt="" class="avatar">
+                    </div>
+                </h1>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">SIGN UP FOR FREE TRIAL</a>
+                    <a href="#" class="btn btn-secondary">REQUEST DEMO</a>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- Features Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Analyze employee activity with informative reports</h3>
+                    <p>Get valuable insights by generating reports of logged hours, time off, and employee availability.</p>
+                    <div class="stat-card">
+                        <table class="stat-table">
+                            <tr>
+                                <td>Hours</td>
+                                <td>Costs</td>
+                            </tr>
+                            <tr>
+                                <td>Scheduled <span>42</span></td>
+                                <td>Scheduled <span>504</span></td>
+                            </tr>
+                            <tr>
+                                <td>Actual <span>42</span></td>
+                                <td>Actual <span>504</span></td>
+                            </tr>
+                            <tr>
+                                <td>Difference <span>0</span></td>
+                                <td>Difference <span>0</span></td>
+                            </tr>
+                        </table>
+                        <div class="employee-info">
+                            <img src="avatar.jpg" alt="Martin Tyler" class="avatar">
+                            <span>Martin Tyler</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <h3>Plays well with your payroll software</h3>
+                    <p>Easily export timesheets to your payroll software for timely payment processing.</p>
+                    <div class="timesheet-card">
+                        <div class="employee-header">
+                            <img src="avatar.jpg" alt="Martin Tyler" class="avatar">
+                            <h4>Martin Tyler</h4>
+                        </div>
+                        <div class="timesheet-grid">
+                            <div class="time-row">
+                                <span>Regular</span>
+                                <span>42</span>
+                            </div>
+                            <div class="time-row">
+                                <span>Double OT</span>
+                                <span>2</span>
+                            </div>
+                            <div class="time-row">
+                                <span>Overtime</span>
+                                <span>2</span>
+                            </div>
+                            <div class="time-row">
+                                <span>PTO</span>
+                                <span>0</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Total</span>
+                                <span>44</span>
+                            </div>
+                            <div class="pay-row">
+                                <span>Pay</span>
+                                <span>$575</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section section-gray">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Pricing plans for your business</h2>
+                <p>Start your 30-day free trial, no credit card required.</p>
+            </div>
+            <div class="pricing-toggle">
+                <span>Pay monthly</span>
+                <div class="toggle-switch" id="pricingToggle">
+                    <span class="toggle-slider"></span>
+                </div>
+                <span>Pay yearly <span class="discount">(2 months off)</span></span>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card basic">
+                    <h3>Basic</h3>
+                    <div class="price">₹600</div>
+                    <div class="price-period">/user/year</div>
+                    <p>Starts at ₹6,000/year and includes your first 10 users</p>
+                    <a href="#" class="btn btn-primary">TRY NOW</a>
+                </div>
+                <div class="pricing-card standard">
+                    <div class="best-deal-badge">Best Deal</div>
+                    <h3>Standard</h3>
+                    <div class="price">₹1,200</div>
+                    <div class="price-period">/user/year</div>
+                    <p>Starts at ₹12,000/year and includes your first 10 users</p>
+                    <a href="#" class="btn btn-primary">TRY NOW</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Stay informed about your employees</h2>
+            </div>
+            <div class="info-grid">
+                <div class="info-card blue">
+                    <h3>Centrally manage time off requests</h3>
+                    <p>Manage all employee requests in one place, even when you're on the move.</p>
+                    <div class="request-card">
+                        <div class="employee-info">
+                            <img src="avatar.jpg" alt="" class="avatar">
+                            <span>Martin Tyler</span>
+                        </div>
+                        <div class="request-details">
+                            <div class="detail-row">
+                                <span>Type</span>
+                                <span>Vacation</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Start</span>
+                                <span>4 Jun, 2023 Fri</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>End</span>
+                                <span>10 Jun, 2023 Sat</span>
+                            </div>
+                            <div class="status approved">Approved</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card black">
+                    <h3>Never miss a beat with instant notifications</h3>
+                    <p>Receive instant notifications and stay up to date on staff activity.</p>
+                    <div class="notification-card">
+                        <div class="notification-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <p>You have not clocked in for your 12:00 - 20:00 Shift</p>
+                        <span class="time">1 Day ago</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3>Accommodate employee flexibility</h3>
+                    <p>Create conflict-free schedules within minutes, and ensure both employee and customer productivity.</p>
+                    <div class="schedule-card">
+                        <div class="time-slot">
+                            <span>13:00 - 21:00</span>
+                            <span>Food & Beverage Manager</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card green">
+                    <h3>Remote check-in from job sites</h3>
+                    <p>Verify that your employees are at the correct job sites using GPS tagging and geo-fencing.</p>
+                    <div class="settings-card">
+                        <h4>General</h4>
+                        <div class="setting-row">
+                            <label>Track GPS location</label>
+                            <div class="toggle-switch"></div>
+                        </div>
+                        <div class="setting-row">
+                            <label>Allow Clock in</label>
+                            <div class="toggle-switch"></div>
+                        </div>
+                        <div class="location-setting">
+                            <span>Only within</span>
+                            <input type="number" value="150">
+                            <span>Meters from location</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Integrations</a></li>
+                        <li><a href="#">Mobile Apps</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="#">Small Business</a></li>
+                        <li><a href="#">Enterprise</a></li>
+                        <li><a href="#">Accountants</a></li>
+                        <li><a href="#">Nonprofits</a></li>
+                        <li><a href="#">Startups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Marketplace</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ShiftMaster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMobileMenu();
+            initializePricingToggle();
+            initializeAnimations();
+        });
+
+        // Mobile Menu
+        function initializeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mainNav = document.getElementById('main-nav');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const dropdowns = document.querySelectorAll('.dropdown');
+            let isMenuOpen = false;
+
+            function toggleMenu(show) {
+                isMenuOpen = show;
+                mobileMenu.classList.toggle('active', show);
+                mainNav.classList.toggle('active', show);
+                menuOverlay.classList.toggle('active', show);
+                document.body.style.overflow = show ? 'hidden' : '';
+
+                if (!show) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            }
+
+            mobileMenu?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu(!isMenuOpen);
+            });
+
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('a');
+                
+                link?.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) {
+                                d.classList.remove('active');
+                            }
+                        });
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+
+            menuOverlay?.addEventListener('click', () => {
+                toggleMenu(false);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (isMenuOpen && 
+                    !mainNav.contains(e.target) && 
+                    !mobileMenu.contains(e.target)) {
+                    toggleMenu(false);
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isMenuOpen) {
+                    toggleMenu(false);
+                }
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+
+            document.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+
+                if (isMenuOpen && swipeDistance > swipeThreshold) {
+                    toggleMenu(false);
+                } else if (!isMenuOpen && swipeDistance < -swipeThreshold) {
+                    toggleMenu(true);
+                }
+            }
+        }
+
+        // Pricing Toggle
+        function initializePricingToggle() {
+            const toggle = document.getElementById('pricingToggle');
+            const prices = document.querySelectorAll('.price');
+            let isYearly = false;
+
+            toggle?.addEventListener('click', () => {
+                isYearly = !isYearly;
+                toggle.classList.toggle('active', isYearly);
+                updatePrices(isYearly);
+            });
+
+            function updatePrices(yearly) {
+                prices.forEach(price => {
+                    const monthlyPrice = parseInt(price.getAttribute('data-monthly'));
+                    const yearlyPrice = parseInt(price.getAttribute('data-yearly'));
+                    price.textContent = `₹${yearly ? yearlyPrice : monthlyPrice}`;
+                });
+            }
+        }
+
+        // Animations
+        function initializeAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Prevent hover on touch devices
+        window.addEventListener('touchstart', function() {
+            document.body.classList.add('touch-device');
+        }, { once: true });
+    </script>
+</body>
+</html>
