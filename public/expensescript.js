@@ -54,9 +54,48 @@ function initializeMobileMenu() {
 
 // Horizontal Navigation
 function initializeHorizontalNav() {
+    const nav = document.querySelector('.side-nav nav');
     const navLinks = document.querySelectorAll('.side-nav .nav-link');
     const sections = document.querySelectorAll('[data-section]');
     let isScrolling = false;
+
+    // Add mouse wheel horizontal scroll
+    nav.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0) {
+            e.preventDefault();
+            nav.scrollLeft += e.deltaY;
+        }
+    });
+
+    // Drag to scroll
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    nav.addEventListener('mousedown', (e) => {
+        isDown = true;
+        nav.style.cursor = 'grabbing';
+        startX = e.pageX - nav.offsetLeft;
+        scrollLeft = nav.scrollLeft;
+    });
+
+    nav.addEventListener('mouseleave', () => {
+        isDown = false;
+        nav.style.cursor = 'grab';
+    });
+
+    nav.addEventListener('mouseup', () => {
+        isDown = false;
+        nav.style.cursor = 'grab';
+    });
+
+    nav.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - nav.offsetLeft;
+        const walk = (x - startX) * 2;
+        nav.scrollLeft = scrollLeft - walk;
+    });
 
     // Update active link on scroll
     window.addEventListener('scroll', debounce(() => {
@@ -76,13 +115,16 @@ function initializeHorizontalNav() {
                 link.classList.remove('active');
                 if (link.getAttribute('data-section') === currentSection) {
                     link.classList.add('active');
-                    // Scroll link into view in the horizontal nav
-                    link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    // Scroll active link into view
+                    link.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center'
+                    });
                 }
             });
         }
     }, 100));
-
     // Smooth scroll to section when clicking nav links
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -110,7 +152,6 @@ function initializeHorizontalNav() {
         });
     });
 }
-
 // Scroll Reveal
 function initializeScrollReveal() {
     const observerOptions = {
