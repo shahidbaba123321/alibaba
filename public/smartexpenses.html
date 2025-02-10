@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Management - Workwise Pro</title>
+    <title>Workwise Pro - Expense Management</title>
     <link rel="stylesheet" href="expensestyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -28,17 +28,12 @@
                     <h1>Workwise Pro</h1>
                 </a>
             </div>
-            <div class="menu-toggle" id="mobile-menu" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
             <nav id="nav-menu" aria-label="Main navigation">
                 <ul id="nav-list">
-                    <li><a href="features.html" class="nav-link">Features</a></li>
+                    <li><a href="features.html">Features</a></li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link">HR/Accounts Modules <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-content animate-fade-in">
+                        <a href="#">HR/Accounts Modules <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-content">
                             <li><a href="peoplemanagement.html">People Management</a></li>
                             <li><a href="pms.html">Performance Management</a></li>
                             <li><a href="payroll.html">Payroll</a></li>
@@ -47,8 +42,8 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link">Business Operations <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-content animate-fade-in">
+                        <a href="#">Business Operations <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-content">
                             <li><a href="smartexpenses.html">SmartExpenses</a></li>
                             <li><a href="shiftmaster.html">ShiftMaster</a></li>
                             <li><a href="#">FlexHire - Coming Soon</a></li>
@@ -56,11 +51,16 @@
                             <li><a href="globalinvoice.html">GlobalInvoice</a></li>
                         </ul>
                     </li>
-                    <li><a href="#pricing" class="nav-link">Pricing</a></li>
-                    <li><a href="login.html" class="nav-link">Sign In</a></li>
-                    <li><a href="signup.html" class="btn primary animate-pulse">Sign Up</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="login.html">Sign In</a></li>
+                    <li><a href="signup.html" class="btn primary">Sign Up</a></li>
                 </ul>
             </nav>
+            <div class="menu-toggle" id="mobile-menu" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
@@ -123,8 +123,6 @@
                 <section id="receipts" class="feature-section scroll-reveal" data-section="receipts">
                     <h2>Receipts and expenses</h2>
                     <p>Automate your receipt and expense management with the help of robust features that free up time for other important tasks.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
                     <div class="feature-grid">
                         <div class="feature-card animate-fade-in">
                             <div class="feature-icon">
@@ -152,24 +150,6 @@
                             <p>Track mileage using any of four different methods.</p>
                             <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                         </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-coins" aria-hidden="true"></i>
-                            </div>
-                            <h3>Per diem</h3>
-                            <p>Configure and automate region-specific per diem allowances.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-wallet" aria-hidden="true"></i>
-                            </div>
-                            <h3>Petty Cash</h3>
-                            <p>Keeping track of petty cash does not have to be a hassle! Control petty cash expenses across your organization.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
                     </div>
                 </section>
 
@@ -177,8 +157,6 @@
                 <section id="cards" class="feature-section scroll-reveal" data-section="cards">
                     <h2>Corporate Cards</h2>
                     <p>Streamline your corporate card expense management with automated reconciliation and real-time tracking.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
                     <div class="feature-grid">
                         <div class="feature-card animate-fade-in">
                             <div class="feature-icon">
@@ -200,12 +178,10 @@
                     </div>
                 </section>
 
-                                <!-- Reports Section -->
+                <!-- Reports Section -->
                 <section id="reports" class="feature-section scroll-reveal" data-section="reports">
                     <h2>Expense Reports</h2>
                     <p>Generate comprehensive expense reports with detailed analytics and insights.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
                     <div class="feature-grid">
                         <div class="feature-card animate-fade-in">
                             <div class="feature-icon">
@@ -227,502 +203,131 @@
                     </div>
                 </section>
 
-                <!-- Trips Section -->
-                <section id="trips" class="feature-section scroll-reveal" data-section="trips">
-                    <h2>Business Trips</h2>
-                    <p>Manage travel expenses and itineraries efficiently with our comprehensive travel management system.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-plane" aria-hidden="true"></i>
-                            </div>
-                            <h3>Trip Planning</h3>
-                            <p>Plan and organize business trips with integrated travel booking and expense tracking.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-receipt" aria-hidden="true"></i>
-                            </div>
-                            <h3>Travel Expenses</h3>
-                            <p>Track and manage travel-related expenses with automated categorization.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Approvals Section -->
-                <section id="approvals" class="feature-section scroll-reveal" data-section="approvals">
-                    <h2>Approval Workflows</h2>
-                    <p>Streamline your expense approval process with customizable workflows and automated routing.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-check-circle" aria-hidden="true"></i>
-                            </div>
-                            <h3>Approval Chains</h3>
-                            <p>Set up multi-level approval workflows based on your organization's hierarchy.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-clock" aria-hidden="true"></i>
-                            </div>
-                            <h3>Auto-Routing</h3>
-                            <p>Automatically route expenses to appropriate approvers based on predefined rules.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Control Section -->
-                <section id="control" class="feature-section scroll-reveal" data-section="control">
-                    <h2>Expense Control</h2>
-                    <p>Maintain tight control over your organization's expenses with advanced policy enforcement and monitoring.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                            </div>
-                            <h3>Policy Enforcement</h3>
-                            <p>Automatically enforce expense policies and spending limits.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-eye" aria-hidden="true"></i>
-                            </div>
-                            <h3>Expense Monitoring</h3>
-                            <p>Track and monitor expenses in real-time with detailed audit trails.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-                                <!-- Reimbursement Section -->
-                <section id="reimbursement" class="feature-section scroll-reveal" data-section="reimbursement">
-                    <h2>Reimbursement Management</h2>
-                    <p>Process expense reimbursements quickly and efficiently with automated payment processing.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
-                            </div>
-                            <h3>Payment Processing</h3>
-                            <p>Automate reimbursement payments with integrated payment systems.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-history" aria-hidden="true"></i>
-                            </div>
-                            <h3>Payment Tracking</h3>
-                            <p>Track reimbursement status and payment history in real-time.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Audit Section -->
-                <section id="audit" class="feature-section scroll-reveal" data-section="audit">
-                    <h2>Audit & Compliance</h2>
-                    <p>Ensure compliance with regulatory requirements and maintain detailed audit trails.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-clipboard-check" aria-hidden="true"></i>
-                            </div>
-                            <h3>Compliance Management</h3>
-                            <p>Stay compliant with built-in policy checks and regulatory requirements.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-search" aria-hidden="true"></i>
-                            </div>
-                            <h3>Audit Trails</h3>
-                            <p>Maintain detailed records of all expense-related activities and changes.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Automation Section -->
-                <section id="automation" class="feature-section scroll-reveal" data-section="automation">
-                    <h2>Intelligent Automation</h2>
-                    <p>Streamline your expense processes with smart automation features.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-robot" aria-hidden="true"></i>
-                            </div>
-                            <h3>Smart Receipt Scanning</h3>
-                            <p>Automatically extract and categorize expense data from receipts using AI.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-magic" aria-hidden="true"></i>
-                            </div>
-                            <h3>Automated Workflows</h3>
-                            <p>Create automated rules for expense processing and approvals.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-clock" aria-hidden="true"></i>
-                            </div>
-                            <h3>Scheduled Reports</h3>
-                            <p>Set up automated expense reports and notifications.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Customization Section -->
-                <section id="customization" class="feature-section scroll-reveal" data-section="customization">
-                    <h2>Flexible Customization</h2>
-                    <p>Tailor the expense management system to your organization's specific needs.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-sliders-h" aria-hidden="true"></i>
-                            </div>
-                            <h3>Custom Fields</h3>
-                            <p>Create custom fields and categories to match your business requirements.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-paint-brush" aria-hidden="true"></i>
-                            </div>
-                            <h3>Branded Reports</h3>
-                            <p>Customize reports with your company branding and layout preferences.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-cogs" aria-hidden="true"></i>
-                            </div>
-                            <h3>Workflow Configuration</h3>
-                            <p>Design approval workflows that match your organization's structure.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Collaboration Section -->
-                <section id="collaboration" class="feature-section scroll-reveal" data-section="collaboration">
-                    <h2>Team Collaboration</h2>
-                    <p>Enable seamless collaboration between team members for efficient expense management.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-comments" aria-hidden="true"></i>
-                            </div>
-                            <h3>Comments & Notes</h3>
-                            <p>Add comments and notes to expenses for better communication.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-share-alt" aria-hidden="true"></i>
-                            </div>
-                            <h3>Expense Sharing</h3>
-                            <p>Share and split expenses between team members or departments.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Integrations Section -->
-                <section id="integrations" class="feature-section scroll-reveal" data-section="integrations">
-                    <h2>Seamless Integrations</h2>
-                    <p>Connect with your existing business tools and systems.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-plug" aria-hidden="true"></i>
-                            </div>
-                            <h3>Accounting Software</h3>
-                            <p>Integrate with popular accounting software for seamless data sync.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-exchange-alt" aria-hidden="true"></i>
-                            </div>
-                            <h3>API Access</h3>
-                            <p>Connect with custom applications using our robust API.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-university" aria-hidden="true"></i>
-                            </div>
-                            <h3>Banking Integration</h3>
-                            <p>Connect directly with your bank accounts for real-time transaction sync.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Mobile Apps Section -->
-                <section id="mobile" class="feature-section scroll-reveal" data-section="mobile">
-                    <h2>Mobile Experience</h2>
-                    <p>Manage expenses on-the-go with our powerful mobile applications.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-mobile-alt" aria-hidden="true"></i>
-                            </div>
-                            <h3>Mobile Apps</h3>
-                            <p>Native apps for iOS and Android with full expense management capabilities.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-camera" aria-hidden="true"></i>
-                            </div>
-                            <h3>Receipt Capture</h3>
-                            <p>Capture and process receipts instantly using your smartphone camera.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                            </div>
-                            <h3>GPS Tracking</h3>
-                            <p>Track mileage and travel expenses with built-in GPS functionality.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Security Section -->
-                <section id="security" class="feature-section scroll-reveal" data-section="security">
-                    <h2>Enterprise-Grade Security</h2>
-                    <p>Protect your expense data with advanced security features.</p>
-                    <a href="#" class="learn-more">Learn More</a>
-
-                    <div class="feature-grid">
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                            </div>
-                            <h3>Data Protection</h3>
-                            <p>Enterprise-grade encryption and secure data storage.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-user-lock" aria-hidden="true"></i>
-                            </div>
-                            <h3>Access Control</h3>
-                            <p>Role-based access control and user permissions.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-
-                        <div class="feature-card animate-fade-in">
-                            <div class="feature-icon">
-                                <i class="fas fa-history" aria-hidden="true"></i>
-                            </div>
-                            <h3>Audit Logs</h3>
-                            <p>Detailed audit trails and activity monitoring.</p>
-                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </section>
-                                <!-- Back to Top Button -->
+                <!-- Back to Top Button -->
                 <button id="backToTop" class="back-to-top" aria-label="Back to Top">
                     <i class="fas fa-arrow-up" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="animate-fade-in">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#features" class="footer-link">Features</a></li>
-                        <li><a href="#pricing" class="footer-link">Pricing</a></li>
-                        <li><a href="#integrations" class="footer-link">Integrations</a></li>
-                        <li><a href="#mobile-apps" class="footer-link">Mobile Apps</a></li>
-                        <li><a href="#security" class="footer-link">Security</a></li>
-                    </ul>
+                <!-- Footer -->
+        <footer class="animate-fade-in">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#integrations">Integrations</a></li>
+                            <li><a href="#mobile-apps">Mobile Apps</a></li>
+                            <li><a href="#security">Security</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Solutions</h4>
+                        <ul>
+                            <li><a href="#small-business">Small Business</a></li>
+                            <li><a href="#enterprise">Enterprise</a></li>
+                            <li><a href="#accountants">Accountants</a></li>
+                            <li><a href="#nonprofits">Nonprofits</a></li>
+                            <li><a href="#startups">Startups</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#help-center">Help Center</a></li>
+                            <li><a href="#api-docs">API Documentation</a></li>
+                            <li><a href="#community">Community</a></li>
+                            <li><a href="#partners">Partners</a></li>
+                            <li><a href="#marketplace">Marketplace</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#careers">Careers</a></li>
+                            <li><a href="#press">Press</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Connect With Us</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="Follow us on Facebook">
+                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" aria-label="Follow us on Twitter">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" aria-label="Connect with us on LinkedIn">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                            </a>
+                            <a href="#" aria-label="Follow us on Instagram">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Solutions</h4>
-                    <ul>
-                        <li><a href="#small-business" class="footer-link">Small Business</a></li>
-                        <li><a href="#enterprise" class="footer-link">Enterprise</a></li>
-                        <li><a href="#accountants" class="footer-link">Accountants</a></li>
-                        <li><a href="#nonprofits" class="footer-link">Nonprofits</a></li>
-                        <li><a href="#startups" class="footer-link">Startups</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#help-center" class="footer-link">Help Center</a></li>
-                        <li><a href="#api-docs" class="footer-link">API Documentation</a></li>
-                        <li><a href="#community" class="footer-link">Community</a></li>
-                        <li><a href="#partners" class="footer-link">Partners</a></li>
-                        <li><a href="#marketplace" class="footer-link">Marketplace</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#about" class="footer-link">About Us</a></li>
-                        <li><a href="#careers" class="footer-link">Careers</a></li>
-                        <li><a href="#press" class="footer-link">Press</a></li>
-                        <li><a href="#contact" class="footer-link">Contact</a></li>
-                        <li><a href="#blog" class="footer-link">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="Follow us on Facebook">
-                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Follow us on Twitter">
-                            <i class="fab fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Connect with us on LinkedIn">
-                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Follow us on Instagram">
-                            <i class="fab fa-instagram" aria-hidden="true"></i>
-                        </a>
+                <div class="footer-bottom">
+                    <div class="footer-info">
+                        <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
+                        <nav class="footer-nav" aria-label="Footer navigation">
+                            <a href="#privacy">Privacy Policy</a>
+                            <a href="#terms">Terms of Service</a>
+                            <a href="#cookies">Cookie Policy</a>
+                            <a href="#security-policy">Security Policy</a>
+                            <a href="#gdpr">GDPR</a>
+                        </nav>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <div class="footer-info">
-                    <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
-                    <nav class="footer-nav" aria-label="Footer navigation">
-                        <a href="#privacy" class="footer-link">Privacy Policy</a>
-                        <a href="#terms" class="footer-link">Terms of Service</a>
-                        <a href="#cookies" class="footer-link">Cookie Policy</a>
-                        <a href="#security-policy" class="footer-link">Security Policy</a>
-                        <a href="#gdpr" class="footer-link">GDPR</a>
-                    </nav>
+        </footer>
+
+        <!-- Cookie Consent -->
+        <div id="cookieConsent" class="cookie-consent" role="alert" aria-live="polite">
+            <div class="cookie-content">
+                <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+                <div class="cookie-buttons">
+                    <button id="acceptCookies" class="btn primary">Accept</button>
+                    <button id="cookieSettings" class="btn secondary">Cookie Settings</button>
                 </div>
             </div>
         </div>
-    </footer>
-
-    <!-- Cookie Consent -->
-    <div id="cookieConsent" class="cookie-consent" role="alert" aria-live="polite">
-        <div class="cookie-content">
-            <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
-            <div class="cookie-buttons">
-                <button id="acceptCookies" class="btn primary">Accept</button>
-                <button id="cookieSettings" class="btn secondary">Cookie Settings</button>
-            </div>
-        </div>
-    </div>
+    </main>
 
     <!-- Scripts -->
     <script src="expensescript.js"></script>
     <script>
-        // Immediate loading animation
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMobileMenu();
+            initializeScrollReveal();
+            initializeHorizontalNav();
+            initializeBackToTop();
+            initializeProgressBar();
+            initializeCookieConsent();
+            handleSmoothScroll();
+            initializeAnimations();
+            initializeHeaderScroll();
+        });
+
+        // Handle loading state
         window.addEventListener('load', function() {
             document.querySelector('.loading-overlay').style.display = 'none';
         });
 
-        // Initialize scroll reveal
-        document.addEventListener('DOMContentLoaded', function() {
-            // Reveal animations on scroll
-            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            scrollRevealElements.forEach(element => {
-                observer.observe(element);
-            });
-
-            // Back to top button visibility
-            const backToTop = document.getElementById('backToTop');
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
-
-            // Smooth scroll for back to top
-            backToTop.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Cookie consent
-            const cookieConsent = document.getElementById('cookieConsent');
-            const acceptCookies = document.getElementById('acceptCookies');
-            
-            if (!localStorage.getItem('cookiesAccepted')) {
-                setTimeout(() => {
-                    cookieConsent.classList.add('visible');
-                }, 2000);
+        // Handle responsive layout
+        window.addEventListener('resize', debounce(() => {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu')?.classList.remove('active');
+                document.getElementById('nav-menu')?.classList.remove('active');
+                document.querySelector('.menu-overlay')?.classList.remove('active');
+                document.body.classList.remove('no-scroll');
             }
-
-            acceptCookies.addEventListener('click', () => {
-                localStorage.setItem('cookiesAccepted', 'true');
-                cookieConsent.classList.remove('visible');
-            });
-        });
+        }, 250));
     </script>
 </body>
 </html>
