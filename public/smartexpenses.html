@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workwise Pro - Expense Management</title>
+    <title>Expense Management - Workwise Pro</title>
     <link rel="stylesheet" href="expensestyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -92,10 +92,15 @@
                 </div>
             </div>
         </section>
-                <!-- Expense Layout with Horizontal Navigation -->
+        <!-- Expense Layout with Horizontal Navigation -->
         <div class="expense-layout">
             <!-- Horizontal Navigation -->
             <aside class="side-nav animate-fade-in">
+                <button class="side-menu-toggle" aria-label="Toggle side menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <nav aria-label="Features navigation">
                     <ul class="nav-sections">
                         <li><a href="#receipts" class="nav-link active" data-section="receipts">Receipts and expenses</a></li>
@@ -209,7 +214,7 @@
                 </button>
             </div>
         </div>
-                <!-- Footer -->
+        <!-- Footer -->
         <footer class="animate-fade-in">
             <div class="container">
                 <div class="footer-grid">
@@ -298,6 +303,9 @@
         </div>
     </main>
 
+    <!-- Side Navigation Overlay -->
+    <div class="side-nav-overlay" aria-hidden="true"></div>
+
     <!-- Scripts -->
     <script src="expensescript.js"></script>
     <script>
@@ -325,6 +333,7 @@
                 document.getElementById('mobile-menu')?.classList.remove('active');
                 document.getElementById('nav-menu')?.classList.remove('active');
                 document.querySelector('.menu-overlay')?.classList.remove('active');
+                document.querySelector('.side-nav-overlay')?.classList.remove('active');
                 document.body.classList.remove('no-scroll');
             }
         }, 250));
