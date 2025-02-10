@@ -9,11 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loader"></div>
+    </div>
+
     <!-- Mobile Menu Overlay -->
     <div class="menu-overlay"></div>
 
-    <!-- Header Section - Baba Theme -->
-    <header>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Header Section -->
+    <header class="animate-fade-in">
         <div class="container">
             <div class="logo">
                 <h1><a href="https://workpro.onrender.com">Workwise Pro</a></h1>
@@ -25,10 +33,10 @@
             </div>
             <nav id="nav-menu">
                 <ul id="nav-list">
-                    <li><a href="features.html">Features</a></li>
+                    <li><a href="features.html" class="nav-link">Features</a></li>
                     <li class="dropdown">
-                        <a href="#">HR/Accounts Modules <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-content">
+                        <a href="#" class="nav-link">HR/Accounts Modules <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-content animate-fade-in">
                             <li><a href="peoplemanagement.html">People Management</a></li>
                             <li><a href="pms.html">Performance Management</a></li>
                             <li><a href="payroll.html">Payroll</a></li>
@@ -37,8 +45,8 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#">Business Operations <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-content">
+                        <a href="#" class="nav-link">Business Operations <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-content animate-fade-in">
                             <li><a href="smartexpenses.html">SmartExpenses</a></li>
                             <li><a href="shiftmaster.html">ShiftMaster</a></li>
                             <li><a href="#">FlexHire - Coming Soon</a></li>
@@ -46,9 +54,9 @@
                             <li><a href="globalinvoice.html">GlobalInvoice</a></li>
                         </ul>
                     </li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="login.html">Sign In</a></li>
-                    <li><a href="signup.html" class="btn primary">Sign Up</a></li>
+                    <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                    <li><a href="login.html" class="nav-link">Sign In</a></li>
+                    <li><a href="signup.html" class="btn primary animate-pulse">Sign Up</a></li>
                 </ul>
             </nav>
         </div>
@@ -57,24 +65,24 @@
     <!-- Main Content -->
     <main class="expense-layout">
         <!-- Side Navigation -->
-        <aside class="side-nav">
+        <aside class="side-nav animate-slide-in">
             <nav>
-                <ul>
-                    <li><a href="#receipts" class="active">Receipts and expenses</a></li>
-                    <li><a href="#cards">Cards</a></li>
-                    <li><a href="#reports">Expense reports</a></li>
-                    <li><a href="#trips">Trips</a></li>
-                    <li><a href="#requests">Purchase requests</a></li>
-                    <li><a href="#approvals">Approvals</a></li>
-                    <li><a href="#control">Control</a></li>
-                    <li><a href="#reimbursement">Reimbursement</a></li>
-                    <li><a href="#audit">Audit and compliance</a></li>
-                    <li><a href="#automation">Automation</a></li>
-                    <li><a href="#customization">Customization</a></li>
-                    <li><a href="#collaboration">Collaboration</a></li>
-                    <li><a href="#integrations">Integrations</a></li>
-                    <li><a href="#mobile">Mobile apps</a></li>
-                    <li><a href="#security">Security</a></li>
+                <ul class="nav-sections">
+                    <li><a href="#receipts" class="nav-link active" data-section="receipts">Receipts and expenses</a></li>
+                    <li><a href="#cards" class="nav-link" data-section="cards">Cards</a></li>
+                    <li><a href="#reports" class="nav-link" data-section="reports">Expense reports</a></li>
+                    <li><a href="#trips" class="nav-link" data-section="trips">Trips</a></li>
+                    <li><a href="#requests" class="nav-link" data-section="requests">Purchase requests</a></li>
+                    <li><a href="#approvals" class="nav-link" data-section="approvals">Approvals</a></li>
+                    <li><a href="#control" class="nav-link" data-section="control">Control</a></li>
+                    <li><a href="#reimbursement" class="nav-link" data-section="reimbursement">Reimbursement</a></li>
+                    <li><a href="#audit" class="nav-link" data-section="audit">Audit and compliance</a></li>
+                    <li><a href="#automation" class="nav-link" data-section="automation">Automation</a></li>
+                    <li><a href="#customization" class="nav-link" data-section="customization">Customization</a></li>
+                    <li><a href="#collaboration" class="nav-link" data-section="collaboration">Collaboration</a></li>
+                    <li><a href="#integrations" class="nav-link" data-section="integrations">Integrations</a></li>
+                    <li><a href="#mobile" class="nav-link" data-section="mobile">Mobile apps</a></li>
+                    <li><a href="#security" class="nav-link" data-section="security">Security</a></li>
                 </ul>
             </nav>
         </aside>
@@ -82,28 +90,27 @@
         <!-- Main Content Area -->
         <div class="main-content">
             <!-- Hero Section -->
-            <section class="expense-hero">
-                <div class="hero-content">
+            <section class="expense-hero scroll-reveal">
+                <div class="hero-content animate-fade-in">
                     <h1>Expense software loaded with powerful features</h1>
-                    <p>With its comprehensive set of features for all stages of your expense reporting, Zoho Expense is your go-to expense software.</p>
+                    <p>With its comprehensive set of features for all stages of your expense reporting, Workwise Pro is your go-to expense software.</p>
                     <div class="hero-cta">
-                        <a href="#" class="btn primary">TRY ZOHO EXPENSE</a>
+                        <a href="#" class="btn primary animate-pulse">TRY NOW</a>
                         <a href="#" class="btn secondary">REQUEST A DEMO</a>
                     </div>
                 </div>
-                <div class="hero-image">
+                <div class="hero-image animate-fade-in">
                     <img src="image/expense-hero.svg" alt="Expense Management">
                 </div>
             </section>
-
-            <!-- Receipts and Expenses Section -->
-            <section id="receipts" class="feature-section">
+                        <!-- Receipts and Expenses Section -->
+            <section id="receipts" class="feature-section scroll-reveal" data-section="receipts">
                 <h2>Receipts and expenses</h2>
                 <p>Automate your receipt and expense management with the help of robust features that free up time for other important tasks.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-receipt"></i>
                         </div>
@@ -112,7 +119,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-dollar-sign"></i>
                         </div>
@@ -121,7 +128,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-route"></i>
                         </div>
@@ -130,7 +137,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-coins"></i>
                         </div>
@@ -139,7 +146,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-wallet"></i>
                         </div>
@@ -150,14 +157,14 @@
                 </div>
             </section>
 
-                        <!-- Cards Section -->
-            <section id="cards" class="feature-section">
+            <!-- Cards Section -->
+            <section id="cards" class="feature-section scroll-reveal" data-section="cards">
                 <h2>Corporate Cards</h2>
                 <p>Streamline your corporate card expense management with automated reconciliation and real-time tracking.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-credit-card"></i>
                         </div>
@@ -166,7 +173,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-sync-alt"></i>
                         </div>
@@ -177,14 +184,14 @@
                 </div>
             </section>
 
-            <!-- Expense Reports Section -->
-            <section id="reports" class="feature-section">
+                       <!-- Expense Reports Section -->
+            <section id="reports" class="feature-section scroll-reveal" data-section="reports">
                 <h2>Expense Reports</h2>
                 <p>Generate comprehensive expense reports with detailed analytics and insights.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-file-alt"></i>
                         </div>
@@ -193,7 +200,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-chart-bar"></i>
                         </div>
@@ -205,13 +212,13 @@
             </section>
 
             <!-- Trips Section -->
-            <section id="trips" class="feature-section">
+            <section id="trips" class="feature-section scroll-reveal" data-section="trips">
                 <h2>Business Trips</h2>
                 <p>Manage travel expenses and itineraries efficiently with our comprehensive travel management system.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-plane"></i>
                         </div>
@@ -220,7 +227,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-receipt"></i>
                         </div>
@@ -232,13 +239,13 @@
             </section>
 
             <!-- Approvals Section -->
-            <section id="approvals" class="feature-section">
+            <section id="approvals" class="feature-section scroll-reveal" data-section="approvals">
                 <h2>Approval Workflows</h2>
                 <p>Streamline your expense approval process with customizable workflows and automated routing.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-check-circle"></i>
                         </div>
@@ -247,7 +254,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-clock"></i>
                         </div>
@@ -259,13 +266,13 @@
             </section>
 
             <!-- Control Section -->
-            <section id="control" class="feature-section">
+            <section id="control" class="feature-section scroll-reveal" data-section="control">
                 <h2>Expense Control</h2>
                 <p>Maintain tight control over your organization's expenses with advanced policy enforcement and monitoring.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
@@ -274,7 +281,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-eye"></i>
                         </div>
@@ -286,13 +293,13 @@
             </section>
 
             <!-- Reimbursement Section -->
-            <section id="reimbursement" class="feature-section">
+            <section id="reimbursement" class="feature-section scroll-reveal" data-section="reimbursement">
                 <h2>Reimbursement Management</h2>
                 <p>Process expense reimbursements quickly and efficiently with automated payment processing.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-money-bill-wave"></i>
                         </div>
@@ -301,7 +308,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-history"></i>
                         </div>
@@ -313,13 +320,13 @@
             </section>
 
             <!-- Audit and Compliance Section -->
-            <section id="audit" class="feature-section">
+            <section id="audit" class="feature-section scroll-reveal" data-section="audit">
                 <h2>Audit & Compliance</h2>
                 <p>Ensure compliance with regulatory requirements and maintain detailed audit trails.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-clipboard-check"></i>
                         </div>
@@ -328,7 +335,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-search"></i>
                         </div>
@@ -339,14 +346,14 @@
                 </div>
             </section>
 
-                       <!-- Automation Section -->
-            <section id="automation" class="feature-section">
+            <!-- Automation Section -->
+            <section id="automation" class="feature-section scroll-reveal" data-section="automation">
                 <h2>Intelligent Automation</h2>
                 <p>Streamline your expense processes with smart automation features.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-robot"></i>
                         </div>
@@ -355,7 +362,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-magic"></i>
                         </div>
@@ -364,7 +371,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-clock"></i>
                         </div>
@@ -376,13 +383,13 @@
             </section>
 
             <!-- Customization Section -->
-            <section id="customization" class="feature-section">
+            <section id="customization" class="feature-section scroll-reveal" data-section="customization">
                 <h2>Flexible Customization</h2>
                 <p>Tailor the expense management system to your organization's specific needs.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-sliders-h"></i>
                         </div>
@@ -391,7 +398,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-paint-brush"></i>
                         </div>
@@ -400,7 +407,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-cogs"></i>
                         </div>
@@ -412,13 +419,13 @@
             </section>
 
             <!-- Collaboration Section -->
-            <section id="collaboration" class="feature-section">
+            <section id="collaboration" class="feature-section scroll-reveal" data-section="collaboration">
                 <h2>Team Collaboration</h2>
                 <p>Enable seamless collaboration between team members for efficient expense management.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-comments"></i>
                         </div>
@@ -427,7 +434,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-share-alt"></i>
                         </div>
@@ -439,13 +446,13 @@
             </section>
 
             <!-- Integrations Section -->
-            <section id="integrations" class="feature-section">
+            <section id="integrations" class="feature-section scroll-reveal" data-section="integrations">
                 <h2>Seamless Integrations</h2>
                 <p>Connect with your existing business tools and systems.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-plug"></i>
                         </div>
@@ -454,7 +461,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-exchange-alt"></i>
                         </div>
@@ -463,7 +470,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-university"></i>
                         </div>
@@ -475,13 +482,13 @@
             </section>
 
             <!-- Mobile Apps Section -->
-            <section id="mobile" class="feature-section">
+            <section id="mobile" class="feature-section scroll-reveal" data-section="mobile">
                 <h2>Mobile Experience</h2>
                 <p>Manage expenses on-the-go with our powerful mobile applications.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
@@ -490,7 +497,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-camera"></i>
                         </div>
@@ -499,7 +506,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
@@ -511,13 +518,13 @@
             </section>
 
             <!-- Security Section -->
-            <section id="security" class="feature-section">
+            <section id="security" class="feature-section scroll-reveal" data-section="security">
                 <h2>Enterprise-Grade Security</h2>
                 <p>Protect your expense data with advanced security features.</p>
                 <a href="#" class="learn-more">Learn More</a>
 
                 <div class="feature-grid">
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
@@ -526,7 +533,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-user-lock"></i>
                         </div>
@@ -535,7 +542,7 @@
                         <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card animate-fade-in">
                         <div class="feature-icon">
                             <i class="fas fa-history"></i>
                         </div>
@@ -545,44 +552,91 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Back to Top Button -->
+            <button id="backToTop" class="back-to-top" aria-label="Back to Top">
+                <i class="fas fa-arrow-up"></i>
+            </button>
         </div>
     </main>
 
-   <!-- Footer -->
-    <footer>
+    <!-- Footer -->
+    <footer class="animate-fade-in">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>Product</h4>
                     <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#integrations">Integrations</a></li>
+                        <li><a href="#features" class="footer-link">Features</a></li>
+                        <li><a href="#pricing" class="footer-link">Pricing</a></li>
+                        <li><a href="#integrations" class="footer-link">Integrations</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Developers</h4>
                     <ul>
-                        <li><a href="#api-docs">API Documentation</a></li>
-                        <li><a href="#sdk">SDKs & Tools</a></li>
-                        <li><a href="#status">System Status</a></li>
+                        <li><a href="#api-docs" class="footer-link">API Documentation</a></li>
+                        <li><a href="#sdk" class="footer-link">SDKs & Tools</a></li>
+                        <li><a href="#status" class="footer-link">System Status</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#about" class="footer-link">About Us</a></li>
+                        <li><a href="#careers" class="footer-link">Careers</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
                     </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                
-                <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
+                <div class="footer-info">
+                    <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
+                    <nav class="footer-nav">
+                        <a href="#privacy" class="footer-link">Privacy Policy</a>
+                        <a href="#terms" class="footer-link">Terms of Service</a>
+                        <a href="#cookies" class="footer-link">Cookie Policy</a>
+                    </nav>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+            <div class="cookie-buttons">
+                <button id="acceptCookies" class="btn primary">Accept</button>
+                <button id="cookieSettings" class="btn secondary">Cookie Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="expensescript.js"></script>
+    <script>
+        // Immediate loading animation
+        window.addEventListener('load', function() {
+            document.querySelector('.loading-overlay').style.display = 'none';
+        });
+    </script>
 </body>
 </html>
