@@ -1,3 +1,4 @@
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeMobileMenu();
     initializeScrollReveal();
@@ -7,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCookieConsent();
     handleSmoothScroll();
     initializeAnimations();
+    initializeFloatingElements();
+    initializeHeaderScroll();
 });
 
 // Mobile Menu
@@ -28,10 +31,6 @@ function initializeMobileMenu() {
         document.body.classList.toggle('no-scroll', isActive);
     }
 
-    menuOverlay?.addEventListener('click', () => {
-        toggleMenu(false);
-    });
-
     // Handle dropdowns
     dropdowns.forEach(dropdown => {
         const link = dropdown.querySelector('a');
@@ -49,6 +48,10 @@ function initializeMobileMenu() {
             toggleMenu(false);
         }
     });
+
+    menuOverlay?.addEventListener('click', () => {
+        toggleMenu(false);
+    });
 }
 
 // Side Navigation
@@ -62,7 +65,10 @@ function initializeSideNavigation() {
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100;
-            if (window.pageYOffset >= sectionTop) {
+            const sectionHeight = section.offsetHeight;
+            const scrollPosition = window.pageYOffset;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                 currentSection = section.getAttribute('data-section');
             }
         });
@@ -82,7 +88,11 @@ function initializeSideNavigation() {
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+                const offsetTop = targetSection.offsetTop - 80; // Account for header height
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
             }
         });
     });
@@ -115,13 +125,13 @@ function initializeBackToTop() {
     const backToTop = document.getElementById('backToTop');
     if (!backToTop) return;
 
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', debounce(() => {
         if (window.pageYOffset > 300) {
             backToTop.classList.add('visible');
         } else {
             backToTop.classList.remove('visible');
         }
-    });
+    }, 100));
 
     backToTop.addEventListener('click', () => {
         window.scrollTo({
@@ -136,11 +146,11 @@ function initializeProgressBar() {
     const progressBar = document.getElementById('progressBar');
     if (!progressBar) return;
 
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', debounce(() => {
         const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (window.pageYOffset / windowHeight) * 100;
-        progressBar.style.width = `${progress}%`;
-    });
+        const scrolled = (window.pageYOffset / windowHeight) * 100;
+        progressBar.style.width = `${scrolled}%`;
+    }, 10));
 }
 
 // Cookie Consent
@@ -172,15 +182,17 @@ function initializeCookieConsent() {
 function handleSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            if (this.getAttribute('href') === '#') return;
+            
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            const targetElement = document.querySelector(targetId);
             
-            const target = document.querySelector(targetId);
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
                 });
             }
         });
@@ -197,6 +209,28 @@ function initializeAnimations() {
             card.classList.remove('hover');
         });
     });
+}
+
+// Floating Elements Animation
+function initializeFloatingElements() {
+    const floatingElements = document.querySelectorAll('.floating-icon');
+    floatingElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.2}s`;
+    });
+}
+
+// Header Scroll Effect
+function initializeHeaderScroll() {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    window.addEventListener('scroll', debounce(() => {
+        if (window.pageYOffset > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }, 50));
 }
 
 // Utility Functions
