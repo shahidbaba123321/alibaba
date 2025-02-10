@@ -1,3 +1,4 @@
+// Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeMobileMenu();
     initializeScrollReveal();
@@ -59,7 +60,7 @@ function initializeHorizontalNav() {
     const sections = document.querySelectorAll('[data-section]');
     let isScrolling = false;
 
-    // Add mouse wheel horizontal scroll
+    // Add mouse wheel horizontal scroll with smooth behavior
     nav.addEventListener('wheel', (e) => {
         if (e.deltaY !== 0) {
             e.preventDefault();
@@ -67,7 +68,7 @@ function initializeHorizontalNav() {
         }
     });
 
-    // Drag to scroll
+    // Improved drag to scroll
     let isDown = false;
     let startX;
     let scrollLeft;
@@ -125,6 +126,7 @@ function initializeHorizontalNav() {
             });
         }
     }, 100));
+
     // Smooth scroll to section when clicking nav links
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -152,6 +154,7 @@ function initializeHorizontalNav() {
         });
     });
 }
+
 // Scroll Reveal
 function initializeScrollReveal() {
     const observerOptions = {
@@ -251,7 +254,7 @@ function handleSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             if (this.getAttribute('href') === '#') return;
-            
+
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
