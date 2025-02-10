@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSmoothScroll();
     initializeFeatureCards();
     observeAnimatedElements();
+    initializeThreeJS(); // Initialize the 3D scene
 });
 
 // Mobile Menu and Dropdown Functionality
@@ -373,3 +374,52 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
         alert('Invalid credentials. Please try again.');
     }
 });
+
+// Three.js 3D Scene Initialization
+function initializeThreeJS() {
+    const container = document.getElementById('three-container');
+    if (!container) return;
+
+    // Create the Three.js scene, camera, and renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    // Create a simple rotating cube
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshStandardMaterial({ color: 0x4285f4 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    // Add ambient and directional lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(5, 5, 5);
+    scene.add(directionalLight);
+
+    // Position the camera
+    camera.position.z = 3;
+
+    // Handle responsiveness for the Three.js canvas
+    window.addEventListener('resize', () => {
+        if (container) {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+    });
+
+    // Animation loop to rotate the cube and render the scene
+    function animate() {
+        requestAnimationFrame(animate);
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+    }
+    animate();
+}
+
+
