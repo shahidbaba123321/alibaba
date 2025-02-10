@@ -1,133 +1,184 @@
-// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all components
     initializeMobileMenu();
     initializeScrollReveal();
-    initializeTabs();
-    initializeDropdowns();
-    initializeFeatureCards();
+    initializeSideNavigation();
+    initializeBackToTop();
+    initializeProgressBar();
+    initializeCookieConsent();
     handleSmoothScroll();
+    initializeAnimations();
 });
 
-// Mobile Menu Toggle
+// Mobile Menu
 function initializeMobileMenu() {
-    const mobileMenuBtn = document.getElementById('mobile-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
-    const overlay = document.querySelector('.menu-overlay');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const dropdowns = document.querySelectorAll('.dropdown');
 
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.classList.toggle('no-scroll');
-        });
+    mobileMenu?.addEventListener('click', () => {
+        toggleMenu();
+    });
+
+    function toggleMenu(force = null) {
+        const isActive = force !== null ? force : !mobileMenu.classList.contains('active');
+        mobileMenu.classList.toggle('active', isActive);
+        navMenu.classList.toggle('active', isActive);
+        menuOverlay.classList.toggle('active', isActive);
+        document.body.classList.toggle('no-scroll', isActive);
     }
 
-    // Close menu when clicking overlay
-    if (overlay) {
-        overlay.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            navMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.classList.remove('no-scroll');
+    menuOverlay?.addEventListener('click', () => {
+        toggleMenu(false);
+    });
+
+    // Handle dropdowns
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        link?.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            }
         });
-    }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+            toggleMenu(false);
+        }
+    });
 }
 
-// Scroll Reveal Animation
+// Scroll Reveal
 function initializeScrollReveal() {
-    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-    
     const observerOptions = {
         root: null,
         threshold: 0.1,
-        rootMargin: '0px'
+        rootMargin: '-50px'
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Stop observing once visible
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    scrollRevealElements.forEach(element => {
-        observer.observe(element);
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+        observer.observe(el);
     });
 }
 
-// Tab Navigation
-function initializeTabs() {
-    const tabButtons = document.querySelectorAll('.demo-tab');
-    const tabContents = document.querySelectorAll('.demo-content');
+// Side Navigation
+function initializeSideNavigation() {
+    const sideNavLinks = document.querySelectorAll('.side-nav .nav-link');
+    const sections = document.querySelectorAll('[data-section]');
 
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons and contents
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-
-            // Add active class to clicked button and corresponding content
-            button.classList.add('active');
-            const targetId = button.getAttribute('data-tab');
-            document.getElementById(targetId).classList.add('active');
+    // Update active link on scroll
+    window.addEventListener('scroll', debounce(() => {
+        let currentSection = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            if (window.pageYOffset >= sectionTop) {
+                currentSection = section.getAttribute('data-section');
+            }
         });
-    });
-}
 
-// Dropdown Navigation
-function initializeDropdowns() {
-    const dropdowns = document.querySelectorAll('.dropdown');
+        sideNavLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === currentSection) {
+                link.classList.add('active');
+            }
+        });
+    }, 100));
 
-    dropdowns.forEach(dropdown => {
-        const trigger = dropdown.querySelector('a');
-        const content = dropdown.querySelector('.dropdown-content');
-
-        trigger.addEventListener('click', (e) => {
+    // Smooth scroll to section
+    sideNavLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
-            dropdown.classList.toggle('active');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('active');
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
 }
 
-// Feature Cards Animation
-function initializeFeatureCards() {
-    const cards = document.querySelectorAll('.feature-card');
+// Back to Top Button
+function initializeBackToTop() {
+    const backToTop = document.getElementById('backToTop');
+    if (!backToTop) return;
 
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.classList.add('hover');
-        });
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
 
-        card.addEventListener('mouseleave', () => {
-            card.classList.remove('hover');
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
     });
 }
 
-// Smooth Scroll for Navigation Links
-function handleSmoothScroll() {
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            if (targetId === '#') return;
+// Progress Bar
+function initializeProgressBar() {
+    const progressBar = document.getElementById('progressBar');
+    if (!progressBar) return;
 
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
+    window.addEventListener('scroll', () => {
+        const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (window.pageYOffset / windowHeight) * 100;
+        progressBar.style.width = `${progress}%`;
+    });
+}
+
+// Cookie Consent
+function initializeCookieConsent() {
+    const cookieConsent = document.getElementById('cookieConsent');
+    const acceptButton = document.getElementById('acceptCookies');
+    const settingsButton = document.getElementById('cookieSettings');
+
+    if (!cookieConsent || !acceptButton) return;
+
+    if (!localStorage.getItem('cookiesAccepted')) {
+        setTimeout(() => {
+            cookieConsent.classList.add('visible');
+        }, 2000);
+    }
+
+    acceptButton.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        cookieConsent.classList.remove('visible');
+    });
+
+    settingsButton?.addEventListener('click', () => {
+        // Implement cookie settings functionality
+        console.log('Cookie settings clicked');
+    });
+}
+
+// Smooth Scroll
+function handleSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const target = document.querySelector(targetId);
+            if (target) {
+                target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
@@ -136,93 +187,20 @@ function handleSmoothScroll() {
     });
 }
 
-// Form Validation
-function validateForm(formElement) {
-    const inputs = formElement.querySelectorAll('input[required], select[required], textarea[required]');
-    let isValid = true;
-
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            isValid = false;
-            showError(input, 'This field is required');
-        } else {
-            clearError(input);
-        }
-    });
-
-    return isValid;
-}
-
-// Error Handling
-function showError(element, message) {
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = message;
-    element.parentNode.appendChild(errorDiv);
-    element.classList.add('error');
-}
-
-function clearError(element) {
-    const errorDiv = element.parentNode.querySelector('.error-message');
-    if (errorDiv) {
-        errorDiv.remove();
-    }
-    element.classList.remove('error');
-}
-
-// Loading States
-function showLoading(element) {
-    element.classList.add('loading');
-    element.disabled = true;
-}
-
-function hideLoading(element) {
-    element.classList.remove('loading');
-    element.disabled = false;
-}
-
-// API Calls Example
-async function fetchData(endpoint) {
-    try {
-        showLoading(document.querySelector('.data-section'));
-        const response = await fetch(endpoint);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    } finally {
-        hideLoading(document.querySelector('.data-section'));
-    }
-}
-
-// Theme Toggle
-function initializeThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-            const isDarkTheme = document.body.classList.contains('dark-theme');
-            localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+// Animations
+function initializeAnimations() {
+    // Feature cards hover effect
+    document.querySelectorAll('.feature-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.classList.add('hover');
         });
-    }
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('hover');
+        });
+    });
 }
 
-// Initialize theme from localStorage
-function initializeTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
-    }
-}
-
-// Window resize handler
-window.addEventListener('resize', debounce(() => {
-    // Handle responsive layout changes
-    handleResponsiveLayout();
-}, 250));
-
-// Debounce function
+// Utility Functions
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -235,8 +213,17 @@ function debounce(func, wait) {
     };
 }
 
+// Handle loading state
+window.addEventListener('load', () => {
+    document.querySelector('.loading-overlay')?.style.display = 'none';
+});
+
 // Handle responsive layout
-function handleResponsiveLayout() {
-    const isMobile = window.innerWidth < 768;
-    // Add your responsive layout logic here
-}
+window.addEventListener('resize', debounce(() => {
+    if (window.innerWidth > 768) {
+        document.getElementById('mobile-menu')?.classList.remove('active');
+        document.getElementById('nav-menu')?.classList.remove('active');
+        document.querySelector('.menu-overlay')?.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    }
+}, 250));
