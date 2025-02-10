@@ -242,6 +242,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+     padding-top: 80px; /* Add padding for fixed header */
 }
 
 .container {
@@ -379,6 +380,7 @@ main {
 .expense-layout {
     display: flex;
     min-height: calc(100vh - 80px);
+    position: relative;
 }
 
 /* Side Navigation */
@@ -422,23 +424,28 @@ main {
 
 /* Main Content Area */
 .main-content {
-    flex: 1;
+     flex: 1;
     margin-left: 250px;
     padding: 2rem;
+    width: calc(100% - 250px); /* Add explicit width */
 }
 
 /* Hero Section */
 .expense-hero {
     background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%);
-    padding: 4rem 0;
+    padding: 4rem 2rem;
     margin: -2rem -2rem 2rem -2rem;
     text-align: center;
+    position: relative; /* Add position relative */
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Add overflow hidden */
 }
 
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 2rem;
+    position: relative; /* Add position relative */
+    z-index: 2; /* Ensure content stays above background */
 }
 
 .hero-content h1 {
@@ -458,11 +465,14 @@ main {
     display: flex;
     gap: 1rem;
     justify-content: center;
+    margin-bottom: 2rem; /* Add margin bottom */
 }
 
 .hero-image {
     margin-top: 3rem;
     text-align: center;
+    position: relative; /* Add position relative */
+    z-index: 1; /* Lower than hero-content */
 }
 
 .hero-image img {
@@ -471,6 +481,7 @@ main {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 }
+
 
 /* Button Styles */
 .btn {
@@ -674,6 +685,45 @@ footer {
     color: #fbbc04;
 }
 
+/* Responsive Adjustments */
+@media screen and (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .expense-hero {
+        margin: -1rem -1rem 2rem -1rem;
+        padding: 3rem 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
 /* Media Queries */
 @media screen and (max-width: 1200px) {
     .feature-grid {
