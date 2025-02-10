@@ -1,14 +1,12 @@
-// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeMobileMenu();
     initializeScrollReveal();
-    initializeSideNavigation();
+    initializeHorizontalNav();
     initializeBackToTop();
     initializeProgressBar();
     initializeCookieConsent();
     handleSmoothScroll();
     initializeAnimations();
-    initializeFloatingElements();
     initializeHeaderScroll();
 });
 
@@ -54,45 +52,60 @@ function initializeMobileMenu() {
     });
 }
 
-// Side Navigation
-function initializeSideNavigation() {
-    const sideNavLinks = document.querySelectorAll('.side-nav .nav-link');
+// Horizontal Navigation
+function initializeHorizontalNav() {
+    const navLinks = document.querySelectorAll('.side-nav .nav-link');
     const sections = document.querySelectorAll('[data-section]');
+    let isScrolling = false;
 
     // Update active link on scroll
     window.addEventListener('scroll', debounce(() => {
-        let currentSection = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.offsetHeight;
-            const scrollPosition = window.pageYOffset;
+        if (!isScrolling) {
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const scrollPosition = window.pageYOffset;
 
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                currentSection = section.getAttribute('data-section');
-            }
-        });
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('data-section');
+                }
+            });
 
-        sideNavLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('data-section') === currentSection) {
-                link.classList.add('active');
-            }
-        });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === currentSection) {
+                    link.classList.add('active');
+                    // Scroll link into view in the horizontal nav
+                    link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            });
+        }
     }, 100));
 
-    // Smooth scroll to section
-    sideNavLinks.forEach(link => {
+    // Smooth scroll to section when clicking nav links
+    navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
+            isScrolling = true;
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
+
             if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80; // Account for header height
+                const offsetTop = targetSection.offsetTop - 80;
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
                 });
+
+                // Update active class
+                navLinks.forEach(link => link.classList.remove('active'));
+                link.classList.add('active');
+
+                // Reset isScrolling after animation
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 1000);
             }
         });
     });
@@ -153,6 +166,20 @@ function initializeProgressBar() {
     }, 10));
 }
 
+// Header Scroll Effect
+function initializeHeaderScroll() {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    window.addEventListener('scroll', debounce(() => {
+        if (window.pageYOffset > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }, 50));
+}
+
 // Cookie Consent
 function initializeCookieConsent() {
     const cookieConsent = document.getElementById('cookieConsent');
@@ -209,28 +236,6 @@ function initializeAnimations() {
             card.classList.remove('hover');
         });
     });
-}
-
-// Floating Elements Animation
-function initializeFloatingElements() {
-    const floatingElements = document.querySelectorAll('.floating-icon');
-    floatingElements.forEach((element, index) => {
-        element.style.animationDelay = `${index * 0.2}s`;
-    });
-}
-
-// Header Scroll Effect
-function initializeHeaderScroll() {
-    const header = document.querySelector('header');
-    if (!header) return;
-
-    window.addEventListener('scroll', debounce(() => {
-        if (window.pageYOffset > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }, 50));
 }
 
 // Utility Functions
