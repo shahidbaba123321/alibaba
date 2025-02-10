@@ -664,3 +664,31 @@ textarea:focus {
     font-size: 1.2rem;
     color: var(--text-color);
 }
+
+/* 3D Experience Section */
+.three-demo {
+    padding: 6rem 0;
+    background: var(--gradient);
+    text-align: center;
+}
+
+.three-demo h2 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.three-demo p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    margin-bottom: 2rem;
+}
+
+/* Container for the Three.js scene */
+#three-container {
+    width: 100%;
+    height: 400px;  /* Adjust height as needed */
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
