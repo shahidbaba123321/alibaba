@@ -11,31 +11,50 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeHeaderScroll();
 });
 
-// Mobile Menu
+// Mobile Menu with improved dropdown handling
 function initializeMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     const menuOverlay = document.querySelector('.menu-overlay');
     const dropdowns = document.querySelectorAll('.dropdown');
+    let isMenuOpen = false;
 
     mobileMenu?.addEventListener('click', () => {
-        toggleMenu();
+        isMenuOpen = !isMenuOpen;
+        toggleMenu(isMenuOpen);
     });
 
-    function toggleMenu(force = null) {
-        const isActive = force !== null ? force : !mobileMenu.classList.contains('active');
-        mobileMenu.classList.toggle('active', isActive);
-        navMenu.classList.toggle('active', isActive);
-        menuOverlay.classList.toggle('active', isActive);
-        document.body.classList.toggle('no-scroll', isActive);
+    function toggleMenu(show) {
+        mobileMenu.classList.toggle('active', show);
+        navMenu.classList.toggle('active', show);
+        menuOverlay.classList.toggle('active', show);
+        document.body.classList.toggle('no-scroll', show);
+        
+        // Reset dropdowns when closing menu
+        if (!show) {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
     }
 
-    // Handle dropdowns
+    // Enhanced dropdown handling for mobile
     dropdowns.forEach(dropdown => {
         const link = dropdown.querySelector('a');
+        const content = dropdown.querySelector('.dropdown-content');
+
         link?.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
+                e.stopPropagation();
+
+                // Close other dropdowns
+                dropdowns.forEach(d => {
+                    if (d !== dropdown && d.classList.contains('active')) {
+                        d.classList.remove('active');
+                    }
+                });
+
                 dropdown.classList.toggle('active');
             }
         });
@@ -43,28 +62,51 @@ function initializeMobileMenu() {
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+        if (isMenuOpen && !navMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+            isMenuOpen = false;
             toggleMenu(false);
         }
     });
 
+    // Close menu when clicking overlay
     menuOverlay?.addEventListener('click', () => {
+        isMenuOpen = false;
         toggleMenu(false);
+    });
+
+    // Handle escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen) {
+            isMenuOpen = false;
+            toggleMenu(false);
+        }
     });
 }
 
-// Horizontal Navigation
+// Enhanced Horizontal Navigation
 function initializeHorizontalNav() {
     const nav = document.querySelector('.side-nav nav');
     const navLinks = document.querySelectorAll('.side-nav .nav-link');
     const sections = document.querySelectorAll('[data-section]');
     let isScrolling = false;
+    let scrollTimeout;
 
-    // Add mouse wheel horizontal scroll with smooth behavior
+    // Improved smooth scroll behavior
+    nav.style.scrollBehavior = 'smooth';
+
+    // Enhanced mouse wheel horizontal scroll
     nav.addEventListener('wheel', (e) => {
         if (e.deltaY !== 0) {
             e.preventDefault();
             nav.scrollLeft += e.deltaY;
+            
+            // Clear previous timeout
+            clearTimeout(scrollTimeout);
+            
+            // Set new timeout
+            scrollTimeout = setTimeout(() => {
+                snapToNearestLink();
+            }, 150);
         }
     });
 
@@ -72,12 +114,17 @@ function initializeHorizontalNav() {
     let isDown = false;
     let startX;
     let scrollLeft;
+    let velocity = 0;
+    let lastPageX;
+    let frameId;
 
     nav.addEventListener('mousedown', (e) => {
         isDown = true;
         nav.style.cursor = 'grabbing';
         startX = e.pageX - nav.offsetLeft;
         scrollLeft = nav.scrollLeft;
+        lastPageX = e.pageX;
+        cancelAnimationFrame(frameId);
     });
 
     nav.addEventListener('mouseleave', () => {
@@ -88,6 +135,19 @@ function initializeHorizontalNav() {
     nav.addEventListener('mouseup', () => {
         isDown = false;
         nav.style.cursor = 'grab';
+        
+        // Add momentum scrolling
+        const momentumScroll = () => {
+            if (Math.abs(velocity) > 0.1) {
+                nav.scrollLeft += velocity;
+                velocity *= 0.95;
+                frameId = requestAnimationFrame(momentumScroll);
+            } else {
+                snapToNearestLink();
+            }
+        };
+        
+        momentumScroll();
     });
 
     nav.addEventListener('mousemove', (e) => {
@@ -96,9 +156,36 @@ function initializeHorizontalNav() {
         const x = e.pageX - nav.offsetLeft;
         const walk = (x - startX) * 2;
         nav.scrollLeft = scrollLeft - walk;
+        
+        // Calculate velocity
+        velocity = lastPageX - e.pageX;
+        lastPageX = e.pageX;
     });
 
-    // Update active link on scroll
+    // Snap to nearest link after scrolling
+    function snapToNearestLink() {
+        const links = Array.from(navLinks);
+        let nearestLink = links[0];
+        let nearestDistance = Infinity;
+
+        links.forEach(link => {
+            const rect = link.getBoundingClientRect();
+            const distance = Math.abs(rect.left - nav.getBoundingClientRect().left);
+            
+            if (distance < nearestDistance) {
+                nearestDistance = distance;
+                nearestLink = link;
+            }
+        });
+
+        nearestLink.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+        });
+    }
+
+    // Update active section on scroll
     window.addEventListener('scroll', debounce(() => {
         if (!isScrolling) {
             let currentSection = '';
@@ -116,7 +203,6 @@ function initializeHorizontalNav() {
                 link.classList.remove('active');
                 if (link.getAttribute('data-section') === currentSection) {
                     link.classList.add('active');
-                    // Scroll active link into view
                     link.scrollIntoView({
                         behavior: 'smooth',
                         block: 'nearest',
@@ -142,11 +228,9 @@ function initializeHorizontalNav() {
                     behavior: 'smooth'
                 });
 
-                // Update active class
-                navLinks.forEach(link => link.classList.remove('active'));
+                navLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
 
-                // Reset isScrolling after animation
                 setTimeout(() => {
                     isScrolling = false;
                 }, 1000);
@@ -155,7 +239,7 @@ function initializeHorizontalNav() {
     });
 }
 
-// Scroll Reveal
+// Improved Scroll Reveal
 function initializeScrollReveal() {
     const observerOptions = {
         root: null,
@@ -177,20 +261,30 @@ function initializeScrollReveal() {
     });
 }
 
-// Back to Top Button
+// Enhanced Back to Top Button
 function initializeBackToTop() {
     const backToTop = document.getElementById('backToTop');
     if (!backToTop) return;
 
-    window.addEventListener('scroll', debounce(() => {
-        if (window.pageYOffset > 300) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    }, 100));
+    const scrollThreshold = 300;
+    let isScrolling = false;
 
-    backToTop.addEventListener('click', () => {
+    window.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                if (window.pageYOffset > scrollThreshold) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
+    });
+
+    backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -198,33 +292,60 @@ function initializeBackToTop() {
     });
 }
 
-// Progress Bar
+// Improved Progress Bar
 function initializeProgressBar() {
     const progressBar = document.getElementById('progressBar');
     if (!progressBar) return;
 
-    window.addEventListener('scroll', debounce(() => {
-        const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrolled = (window.pageYOffset / windowHeight) * 100;
-        progressBar.style.width = `${scrolled}%`;
-    }, 10));
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = (window.pageYOffset / windowHeight) * 100;
+                progressBar.style.width = `${scrolled}%`;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
 }
 
-// Header Scroll Effect
+// Enhanced Header Scroll Effect
 function initializeHeaderScroll() {
     const header = document.querySelector('header');
     if (!header) return;
 
-    window.addEventListener('scroll', debounce(() => {
-        if (window.pageYOffset > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+    let lastScroll = 0;
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                if (currentScroll > lastScroll && currentScroll > 300) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+
+                lastScroll = currentScroll;
+                ticking = false;
+            });
+            ticking = true;
         }
-    }, 50));
+    });
 }
 
-// Cookie Consent
+// Improved Cookie Consent
 function initializeCookieConsent() {
     const cookieConsent = document.getElementById('cookieConsent');
     const acceptButton = document.getElementById('acceptCookies');
@@ -249,7 +370,7 @@ function initializeCookieConsent() {
     });
 }
 
-// Smooth Scroll
+// Enhanced Smooth Scroll
 function handleSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -260,9 +381,12 @@ function handleSmoothScroll() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80;
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
                 window.scrollTo({
-                    top: offsetTop,
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
             }
@@ -270,7 +394,7 @@ function handleSmoothScroll() {
     });
 }
 
-// Animations
+// Enhanced Animations
 function initializeAnimations() {
     document.querySelectorAll('.feature-card').forEach(card => {
         card.addEventListener('mouseenter', () => {
@@ -282,7 +406,7 @@ function initializeAnimations() {
     });
 }
 
-// Utility Functions
+// Improved Debounce Utility
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -300,12 +424,21 @@ window.addEventListener('load', () => {
     document.querySelector('.loading-overlay')?.style.display = 'none';
 });
 
-// Handle responsive layout
+// Enhanced responsive layout handling
 window.addEventListener('resize', debounce(() => {
     if (window.innerWidth > 768) {
-        document.getElementById('mobile-menu')?.classList.remove('active');
-        document.getElementById('nav-menu')?.classList.remove('active');
-        document.querySelector('.menu-overlay')?.classList.remove('active');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        
+        mobileMenu?.classList.remove('active');
+        navMenu?.classList.remove('active');
+        menuOverlay?.classList.remove('active');
         document.body.classList.remove('no-scroll');
+        
+        // Reset all dropdowns
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
     }
 }, 250));
