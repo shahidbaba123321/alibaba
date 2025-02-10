@@ -51,28 +51,6 @@ function initializeMobileMenu() {
     });
 }
 
-// Scroll Reveal
-function initializeScrollReveal() {
-    const observerOptions = {
-        root: null,
-        threshold: 0.1,
-        rootMargin: '-50px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.scroll-reveal').forEach(el => {
-        observer.observe(el);
-    });
-}
-
 // Side Navigation
 function initializeSideNavigation() {
     const sideNavLinks = document.querySelectorAll('.side-nav .nav-link');
@@ -107,6 +85,28 @@ function initializeSideNavigation() {
                 targetSection.scrollIntoView({ behavior: 'smooth' });
             }
         });
+    });
+}
+
+// Scroll Reveal
+function initializeScrollReveal() {
+    const observerOptions = {
+        root: null,
+        threshold: 0.1,
+        rootMargin: '-50px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+        observer.observe(el);
     });
 }
 
@@ -189,7 +189,6 @@ function handleSmoothScroll() {
 
 // Animations
 function initializeAnimations() {
-    // Feature cards hover effect
     document.querySelectorAll('.feature-card').forEach(card => {
         card.addEventListener('mouseenter', () => {
             card.classList.add('hover');
