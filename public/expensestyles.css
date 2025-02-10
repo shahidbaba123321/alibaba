@@ -16,6 +16,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -215,6 +216,19 @@ nav ul li a:hover {
     transition: var(--transition);
 }
 
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Menu Overlay */
 .menu-overlay {
     display: none;
     position: fixed;
@@ -295,7 +309,7 @@ main {
     padding: 0 1rem;
 }
 
-/* Horizontal Navigation */
+/* Side Navigation */
 .side-nav {
     width: 100%;
     background: white;
@@ -307,6 +321,26 @@ main {
     display: flex;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.side-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 8px;
+    margin-left: 1rem;
+    cursor: pointer;
+    z-index: 99;
+}
+
+.side-menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-dark);
+    transition: var(--transition);
 }
 
 .side-nav nav {
@@ -368,6 +402,22 @@ main {
     color: var(--primary-color);
     background-color: var(--background-light);
     border-color: var(--primary-color);
+}
+
+/* Side Navigation Overlay */
+.side-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 97;
+}
+
+.side-nav-overlay.active {
+    display: block;
 }
 
 /* Feature Sections */
@@ -577,6 +627,65 @@ footer {
     transform: translateY(-2px);
 }
 
+/* Cookie Consent */
+.cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1.5rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.cookie-consent.visible {
+    transform: translateY(0);
+}
+
+.cookie-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--primary-color);
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 99;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    background: #d42f2f;
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 1200px) {
     .container {
@@ -614,7 +723,6 @@ footer {
 
     header {
         height: var(--header-height);
-        padding: 0;
     }
 
     header .container {
@@ -622,35 +730,25 @@ footer {
     }
 
     .logo h1 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 
+    /* Mobile Menu */
     .menu-toggle {
         display: flex;
-    }
-
-    .menu-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .menu-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
     }
 
     nav {
         position: fixed;
         top: var(--header-height);
         right: -100%;
-        width: 100%;
+        width: 85%;
         height: calc(100vh - var(--header-height));
         background: white;
         padding: 1rem;
         transition: 0.3s ease;
         overflow-y: auto;
+        z-index: 1001;
     }
 
     nav.active {
@@ -679,6 +777,7 @@ footer {
         justify-content: space-between;
     }
 
+    /* Mobile Dropdowns */
     .dropdown-content {
         position: static;
         box-shadow: none;
@@ -700,8 +799,55 @@ footer {
         padding: 0.75rem 2rem;
     }
 
+    /* Side Navigation Mobile */
+    .side-nav {
+        height: 50px;
+    }
+
+    .side-menu-toggle {
+        display: flex;
+    }
+
+    .side-nav nav {
+        position: fixed;
+        top: calc(var(--header-height) + 50px);
+        left: -100%;
+        width: 85%;
+        height: calc(100vh - var(--header-height) - 50px);
+        background: white;
+        padding: 1rem;
+        transition: 0.3s ease;
+        z-index: 97;
+    }
+
+    .side-nav nav.active {
+        left: 0;
+    }
+
+    .side-nav ul {
+        flex-direction: column;
+        padding: 0;
+        height: auto;
+        width: 100%;
+    }
+
+    .side-nav ul li {
+        width: 100%;
+        height: auto;
+    }
+
+    .side-nav ul li a {
+        padding: 1rem;
+        height: auto;
+        width: 100%;
+        justify-content: flex-start;
+        border: none;
+        font-size: 1rem;
+    }
+
+    /* Hero Section Mobile */
     .expense-hero {
-        padding-top: calc(var(--header-height) + 2rem);
+        padding-top: var(--header-height);
     }
 
     .hero-content {
@@ -710,31 +856,27 @@ footer {
 
     .hero-content h1 {
         font-size: 1.8rem;
+        line-height: 1.3;
+        padding: 0 0.5rem;
     }
 
     .hero-content p {
         font-size: 1rem;
         padding: 0 1rem;
+        margin: 1rem auto;
     }
 
     .hero-cta {
         flex-direction: column;
+        gap: 1rem;
+        padding: 0 1.5rem;
     }
 
     .hero-cta .btn {
         width: 100%;
     }
 
-    .side-nav {
-        height: 50px;
-    }
-
-    .side-nav ul li a {
-        padding: 0.4rem 0.75rem;
-        font-size: 0.85rem;
-        height: 35px;
-    }
-
+    /* Features Mobile */
     .feature-section {
         padding: 2rem 1rem;
     }
@@ -744,6 +886,7 @@ footer {
         gap: 1.5rem;
     }
 
+    /* Footer Mobile */
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -752,6 +895,18 @@ footer {
     .footer-bottom {
         margin-top: 2rem;
         padding: 1.5rem 1rem 0;
+    }
+
+    .cookie-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cookie-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
     }
 }
 
@@ -774,10 +929,6 @@ footer {
 
     .feature-card {
         padding: 1.5rem;
-    }
-
-    .feature-card h3 {
-        font-size: 1.2rem;
     }
 }
 
