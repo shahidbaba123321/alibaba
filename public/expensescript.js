@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeHeaderScroll();
 });
 
-// Mobile Menu with improved dropdown handling
+// Enhanced Mobile Menu with improved touch support
 function initializeMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
@@ -19,24 +19,27 @@ function initializeMobileMenu() {
     const dropdowns = document.querySelectorAll('.dropdown');
     let isMenuOpen = false;
 
-    mobileMenu?.addEventListener('click', () => {
-        isMenuOpen = !isMenuOpen;
-        toggleMenu(isMenuOpen);
-    });
-
+    // Toggle menu function with improved animation handling
     function toggleMenu(show) {
-        mobileMenu.classList.toggle('active', show);
-        navMenu.classList.toggle('active', show);
-        menuOverlay.classList.toggle('active', show);
+        isMenuOpen = show;
+        mobileMenu?.classList.toggle('active', show);
+        navMenu?.classList.toggle('active', show);
+        menuOverlay?.classList.toggle('active', show);
         document.body.classList.toggle('no-scroll', show);
-        
-        // Reset dropdowns when closing menu
+
+        // Reset all dropdowns when closing menu
         if (!show) {
             dropdowns.forEach(dropdown => {
                 dropdown.classList.remove('active');
             });
         }
     }
+
+    // Mobile menu button click handler
+    mobileMenu?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu(!isMenuOpen);
+    });
 
     // Enhanced dropdown handling for mobile
     dropdowns.forEach(dropdown => {
@@ -62,25 +65,48 @@ function initializeMobileMenu() {
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (isMenuOpen && !navMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
-            isMenuOpen = false;
+        if (isMenuOpen && !navMenu?.contains(e.target) && !mobileMenu?.contains(e.target)) {
             toggleMenu(false);
         }
     });
 
     // Close menu when clicking overlay
     menuOverlay?.addEventListener('click', () => {
-        isMenuOpen = false;
         toggleMenu(false);
     });
 
     // Handle escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isMenuOpen) {
-            isMenuOpen = false;
             toggleMenu(false);
         }
     });
+
+    // Touch event handling
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchEndX - touchStartX;
+
+        if (isMenuOpen && swipeDistance > swipeThreshold) {
+            // Swipe right - close menu
+            toggleMenu(false);
+        } else if (!isMenuOpen && swipeDistance < -swipeThreshold) {
+            // Swipe left - open menu
+            toggleMenu(true);
+        }
+    }
 }
 
 // Enhanced Horizontal Navigation
@@ -91,6 +117,8 @@ function initializeHorizontalNav() {
     let isScrolling = false;
     let scrollTimeout;
 
+    if (!nav) return;
+
     // Improved smooth scroll behavior
     nav.style.scrollBehavior = 'smooth';
 
@@ -100,10 +128,7 @@ function initializeHorizontalNav() {
             e.preventDefault();
             nav.scrollLeft += e.deltaY;
             
-            // Clear previous timeout
             clearTimeout(scrollTimeout);
-            
-            // Set new timeout
             scrollTimeout = setTimeout(() => {
                 snapToNearestLink();
             }, 150);
@@ -157,12 +182,32 @@ function initializeHorizontalNav() {
         const walk = (x - startX) * 2;
         nav.scrollLeft = scrollLeft - walk;
         
-        // Calculate velocity
         velocity = lastPageX - e.pageX;
         lastPageX = e.pageX;
     });
 
-    // Snap to nearest link after scrolling
+    // Touch scroll handling
+    let touchStartX;
+    let touchScrollLeft;
+
+    nav.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].pageX - nav.offsetLeft;
+        touchScrollLeft = nav.scrollLeft;
+    });
+
+    nav.addEventListener('touchmove', (e) => {
+        if (!touchStartX) return;
+        const x = e.touches[0].pageX - nav.offsetLeft;
+        const walk = (x - touchStartX) * 2;
+        nav.scrollLeft = touchScrollLeft - walk;
+    });
+
+    nav.addEventListener('touchend', () => {
+        touchStartX = null;
+        snapToNearestLink();
+    });
+
+    // Snap to nearest link
     function snapToNearestLink() {
         const links = Array.from(navLinks);
         let nearestLink = links[0];
@@ -212,31 +257,6 @@ function initializeHorizontalNav() {
             });
         }
     }, 100));
-
-    // Smooth scroll to section when clicking nav links
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            isScrolling = true;
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-
-                navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-
-                setTimeout(() => {
-                    isScrolling = false;
-                }, 1000);
-            }
-        });
-    });
 }
 
 // Improved Scroll Reveal
