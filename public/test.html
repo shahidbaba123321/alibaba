@@ -544,136 +544,120 @@
             }
         }
     </style>
-        <script>
-        // Component Loading Function for Header
-        async function loadHeader() {
-            console.log('Starting header loading sequence');
-            const targetElementId = 'header-container';
+       <script>
+    // Component Loading Function
+    async function loadComponent(url, targetElementId) {
+        console.log(`Attempting to load component from ${url} into ${targetElementId}`);
+        try {
+            // Check if target element exists
+            const targetElement = document.getElementById(targetElementId);
+            if (!targetElement) {
+                throw new Error(`Target element ${targetElementId} not found`);
+            }
 
-            try {
-                // Check if target element exists
-                const targetElement = document.getElementById(targetElementId);
-                if (!targetElement) {
-                    throw new Error('Header container not found');
+            // Fetch the component
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
+            }
+
+            const html = await response.text();
+            console.log(`Content fetched from ${url}, length: ${html.length}`);
+
+            // Parse the HTML
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            // Handle styles
+            const styles = doc.getElementsByTagName('style');
+            Array.from(styles).forEach(style => {
+                const styleId = `style-${targetElementId}`;
+                if (!document.getElementById(styleId)) {
+                    style.id = styleId;
+                    document.head.appendChild(style.cloneNode(true));
                 }
+            });
 
-                // Add loading indicator
-                targetElement.innerHTML = '<div style="text-align: center; padding: 20px;">Loading header...</div>';
+            // Handle content
+            const content = doc.body.firstElementChild;
+            if (!content) {
+                throw new Error(`No content found in ${url}`);
+            }
 
-                // Fetch the header
-                const response = await fetch('header.html');
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch header: ${response.status} ${response.statusText}`);
-                }
+            // Clear and append content
+            targetElement.innerHTML = '';
+            targetElement.appendChild(content.cloneNode(true));
 
-                const html = await response.text();
-                console.log('Header content fetched successfully');
-
-                // Parse the HTML
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-
-                // Handle styles
-                const styles = doc.getElementsByTagName('style');
-                Array.from(styles).forEach(style => {
-                    const styleId = 'header-styles';
-                    if (!document.getElementById(styleId)) {
-                        style.id = styleId;
-                        document.head.appendChild(style.cloneNode(true));
-                    }
+            // Handle scripts
+            const scripts = doc.getElementsByTagName('script');
+            for (const script of scripts) {
+                const newScript = document.createElement('script');
+                Array.from(script.attributes).forEach(attr => {
+                    newScript.setAttribute(attr.name, attr.value);
                 });
+                newScript.textContent = script.textContent;
+                document.body.appendChild(newScript);
+            }
 
-                // Handle external stylesheets
-                const links = doc.getElementsByTagName('link');
-                Array.from(links).forEach(link => {
-                    if (link.rel === 'stylesheet' && !document.querySelector(`link[href="${link.href}"]`)) {
-                        document.head.appendChild(link.cloneNode());
-                    }
-                });
+            console.log(`Successfully loaded ${url} into ${targetElementId}`);
+            return true;
 
-                // Extract header content
-                const headerContent = doc.querySelector('header');
-                if (!headerContent) {
-                    throw new Error('No header element found in the loaded content');
-                }
+        } catch (error) {
+            console.error(`Error loading ${url}:`, error);
+            const targetElement = document.getElementById(targetElementId);
+            if (targetElement) {
+                targetElement.innerHTML = `
+                    <div style="color: red; padding: 20px; text-align: center; background: #fff1f1; border: 1px solid #ffcdd2;">
+                        Failed to load ${url.split('/').pop()}
+                        <br>
+                        ${error.message}
+                    </div>`;
+            }
+            return false;
+        }
+    }
 
-                // Insert the header
-                targetElement.innerHTML = '';
-                targetElement.appendChild(headerContent.cloneNode(true));
+    // Load components sequentially
+    async function loadComponents() {
+        try {
+            console.log('Starting component loading sequence');
 
-                // Handle scripts
-                const scripts = doc.getElementsByTagName('script');
-                for (const script of scripts) {
-                    const newScript = document.createElement('script');
-                    
-                    // Copy script attributes
-                    Array.from(script.attributes).forEach(attr => {
-                        newScript.setAttribute(attr.name, attr.value);
-                    });
-
-                    // Handle both inline and external scripts
-                    if (script.src) {
-                        newScript.src = script.src;
-                        // Wait for external script to load
-                        await new Promise((resolve, reject) => {
-                            newScript.onload = resolve;
-                            newScript.onerror = reject;
-                            document.body.appendChild(newScript);
-                        });
-                    } else {
-                        newScript.textContent = script.textContent;
-                        document.body.appendChild(newScript);
-                    }
-                }
-
+            // Load header first
+            const headerLoaded = await loadComponent('header.html', 'header-container');
+            if (headerLoaded) {
                 console.log('Header loaded successfully');
-
-                // Initialize mobile menu if the function exists
                 if (typeof initializeMobileMenu === 'function') {
                     initializeMobileMenu();
-                    console.log('Mobile menu initialized');
                 }
-
-                return true;
-
-            } catch (error) {
-                console.error('Error loading header:', error);
-                const targetElement = document.getElementById(targetElementId);
-                if (targetElement) {
-                    targetElement.innerHTML = `
-                        <div style="color: red; padding: 20px; text-align: center; background: #fff1f1; border: 1px solid #ffcdd2;">
-                            Failed to load header
-                            <br>
-                            ${error.message}
-                        </div>`;
-                }
-                return false;
             }
+
+            // Load footer immediately after header
+            const footerLoaded = await loadComponent('footer.html', 'footer-container');
+            if (footerLoaded) {
+                console.log('Footer loaded successfully');
+            }
+
+        } catch (error) {
+            console.error('Error in loading sequence:', error);
         }
+    }
 
-        // Initialize when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadHeader);
-        } else {
-            loadHeader();
-        }
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadComponents);
+    } else {
+        loadComponents();
+    }
 
-        // Global error handling
-        window.onerror = function(msg, url, lineNo, columnNo, error) {
-            console.error('Global error:', {
-                message: msg,
-                url: url,
-                lineNumber: lineNo,
-                columnNumber: columnNo,
-                error: error
-            });
-            return false;
-        };
+    // Error handling
+    window.onerror = function(msg, url, lineNo, columnNo, error) {
+        console.error('Global error:', { message: msg, url, lineNo, columnNo, error });
+        return false;
+    };
 
-        // Handle unhandled promise rejections
-        window.addEventListener('unhandledrejection', event => {
-            console.error('Unhandled promise rejection:', event.reason);
-        });
-    </script>
+    window.addEventListener('unhandledrejection', event => {
+        console.error('Unhandled promise rejection:', event.reason);
+    });
+</script>
 </body>
 </html>
