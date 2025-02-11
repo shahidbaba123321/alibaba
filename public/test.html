@@ -1,19 +1,99 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Workwise Pro - AI-Powered HR Management</title>
-  <link rel="stylesheet" href="test/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sentiment@5.0.2/build/sentiment.min.js"></script>
-  <!-- Include Three.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.min.js"></script>
-  <!-- Include CSS3DRenderer -->
   <script src="https://threejs.org/examples/js/renderers/CSS3DRenderer.js"></script>
+
+  <style>
+    /* Base styling */
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    
+    /* App Button Styles */
+    .app-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 16px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 12px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        border: none;
+        margin: 8px;
+    }
+
+    /* iOS Style Button */
+    .ios-button {
+        background: #007AFF;
+        color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .ios-button:active {
+        background: #005FCC;
+    }
+
+    /* Android Style Button */
+    .android-button {
+        background: #6200EE;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .android-button:active {
+        background: #3700B3;
+    }
+
+    /* Floating Button */
+    .floating-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #FF4081;
+        color: white;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        border: none;
+    }
+
+    .floating-button:active {
+        background: #E91E63;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .app-button {
+            width: 100%;
+            font-size: 14px;
+            padding: 10px 14px;
+        }
+    }
+  </style>
 </head>
 <body>
+
   <!-- Mobile Menu Overlay -->
   <div class="menu-overlay"></div>
 
@@ -21,39 +101,13 @@
   <header>
       <div class="container">
           <div class="logo">
-              <h1><a href="https://workpro.onrender.com">Workwise Pro</a></h1>
-          </div>
-          <div class="menu-toggle" id="mobile-menu">
-              <span></span>
-              <span></span>
-              <span></span>
+              <h1><a href="https://workpro.onrender.com" class="app-button ios-button">Workwise Pro</a></h1>
           </div>
           <nav id="nav-menu">
               <ul id="nav-list">
-                  <li><a href="features.html">Features</a></li>
-                  <li class="dropdown">
-                      <a href="#">HR/Accounts Modules <i class="fas fa-caret-down"></i></a>
-                      <ul class="dropdown-content">
-                          <li><a href="peoplemanagement.html">People Management</a></li>
-                          <li><a href="pms.html">Performance Management</a></li>
-                          <li><a href="payroll.html">Payroll Management</a></li>
-                          <li><a href="bookkeeping.html">Book-keeping</a></li>
-                          <li><a href="payint.html">Payroll Integration</a></li>
-                      </ul>
-                  </li>
-                  <li class="dropdown">
-                      <a href="#">Business Operations <i class="fas fa-caret-down"></i></a>
-                      <ul class="dropdown-content">
-                          <li><a href="smartexpenses.html">SmartExpenses</a></li>
-                          <li><a href="shiftmaster.html">ShiftMaster</a></li>
-                          <li><a href="#">FlexHire - Coming Soon</a></li>
-                          <li><a href="stockflow.html">StockFlow</a></li>
-                          <li><a href="globalinvoice.html">GlobalInvoice</a></li>
-                      </ul>
-                  </li>
-                  <li><a href="#pricing">Pricing</a></li>
-                  <li><a href="login.html">Sign In</a></li>
-                  <li><a href="signup.html" class="btn primary">Sign Up</a></li>
+                  <li><a href="features.html" class="app-button android-button">Features</a></li>
+                  <li><a href="login.html" class="app-button ios-button">Sign In</a></li>
+                  <li><a href="signup.html" class="app-button android-button">Sign Up</a></li>
               </ul>
           </nav>
       </div>
@@ -62,194 +116,50 @@
   <!-- Hero Section -->
   <section class="hero">
       <div class="container">
-          <div class="hero-content">
-              <h1>Transform HR with AI-Powered Tools</h1>
-              <p>Streamline recruitment, performance management, and payroll with next-generation HR solutions.</p>
-              <div class="hero-buttons">
-                  <a href="#signup" class="btn hero-btn-primary">Start Free Trial</a>
-                  <a href="#demo" class="btn hero-btn-secondary">Schedule Demo</a>
-              </div>
-          </div>
-          <div class="hero-image">
-              <img src="image/hero-image.png" alt="HR Management Dashboard" class="animate-float">
+          <h1>Transform HR with AI-Powered Tools</h1>
+          <p>Streamline recruitment, performance management, and payroll with next-generation HR solutions.</p>
+          <div>
+              <a href="#signup" class="app-button ios-button">Start Free Trial</a>
+              <a href="#demo" class="app-button android-button">Schedule Demo</a>
           </div>
       </div>
   </section>
 
   <!-- Feature Showcase -->
-  <section id="features" class="feature-showcase">
+  <section id="features">
       <div class="container">
-          <div class="section-header">
-              <h2>AI-Powered Features</h2>
-              <p>Experience the future of HR management with our cutting-edge tools</p>
-          </div>
-          <div class="feature-grid">
-              <div class="feature-card">
-                  <i class="fas fa-chart-line"></i>
-                  <h3>Performance Analytics</h3>
-                  <p>Real-time performance tracking with predictive insights.</p>
-                  <a href="#learn-more" class="learn-more">
-                      Learn More
-                      <i class="fas fa-arrow-right"></i>
-                  </a>
-              </div>
-              <div class="feature-card">
-                  <i class="fas fa-brain"></i>
-                  <h3>Smart Learning</h3>
-                  <p>NLP-powered learning recommendations and skill gap analysis.</p>
-                  <a href="#learn-more" class="learn-more">
-                      Learn More
-                      <i class="fas fa-arrow-right"></i>
-                  </a>
-              </div>
-              <div class="feature-card">
-                  <i class="fas fa-book"></i>
-                  <h3>Bookkeeping</h3>
-                  <p>Manage financial records seamlessly.</p>
-                  <a href="#learn-more" class="learn-more">
-                      Learn More
-                      <i class="fas fa-arrow-right"></i>
-                  </a>
-              </div>
-              <div class="feature-card">
-                  <i class="fas fa-money-check-alt"></i>
-                  <h3>Payroll Management</h3>
-                  <p>Automate payroll processing with precision.</p>
-                  <a href="#learn-more" class="learn-more">
-                      Learn More
-                      <i class="fas fa-arrow-right"></i>
-                  </a>
-              </div>
-              <div class="feature-card">
-                  <i class="fas fa-link"></i>
-                  <h3>ADP Integration</h3>
-                  <p>Effortlessly integrate with ADP for workforce solutions.</p>
-                  <a href="#learn-more" class="learn-more">
-                      Learn More
-                      <i class="fas fa-arrow-right"></i>
-                  </a>
-              </div>
-              <div class="feature-card">
-                  <i class="fas fa-users"></i>
-                  <h3>People Management</h3>
-                  <p>Optimize talent acquisition, engagement, and retention.</p>
-                  <a href="#learn-more" class="learn-more">
-                      Learn More
-                      <i class="fas fa-arrow-right"></i>
-                  </a>
-              </div>
+          <h2>AI-Powered Features</h2>
+          <p>Experience the future of HR management with our cutting-edge tools</p>
+          <div>
+              <a href="#learn-more" class="app-button ios-button">Learn More</a>
+              <a href="#learn-more" class="app-button android-button">Explore Now</a>
           </div>
       </div>
   </section>
 
-  <!-- Demo for AI Sense Section -->
-  <section class="ai-sense-demo">
-      <div class="container">
-          <h2>Demo for AI Sense</h2>
-          <p>Experience how our AI system calculates sentiments and integrates with performance feedback.</p>
-          <div class="demo-widget">
-              <textarea id="feedback-input" placeholder="Enter your feedback here..." aria-label="Feedback input"></textarea>
-              <button id="analyze-button" class="btn primary">Analyze</button>
-              <div id="sentiment-result"></div>
-          </div>
-      </div>
-  </section>
-      
-  <!-- Performance Management Section -->
-  <section class="performance-management">
-      <div class="container">
-          <div class="performance-content">
-              <h2>Performance management at its best</h2>
-              <p>Enrich the talent that nurtures your business...</p>
-              <ul>
-                  <li>Flexible goal setting and KRA mapping</li>
-                  <li>Continuous reviews and performance appraisals</li>
-                  <li>360-degree feedback</li>
-                  <li>Analytics to identify performance gaps</li>
-              </ul>
-              <a href="#learn-more">Learn more</a>
-          </div>
-          <div class="performance-image">
-              <img src="image/p1.jpg" alt="Performance Management">
-          </div>
-      </div>
-  </section>
-
-  <!-- Time and Attendance Section -->
-  <section class="time-attendance">
-      <div class="container">
-          <div class="attendance-content">
-              <h2>Optimize your time and attendance</h2>
-              <p>Spend less time tracking time and days off...</p>
-              <ul>
-                  <li>Track attendance with ease</li>
-                  <li>Schedule shifts effortlessly</li>
-                  <li>Track days off efficiently</li>
-                  <li>Convert time to timesheets</li>
-              </ul>
-              <a href="#learn-more">Learn more</a>
-          </div>
-          <div class="attendance-image">
-              <img src="image/p2.jpg" alt="Time and Attendance">
-          </div>
-      </div>
-  </section>
-
-  <!-- Core HR Section -->
-  <section class="core-hr">
-      <div class="container">
-          <div class="core-content">
-              <h2>Core HR simplified</h2>
-              <p>Say goodbye to mundane spreadsheets...</p>
-              <ul>
-                  <li>An employee database that scales</li>
-                  <li>Efficient employee case management</li>
-                  <li>Smart HR workflows</li>
-                  <li>Insightful analytics</li>
-              </ul>
-              <a href="#learn-more">Learn more</a>
-          </div>
-          <div class="core-image">
-              <img src="image/p3.jpg" alt="Core HR">
-          </div>
-      </div>
-  </section>
+  <!-- Floating Action Button -->
+  <button class="floating-button">+</button>
 
   <!-- Footer -->
   <footer>
       <div class="container">
-          <div class="footer-grid">
-              <div class="footer-section">
-                  <h4>Product</h4>
-                  <ul>
-                      <li><a href="#features">Features</a></li>
-                      <li><a href="#pricing">Pricing</a></li>
-                      <li><a href="#integrations">Integrations</a></li>
-                  </ul>
-              </div>
-              <div class="footer-section">
-                  <h4>Developers</h4>
-                  <ul>
-                      <li><a href="#api-docs">API Documentation</a></li>
-                      <li><a href="#sdk">SDKs & Tools</a></li>
-                      <li><a href="#status">System Status</a></li>
-                  </ul>
-              </div>
-              <div class="footer-section">
-                  <h4>Company</h4>
-                  <ul>
-                      <li><a href="#about">About Us</a></li>
-                      <li><a href="#careers">Careers</a></li>
-                      <li><a href="#contact">Contact</a></li>
-                  </ul>
-              </div>
-          </div>
-          <div class="footer-bottom">
-              <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
-          </div>
+          <a href="privacy.html" class="app-button ios-button">Privacy Policy</a>
+          <a href="terms.html" class="app-button android-button">Terms of Service</a>
       </div>
   </footer>
 
-  <script src="test/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("a, button").forEach(element => {
+            if (!element.classList.contains("floating-button")) {
+                element.classList.add("app-button");
+                element.classList.add(Math.random() > 0.5 ? "ios-button" : "android-button");
+            }
+        });
+    });
+  </script>
+
 </body>
 </html>
+
+
