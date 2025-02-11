@@ -1,37 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Footer Component</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+<footer>
+    <div class="footer-content">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Integrations</a></li>
+                    <li><a href="#">Mobile Apps</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">Small Business</a></li>
+                    <li><a href="#">Enterprise</a></li>
+                    <li><a href="#">Accountants</a></li>
+                    <li><a href="#">Nonprofits</a></li>
+                    <li><a href="#">Startups</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">API Documentation</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Marketplace</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
+        </div>
+    </div>
     <style>
-        /* Root Variables */
-        :root {
-            --primary-color: #e33333;
-            --text-dark: #0f1964;
-            --text-body: #333;
-            --background-light: #fff6f4;
-            --transition: all 0.3s ease;
-        }
-
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
         /* Footer Styling */
         footer {
             background: #2d3436;
@@ -71,7 +95,7 @@
         .footer-section ul li a {
             color: #a0a0a0;
             text-decoration: none;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             font-size: 0.9rem;
         }
 
@@ -99,7 +123,7 @@
         .social-links a {
             color: #a0a0a0;
             text-decoration: none;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -115,7 +139,6 @@
             transform: translateY(-2px);
         }
 
-        /* Enhanced Mobile Responsive Styles */
         @media screen and (max-width: 768px) {
             footer {
                 padding: 2rem 0 1rem;
@@ -134,36 +157,9 @@
             .footer-section {
                 padding: 0 0.5rem;
             }
-
-            .footer-section h4 {
-                font-size: 1.1rem;
-                margin-bottom: 1rem;
-            }
-
-            .footer-section ul li {
-                margin-bottom: 0.6rem;
-            }
-
-            .footer-section ul li a {
-                font-size: 0.85rem;
-            }
-
-            .social-links {
-                justify-content: flex-start;
-                flex-wrap: wrap;
-            }
-
-            .social-links a {
-                width: 35px;
-                height: 35px;
-            }
         }
 
         @media screen and (max-width: 480px) {
-            footer {
-                padding: 1.5rem 0 1rem;
-            }
-
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -171,145 +167,11 @@
 
             .footer-section {
                 text-align: center;
-                padding: 0;
-            }
-
-            .footer-section h4 {
-                font-size: 1rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .footer-section ul li {
-                margin-bottom: 0.5rem;
-            }
-
-            .footer-section ul li a {
-                font-size: 0.8rem;
-                padding: 0.5rem 0;
-                display: inline-block;
             }
 
             .social-links {
                 justify-content: center;
-                gap: 0.8rem;
-            }
-
-            .social-links a {
-                width: 32px;
-                height: 32px;
-                font-size: 0.9rem;
-            }
-
-            .footer-bottom {
-                margin-top: 1.5rem;
-                padding-top: 1.5rem;
-            }
-
-            .footer-bottom p {
-                font-size: 0.8rem;
-            }
-
-            .footer-section:not(:last-child) {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                padding-bottom: 1.5rem;
-            }
-        }
-
-        /* Medium-sized devices */
-        @media screen and (min-width: 481px) and (max-width: 768px) {
-            .footer-section:nth-child(odd) {
-                padding-right: 1rem;
-            }
-
-            .footer-section:nth-child(even) {
-                padding-left: 1rem;
-            }
-
-            .footer-section:last-child:nth-child(odd) {
-                grid-column: 1 / -1;
-                text-align: center;
-            }
-        }
-
-        /* Landscape orientation */
-        @media screen and (max-width: 768px) and (orientation: landscape) {
-            footer {
-                padding: 1.5rem 0;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1.5rem;
-            }
-
-            .footer-section h4 {
-                font-size: 1rem;
-            }
-
-            .footer-section ul li a {
-                font-size: 0.8rem;
             }
         }
     </style>
-</head>
-<body>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Integrations</a></li>
-                        <li><a href="#">Mobile Apps</a></li>
-                        <li><a href="#">Security</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Solutions</h4>
-                    <ul>
-                        <li><a href="#">Small Business</a></li>
-                        <li><a href="#">Enterprise</a></li>
-                        <li><a href="#">Accountants</a></li>
-                        <li><a href="#">Nonprofits</a></li>
-                        <li><a href="#">Startups</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">API Documentation</a></li>
-                        <li><a href="#">Community</a></li>
-                        <li><a href="#">Partners</a></li>
-                        <li><a href="#">Marketplace</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Press</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Workwise Pro. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
+</footer>
