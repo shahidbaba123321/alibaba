@@ -371,98 +371,135 @@
     <!-- Footer Container -->
     <div id="footer-container"></div>
 
-    <script>
-        // Component Loading Function
-        async function loadComponent(url, targetElementId) {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const html = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                
-                // Extract and handle styles
-                const styles = doc.getElementsByTagName('style');
-                Array.from(styles).forEach(style => {
-                    if (!document.head.querySelector(`style[data-source="${url}"]`)) {
-                        style.setAttribute('data-source', url);
-                        document.head.appendChild(style.cloneNode(true));
-                    }
-                });
-                
-                // Extract and handle external stylesheets
-                const links = doc.getElementsByTagName('link');
-                Array.from(links).forEach(link => {
-                    if (link.rel === 'stylesheet' && !document.head.querySelector(`link[href="${link.href}"]`)) {
-                        document.head.appendChild(link.cloneNode());
-                    }
-                });
-                
-                // Extract body content
-                const content = doc.body.firstElementChild;
-                const targetElement = document.getElementById(targetElementId);
-                targetElement.innerHTML = ''; // Clear existing content
-                targetElement.appendChild(content);
-                
-                // Extract and execute scripts
-                const scripts = doc.getElementsByTagName('script');
-                Array.from(scripts).forEach(script => {
-                    const newScript = document.createElement('script');
-                    if (script.src) {
-                        if (!document.querySelector(`script[src="${script.src}"]`)) {
-                            newScript.src = script.src;
-                            document.body.appendChild(newScript);
-                        }
-                    } else {
-                        newScript.textContent = script.textContent;
-                        document.body.appendChild(newScript);
-                    }
-                });
-
-                return true;
-            } catch (error) {
-                console.error('Error loading component:', error);
-                document.getElementById(targetElementId).innerHTML = `
-                    <div style="color: red; padding: 20px; text-align: center;">
-                        Error loading component. Please refresh the page or try again later.
-                    </div>`;
-                return false;
+   // Update the script section in your main HTML file
+<script>
+    // Component Loading Function with improved error handling and logging
+    async function loadComponent(url, targetElementId) {
+        console.log(`Attempting to load component from ${url} into ${targetElementId}`);
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        }
+            const html = await response.text();
+            console.log(`Successfully fetched content from ${url}`);
+            
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Extract and handle styles
+            const styles = doc.getElementsByTagName('style');
+            Array.from(styles).forEach(style => {
+                if (!document.head.querySelector(`style[data-source="${url}"]`)) {
+                    style.setAttribute('data-source', url);
+                    document.head.appendChild(style.cloneNode(true));
+                }
+            });
+            
+            // Extract and handle external stylesheets
+            const links = doc.getElementsByTagName('link');
+            Array.from(links).forEach(link => {
+                if (link.rel === 'stylesheet' && !document.head.querySelector(`link[href="${link.href}"]`)) {
+                    document.head.appendChild(link.cloneNode());
+                }
+            });
+            
+            // Extract body content
+            const content = doc.body.firstElementChild;
+            if (!content) {
+                throw new Error(`No content found in ${url}`);
+            }
+            
+            const targetElement = document.getElementById(targetElementId);
+            if (!targetElement) {
+                throw new Error(`Target element ${targetElementId} not found`);
+            }
+            
+            targetElement.innerHTML = ''; // Clear existing content
+            targetElement.appendChild(content);
+            console.log(`Successfully loaded content into ${targetElementId}`);
+            
+            // Extract and execute scripts
+            const scripts = doc.getElementsByTagName('script');
+            for (const script of scripts) {
+                const newScript = document.createElement('script');
+                if (script.src) {
+                    if (!document.querySelector(`script[src="${script.src}"]`)) {
+                        newScript.src = script.src;
+                        await new Promise((resolve, reject) => {
+                            newScript.onload = resolve;
+                            newScript.onerror = reject;
+                            document.body.appendChild(newScript);
+                        });
+                    }
+                } else {
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                }
+            }
 
-        // Initialize components when DOM is ready
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Load header first
+            return true;
+        } catch (error) {
+            console.error(`Error loading component from ${url}:`, error);
+            const targetElement = document.getElementById(targetElementId);
+            if (targetElement) {
+                targetElement.innerHTML = `
+                    <div style="color: red; padding: 20px; text-align: center;">
+                        Error loading component from ${url}. Please refresh the page or try again later.
+                        <br>
+                        Error: ${error.message}
+                    </div>`;
+            }
+            return false;
+        }
+    }
+
+    // Initialize components when DOM is ready with improved loading sequence
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            console.log('Starting component loading sequence');
+            
+            // Load header
+            console.log('Loading header...');
             const headerLoaded = await loadComponent('header.html', 'header-container');
             if (headerLoaded) {
-                // Initialize mobile menu after header is loaded
+                console.log('Header loaded successfully');
                 if (typeof initializeMobileMenu === 'function') {
                     initializeMobileMenu();
+                    console.log('Mobile menu initialized');
                 }
             }
 
-            // Load footer
-            await loadComponent('footer.html', 'footer-container');
-        });
+            // Load footer with a slight delay to ensure proper loading sequence
+            console.log('Loading footer...');
+            setTimeout(async () => {
+                const footerLoaded = await loadComponent('footer.html', 'footer-container');
+                if (footerLoaded) {
+                    console.log('Footer loaded successfully');
+                }
+            }, 100);
 
-        // Global error handling
-        window.onerror = function(msg, url, lineNo, columnNo, error) {
-            console.error('Global error:', {
-                message: msg,
-                url: url,
-                lineNumber: lineNo,
-                columnNumber: columnNo,
-                error: error
-            });
-            return false;
-        };
+        } catch (error) {
+            console.error('Error in component loading sequence:', error);
+        }
+    });
 
-        // Handle unhandled promise rejections
-        window.addEventListener('unhandledrejection', function(event) {
-            console.error('Unhandled promise rejection:', event.reason);
+    // Global error handling
+    window.onerror = function(msg, url, lineNo, columnNo, error) {
+        console.error('Global error:', {
+            message: msg,
+            url: url,
+            lineNumber: lineNo,
+            columnNumber: columnNo,
+            error: error
         });
-    </script>
+        return false;
+    };
+
+    // Handle unhandled promise rejections
+    window.addEventListener('unhandledrejection', function(event) {
+        console.error('Unhandled promise rejection:', event.reason);
+    });
+</script>
 </body>
 </html>
